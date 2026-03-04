@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page not found - Groww Garden botanical preserve">
+    <title>404 · Page not found | Groww Garden</title>
+    <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & FRESH PALETTE (jet black, pure white, deep green, soft leaf) – exactly as index ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --jet-black: #0E0E0E;
+            --pure-white: #FFFFFF;
+            --deep-green: #1B4332;
+            --soft-leaf: #74C69D;
+            --text-main: #0E0E0E;
+            --text-heading: #0E0E0E;
+            --card-bg: #FFFFFF;
+            --border-light: #D0E6D5;
+            --navbar-bg: #0E0E0E;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F2F9F2;
+            --accent-deep: #1B4332;
+            --accent-soft: #74C69D;
+            --text-on-deep: #FFFFFF;
+            --text-on-soft: #0E0E0E;
+            --text-on-dark: #FFFFFF;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1E2A1E;
+            --text-main: #E8F0E8;
+            --text-heading: #FFFFFF;
+            --card-bg: #1F2A1F;
+            --border-light: #2D6A4F;
+            --navbar-bg: #0E0E0E;
+            --accent-deep: #2D6A4F;
+            --accent-soft: #8FDEB0;
+            --text-on-deep: #FFFFFF;
+            --text-on-soft: #0E0E0E;
+            --text-on-dark: #FFFFFF;
+            --hero-text-dark: #C0E0C0;
+            --stat-label-dark: #B0D0B0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* NO SCROLL */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        a {
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /* navbar – jet black (same as index) */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border-bottom: 1px solid #1e2e24;
+            padding: 0.75rem 0;
+            width: 100%;
+            z-index: 1000;
+            flex-shrink: 0;
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+            overflow: hidden;
+        }
+        .logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 2rem;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .logo-text span {
+            color: var(--soft-leaf);
+        }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        /* hide desktop nav / mobile for simplicity – only keep minimal elements */
+        .desktop-nav, .navbar-right-desktop, .mobile-menu-btn {
+            display: none;
+        }
+
+        /* TOP RIGHT CONTROLS - THEME + RTL */
+        .top-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .control-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: 1px solid var(--soft-leaf);
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .control-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: scale(1.1);
+        }
+
+        /* ----- 404 CORE – full flex, no overflow, same aesthetic ----- */
+        .error-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: var(--bg-primary);
+            padding: 2rem 1rem;
+            height: calc(100vh - 82px); /* subtract navbar height ~82px */
+            overflow: hidden;
+        }
+        .error-content {
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeIn 0.6s ease;
+        }
+        .error-code {
+            font-size: clamp(7rem, 20vw, 14rem);
+            font-weight: 900;
+            line-height: 1;
+            color: var(--deep-green);
+            text-shadow: 8px 8px 0 var(--soft-leaf);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.03em;
+        }
+        [data-theme="dark"] .error-code {
+            color: var(--soft-leaf);
+            text-shadow: 8px 8px 0 var(--deep-green);
+        }
+        .error-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 1rem;
+        }
+        .error-message {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        .btn-primary {
+            background-color: var(--deep-green);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        .btn-primary i {
+            font-size: 1rem;
+        }
+        .btn-primary:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: translateY(-3px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--deep-green);
+            color: var(--deep-green);
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .btn-outline i {
+            font-size: 1rem;
+        }
+        .btn-outline:hover {
+            background-color: var(--deep-green);
+            color: white;
+            border-color: var(--deep-green);
+            transform: translateY(-3px);
+        }
+        [data-theme="dark"] .btn-outline {
+            border-color: var(--soft-leaf);
+            color: var(--soft-leaf);
+        }
+        [data-theme="dark"] .btn-outline:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+
+        /* nature illustrations – botanical icons row */
+        .nature-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0 1rem;
+            color: var(--soft-leaf);
+        }
+        .nature-icons i {
+            font-size: 2.5rem;
+            opacity: 0.8;
+            transition: transform 0.2s;
+        }
+        .nature-icons i:hover {
+            transform: scale(1.2) rotate(5deg);
+            color: var(--deep-green);
+        }
+
+        /* no scroll, no overflow */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Minimal navbar (jet black, same as index) – with top right controls -->
+    <nav class="navbar-container">
+        <div class="container navbar-flex">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-tree"></i></div>
+                <div>
+                    <div class="logo-text">Groww<span> Garden</span></div>
+                    <span class="logo-tagline">botanical preserve</span>
+                </div>
+            </a>
+            
+            <!-- TOP RIGHT CONTROLS: THEME + RTL (neat, matching index style) -->
+            <div class="top-controls">
+                <button class="control-btn" id="rtl-toggle-btn" aria-label="Toggle RTL">
+                    <i class="fas fa-right-left"></i>
+                </button>
+                <button class="control-btn" id="theme-toggle-btn" aria-label="Toggle dark mode">
+                    <i class="fas fa-circle-half-stroke" id="theme-icon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 404 MAIN SECTION – fully centered, no scroll -->
+    <section class="error-section">
+        <div class="error-content">
+            <div class="error-code">404</div>
+            <h1 class="error-title">lost in the woods?</h1>
+            <p class="error-message">
+                The page you're looking for seems to have wandered off the trail. 
+                Let's get you back to familiar ground.
+            </p>
+            <div class="error-actions">
+                <a href="index.html" class="btn-primary">
+                    <i class="fas fa-leaf"></i> Return to Garden
+                </a>
+                <a href="gallery.html" class="btn-outline">
+                    <i class="fas fa-hiking"></i> Explore Gallery
+                </a>
+            </div>
+            <!-- botanical icons – same fresh green palette -->
+            <div class="nature-icons">
+                <i class="fas fa-tree"></i>
+                <i class="fas fa-seedling"></i>
+                <i class="fas fa-water"></i>
+                <i class="fas fa-feather"></i>
+            </div>
+            <!-- subtle hint -->
+            <p style="color: var(--text-main); opacity: 0.7; font-size: 0.95rem;">
+                <i class="fas fa-map-signal" style="margin-right: 0.5rem;"></i> 
+                Error 404 · page not found
+            </p>
+        </div>
+    </section>
+
+    <script>
+        (function() {
+            const htmlEl = document.documentElement;
+            const themeBtn = document.getElementById('theme-toggle-btn');
+            const themeIcon = document.getElementById('theme-icon');
+            const rtlBtn = document.getElementById('rtl-toggle-btn');
+
+            // ========== THEME ==========
+            // get stored theme or default to light
+            let theme = localStorage.getItem('theme') || 'light';
+            htmlEl.setAttribute('data-theme', theme);
+            if (theme === 'dark') {
+                htmlEl.classList.add('dark');
+                if(themeIcon) themeIcon.className = 'fas fa-sun';
+            } else {
+                htmlEl.classList.remove('dark');
+                if(themeIcon) themeIcon.className = 'fas fa-circle-half-stroke';
+            }
+
+            // toggle theme function (identical to index behaviour)
+            function toggleTheme() {
+                let currentTheme = htmlEl.getAttribute('data-theme');
+                let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                htmlEl.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                if (newTheme === 'dark') {
+                    htmlEl.classList.add('dark');
+                    if(themeIcon) themeIcon.className = 'fas fa-sun';
+                } else {
+                    htmlEl.classList.remove('dark');
+                    if(themeIcon) themeIcon.className = 'fas fa-circle-half-stroke';
+                }
+            }
+
+            if(themeBtn) {
+                themeBtn.addEventListener('click', toggleTheme);
+            }
+
+            // ========== RTL ==========
+            // get stored direction or default to ltr
+            let dir = localStorage.getItem('direction') || 'ltr';
+            htmlEl.setAttribute('dir', dir);
+
+            function toggleRtl() {
+                let currentDir = htmlEl.getAttribute('dir');
+                let newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+                htmlEl.setAttribute('dir', newDir);
+                localStorage.setItem('direction', newDir);
+            }
+
+            if(rtlBtn) {
+                rtlBtn.addEventListener('click', toggleRtl);
+            }
+
+            // ========== NO SCROLL ==========
+            // absolutely NO SCROLL: disable any wheel / touchmove that could cause scroll
+            window.addEventListener('wheel', (e) => e.preventDefault(), { passive: false });
+            window.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+            // also disable keys that cause scrolling (arrows, space, page up/down)
+            window.addEventListener('keydown', (e) => {
+                const keys = [' ', 'ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End'];
+                if (keys.includes(e.key)) {
+                    e.preventDefault();
+                }
+            });
+
+            // ensure body height locks
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in · Groww Garden</title>
+    <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- global palette – exactly from index.html ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --jet-black: #0E0E0E;
+            --pure-white: #FFFFFF;
+            --deep-green: #1B4332;
+            --soft-leaf: #74C69D;
+            --text-main: #0E0E0E;
+            --text-heading: #0E0E0E;
+            --card-bg: #FFFFFF;
+            --border-light: #D0E6D5;
+            --bg-primary: #FFFFFF;
+            --accent-deep: #1B4332;
+            --accent-soft: #74C69D;
+            --input-bg: #FFFFFF;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --text-main: #E8F0E8;
+            --text-heading: #FFFFFF;
+            --card-bg: #1F2A1F;
+            --border-light: #2D6A4F;
+            --accent-deep: #2D6A4F;
+            --accent-soft: #8FDEB0;
+            --input-bg: #1A251A;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.4;
+            
+            /* --- FIXED: PERFECT CENTERING, ABSOLUTELY NO SCROLL --- */
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            background-image: radial-gradient(circle at 10% 20%, rgba(116, 198, 157, 0.03) 0%, transparent 30%);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* --- toggles fixed top right, no interaction with scroll --- */
+        .toggle-corner {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.2rem;
+            display: flex;
+            gap: 0.6rem;
+            z-index: 1000;
+        }
+
+        .control-bubble {
+            width: 42px;
+            height: 42px;
+            background-color: var(--card-bg);
+            border: 2px solid var(--deep-green);
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-green);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 18px -6px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+
+        .control-bubble:hover {
+            background-color: var(--deep-green);
+            color: white;
+            border-color: var(--soft-leaf);
+        }
+
+        /* --- MAIN CARD – TIGHT, NO INTERNAL SCROLL, FITS EXACT --- */
+        .auth-card {
+            background-color: var(--card-bg);
+            border-radius: 2.2rem;
+            border: 2px solid var(--soft-leaf);
+            box-shadow: 0 25px 40px -14px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            max-width: 440px;          /* slightly tighter than before */
+            padding: 1.5rem 1.8rem 1.8rem;  /* reduced padding */
+            transition: background-color 0.3s;
+            
+            /* ensure no overflow */
+            max-height: calc(100vh - 40px);
+            overflow-y: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* logo strip – jet black, tight – NO UNDERLINE, CLEAN */
+        .logo-black-strip {
+            background-color: var(--jet-black);
+            border-radius: 2.2rem 2.2rem 1.5rem 1.5rem;
+            padding: 0.8rem 1.2rem;        /* tighter */
+            margin-bottom: 1rem;
+            border: 2px solid var(--soft-leaf);
+            box-shadow: 0 12px 20px -12px rgba(0,0,0,0.5);
+        }
+
+        /* remove any default link underline & inherit colors */
+        .logo-uniform {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            text-decoration: none;         /* ← kills underline */
+            color: inherit;                /* keeps text white from parent */
+        }
+
+        .logo-icon {
+            width: 2.8rem;
+            height: 2.8rem;
+            background-color: rgba(255,255,255,0.08);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+            flex-shrink: 0;
+        }
+
+        .logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 1.8rem;
+        }
+
+        .logo-text-block {
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        .logo-text {
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: var(--pure-white);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            color: var(--soft-leaf);
+        }
+
+        .tagline {
+            font-size: 0.6rem;
+            color: #cccccc;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-top: -0.2rem;
+            display: block;
+        }
+
+        /* tabs – compact */
+        .tab-buttons {
+            display: flex;
+            gap: 1rem;
+            border-bottom: 2px solid var(--border-light);
+            margin: 0 0 1rem 0;          /* reduced */
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.4rem 0.2rem 0.3rem;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-main);
+            opacity: 0.6;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .tab-btn.active {
+            opacity: 1;
+            color: var(--deep-green);
+            border-bottom-color: var(--deep-green);
+        }
+
+        [data-theme="dark"] .tab-btn.active {
+            color: var(--soft-leaf);
+            border-bottom-color: var(--soft-leaf);
+        }
+
+        /* intro text – smaller margins */
+        .form-intro {
+            margin-bottom: 0.8rem;
+        }
+        .form-intro h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0.1rem;
+        }
+        .form-intro p {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* form elements – extra tight */
+        .input-group {
+            margin-bottom: 0.8rem;        /* reduced */
+        }
+
+        .input-label {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.2rem;
+        }
+
+        .input-field-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--deep-green);
+            font-size: 0.9rem;
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        .input-field {
+            width: 100%;
+            background-color: var(--bg-primary);
+            border: 2px solid var(--border-light);
+            border-radius: 40px;
+            padding: 0.6rem 1rem 0.6rem 2.5rem;  /* compact */
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            transition: 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--deep-green);
+            box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .password-toggle:hover { color: var(--deep-green); opacity: 1; }
+
+        .btn-primary {
+            background-color: var(--deep-green);
+            color: white;
+            padding: 0.7rem 1.2rem;        /* compact */
+            border-radius: 40px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            box-shadow: 0 10px 18px -8px rgba(27, 67, 50, 0.4);
+            border: 2px solid var(--deep-green);
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--soft-leaf);
+            border-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--deep-green);
+            background: transparent;
+            color: var(--deep-green);
+            padding: 0.5rem 0.8rem;         /* compact */
+            border-radius: 40px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.8rem;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--deep-green);
+            color: white;
+        }
+
+        .social-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-top: 0.8rem;
+        }
+
+        .forgot-link {
+            color: var(--deep-green);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        [data-theme="dark"] .forgot-link { color: var(--soft-leaf); }
+
+        /* strength bar tiny */
+        .strength-bar-bg {
+            height: 4px;
+            background: var(--border-light);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 0.2rem 0 0.1rem;
+        }
+        .strength-bar-fill {
+            height: 100%;
+            width: 0%;
+            background-color: var(--deep-green);
+            transition: width 0.3s;
+        }
+        .strength-text {
+            font-size: 0.6rem;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.4rem 0 0.8rem;       /* tight */
+        }
+        .checkbox-item input {
+            accent-color: var(--deep-green);
+            width: 0.9rem;
+            height: 0.9rem;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* separator line */
+        .separator-line {
+            margin-top: 1rem;
+            border-top: 2px solid var(--border-light);
+            padding-top: 0.8rem;
+        }
+
+        .toast-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 9999;
+        }
+        .toast {
+            background-color: var(--card-bg);
+            border-left: 5px solid var(--soft-leaf);
+            padding: 0.7rem 1.2rem;
+            border-radius: 40px;
+            box-shadow: 0 12px 20px -10px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: 1px solid var(--soft-leaf);
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* no scroll anywhere */
+        @media (max-width: 600px) {
+            body { padding: 0; }
+            .auth-card { max-width: 94%; padding: 1.2rem; }
+            .toggle-corner { top: 0.8rem; right: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- fixed toggles (no scroll) -->
+    <div class="toggle-corner">
+        <button class="control-bubble" id="rtl-toggle" title="RTL/LTR">
+            <i class="fas fa-right-left"></i>
+        </button>
+        <button class="control-bubble" id="theme-toggle" title="Switch theme">
+            <i class="fas fa-circle-half-stroke" id="theme-icon"></i>
+        </button>
+    </div>
+
+    <!-- main card – perfectly tight, no scroll -->
+    <div class="auth-card">
+        <!-- jet black strip with pure white + soft leaf – FIXED: no underline, neat alignment -->
+        <div class="logo-black-strip">
+            <!-- removed href="index.html" to avoid unwanted navigation/underline, but you can keep it if needed; text-decoration removes line anyway -->
+            <a href="index.html" class="logo-uniform" style="cursor:default;">  <!-- or keep as inert; visually unchanged -->
+                <div class="logo-icon">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <div class="logo-text-block">
+                    <div class="logo-text">Groww<span> Garden</span></div>
+                    <span class="tagline">botanical preserve</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- tabs -->
+        <div class="tab-buttons">
+            <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Sign In</button>
+            <button class="tab-btn" id="tab-register" onclick="switchTab('register')">Join</button>
+        </div>
+
+        <!-- LOGIN -->
+        <div id="login-form" class="tab-content active">
+            <div class="form-intro">
+                <h3>welcome back</h3>
+                <p>find your calm.</p>
+            </div>
+
+            <form onsubmit="handleAuth(event, 'login')">
+                <div class="input-group">
+                    <label class="input-label">Email</label>
+                    <div class="input-field-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" class="input-field" placeholder="you@example.com" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div style="display: flex; justify-content: space-between;">
+                        <label class="input-label">Password</label>
+                        <a href="#" class="forgot-link">Forgot?</a>
+                    </div>
+                    <div class="input-field-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" class="input-field" id="login-password" placeholder="••••••••" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('login-password', this)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="checkbox-item">
+                    <input type="checkbox" id="reclient">
+                    <label for="reclient" style="font-size:0.8rem;">reclient device</label>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-seedling"></i> Sign in
+                </button>
+
+                <div class="separator-line">
+                    <p style="text-align:center; font-size:0.65rem; font-weight:600; opacity:0.6;">CONNECT WITH</p>
+                    <div class="social-buttons">
+                        <button class="btn-outline" type="button"><i class="fab fa-google"></i> Google</button>
+                        <button class="btn-outline" type="button"><i class="fab fa-facebook-f"></i> Facebook</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- REGISTER (tight) -->
+        <div id="register-form" class="tab-content">
+            <div class="form-intro">
+                <h3>become a client</h3>
+                <p>join the preserve.</p>
+            </div>
+
+            <form onsubmit="handleAuth(event, 'register')">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
+                    <div class="input-group">
+                        <label class="input-label">First</label>
+                        <div class="input-field-wrapper">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" class="input-field" placeholder="River" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Last</label>
+                        <div class="input-field-wrapper">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" class="input-field" placeholder="Song" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Email</label>
+                    <div class="input-field-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" class="input-field" placeholder="river@groww.org" required>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
+                    <div class="input-group">
+                        <label class="input-label">Password</label>
+                        <div class="input-field-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" class="input-field" id="reg-password" placeholder="••••••" required oninput="updateStrength()">
+                            <button type="button" class="password-toggle" onclick="togglePassword('reg-password', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Confirm</label>
+                        <div class="input-field-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" class="input-field" id="confirm-password" placeholder="••••••" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('confirm-password', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- strength bar mini -->
+                <div style="margin:0.2rem 0 0.6rem;">
+                    <div class="strength-bar-bg">
+                        <div id="strength-bar" class="strength-bar-fill" style="width:0%;"></div>
+                    </div>
+                    <div id="strength-text" class="strength-text">password strength</div>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-leaf"></i> Create account
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- toast container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script>
+        (function() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const rtlToggle = document.getElementById('rtl-toggle');
+
+            let savedTheme = localStorage.getItem('theme') || 'light';
+            html.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            function updateThemeIcon(theme) {
+                if (themeIcon) themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+            }
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const current = html.getAttribute('data-theme');
+                    const next = current === 'light' ? 'dark' : 'light';
+                    html.setAttribute('data-theme', next);
+                    localStorage.setItem('theme', next);
+                    updateThemeIcon(next);
+                });
+            }
+
+            if (rtlToggle) {
+                rtlToggle.addEventListener('click', () => {
+                    const dir = html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
+                    html.setAttribute('dir', dir);
+                });
+            }
+
+            window.switchTab = function(tab) {
+                const loginTab = document.getElementById('tab-login');
+                const registerTab = document.getElementById('tab-register');
+                const loginForm = document.getElementById('login-form');
+                const registerForm = document.getElementById('register-form');
+
+                if (tab === 'login') {
+                    loginTab.classList.add('active');
+                    registerTab.classList.remove('active');
+                    loginForm.classList.add('active');
+                    registerForm.classList.remove('active');
+                } else {
+                    registerTab.classList.add('active');
+                    loginTab.classList.remove('active');
+                    registerForm.classList.add('active');
+                    loginForm.classList.remove('active');
+                }
+            };
+
+            window.togglePassword = function(inputId, btn) {
+                const input = document.getElementById(inputId);
+                const icon = btn.querySelector('i');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.className = 'fas fa-eye-slash';
+                } else {
+                    input.type = 'password';
+                    icon.className = 'fas fa-eye';
+                }
+            };
+
+            window.updateStrength = function() {
+                const pass = document.getElementById('reg-password')?.value || '';
+                const bar = document.getElementById('strength-bar');
+                const text = document.getElementById('strength-text');
+                if (!bar) return;
+                let strength = 0;
+                if (pass.length > 4) strength += 25;
+                if (pass.length > 7) strength += 25;
+                if (/[0-9]/.test(pass)) strength += 20;
+                if (/[A-Z]/.test(pass)) strength += 15;
+                if (/[^A-Za-z0-9]/.test(pass)) strength += 15;
+                bar.style.width = Math.min(strength, 100) + '%';
+                if (strength < 30) text.innerText = 'simple – add numbers & symbols';
+                else if (strength < 60) text.innerText = 'medium – getting there';
+                else text.innerText = 'strong – looks good';
+            };
+
+            function showToast(msg) {
+                const container = document.getElementById('toast-container');
+                if (!container) return;
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerText = msg;
+                container.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
+
+            window.handleAuth = function(e, type) {
+                e.preventDefault();
+                const btn = e.target.querySelector('button[type="submit"]');
+                if (btn) {
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> processing...';
+                    btn.disabled = true;
+                }
+
+                setTimeout(() => {
+                    showToast(type === 'login' ? 'Welcome back, nature lover 🌿' : 'Account created! Redirecting...');
+                    setTimeout(() => {
+                        window.location.href = 'userdash.html';
+                    }, 1000);
+                }, 1200);
+            };
+        })();
+    </script>
+</body>
+</html>

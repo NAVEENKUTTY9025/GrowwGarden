@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about Groww Garden – our mission, history, team, and commitment to nature preservation.">
+    <title>About Us | Groww Garden</title>
+    <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & FRESH PALETTE (jet black, pure white, deep green, soft leaf) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --jet-black: #0E0E0E;
+            --pure-white: #FFFFFF;
+            --deep-green: #1B4332;
+            --soft-leaf: #74C69D;
+            --text-main: #0E0E0E;
+            --text-heading: #0E0E0E;
+            --card-bg: #FFFFFF;
+            --border-light: #D0E6D5;
+            --navbar-bg: #0E0E0E;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F2F9F2;
+            --accent-deep: #1B4332;
+            --accent-soft: #74C69D;
+
+            --text-on-deep: #FFFFFF;
+            --text-on-soft: #0E0E0E;
+            --text-on-dark: #FFFFFF;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1E2A1E;
+            --text-main: #E8F0E8;
+            --text-heading: #FFFFFF;
+            --card-bg: #1F2A1F;
+            --border-light: #2D6A4F;
+            --navbar-bg: #0E0E0E;
+            --accent-deep: #2D6A4F;
+            --accent-soft: #8FDEB0;
+            
+            --text-on-deep: #FFFFFF;
+            --text-on-soft: #0E0E0E;
+            --text-on-dark: #FFFFFF;
+            
+            --hero-text-dark: #C0E0C0;
+            --stat-label-dark: #B0D0B0;
+            --gallery-text-dark: #E0F0E0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        a {
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /* navbar – jet black */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border-bottom: 1px solid #1e2e24;
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+            overflow: hidden;
+        }
+        .logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 2rem;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .logo-text span {
+            color: var(--soft-leaf);
+        }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        /* desktop nav */
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .nav-link {
+            color: #e0e0e0;
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #FAFAFA;
+            background-color: #2a2a2a;
+            border-radius: 30px;
+        }
+        .nav-link.active {
+            color: #FAFAFA;
+            font-weight: 600;
+            background: var(--deep-green);
+            border-radius: 30px;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1c1c1c;
+            border: 1px solid #1B4332;
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #ccc;
+            transition: 0.2s;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .dropdown-item:hover {
+            background-color: var(--deep-green);
+            color: #fff;
+            padding-left: 28px;
+            border-radius: 12px;
+        }
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: 0.2s;
+        }
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        .navbar-right-desktop {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .icon-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+        .login-btn {
+            background-color: var(--deep-green);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        .login-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: white;
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        /* mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--jet-black);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #2a4c3b;
+        }
+        .mobile-menu-close {
+            color: white;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .mobile-menu-items {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a4c3b;
+            transition: 0.2s;
+        }
+        .mobile-menu-item i {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-menu-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-menu-item.active-mobile {
+            background: var(--deep-green);
+            border-radius: 12px;
+            padding-left: 0.5rem;
+            color: white;
+        }
+        .mobile-menu-item.active-mobile i {
+            color: white;
+        }
+        .mobile-dropdown {
+            border-bottom: 1px solid #2a4c3b;
+        }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 1rem 0;
+            cursor: pointer;
+        }
+        .mobile-dropdown-btn i:first-child {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-dropdown-btn .fa-chevron-down {
+            color: var(--soft-leaf);
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #1a1a1a;
+            border-radius: 16px;
+            margin-bottom: 0.5rem;
+        }
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+            padding: 0.75rem 0;
+        }
+        .mobile-dropdown-content a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: #ccc;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+        .mobile-dropdown-content a:hover {
+            background-color: var(--deep-green);
+            color: white;
+        }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a4c3b;
+            transition: 0.2s;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        .mobile-action-item i {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-separator {
+            margin: 1rem 0 0.5rem 0;
+            border-top: 2px solid #2f4f3a;
+        }
+
+        /* HERO SECTION WITH BACKGROUND IMAGE */
+        .about-hero {
+            height: 80vh;
+            min-height: 600px;
+            width: 100%;
+            margin-top: 0;
+            padding-top: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: var(--bg-primary);
+            overflow: hidden;
+        }
+        .about-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1973&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center 40%;
+            background-repeat: no-repeat;
+        }
+        .about-hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: brightness(0.85);
+        }
+        [data-theme="dark"] .about-hero-bg::after {
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: brightness(0.65);
+        }
+        .about-hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            color: var(--pure-white);
+            text-shadow: 0 2px 15px rgba(0,0,0,0.4);
+            animation: fadeInUp 1s ease;
+        }
+        .about-hero-sub {
+            font-size: 1.125rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--soft-leaf);
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 0.4rem 1.5rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+        .about-hero-title {
+            font-size: clamp(2.8rem, 10vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        .about-hero-title span {
+            color: var(--soft-leaf);
+        }
+        .about-hero-description {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* page header for about (replacing with hero, so we remove old page-header) */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-heading);
+        }
+        .section-sub {
+            color: var(--deep-green);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+        [data-theme="dark"] .section-sub {
+            color: var(--soft-leaf);
+        }
+
+        /* about section 1: our mission (deep green card) */
+        .mission-section {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        .mission-card {
+            background-color: var(--deep-green);
+            border-radius: 2.5rem;
+            padding: 3rem;
+            color: white;
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .mission-card {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .mission-content h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .mission-content p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+        .mission-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .mission-stat {
+            text-align: center;
+            flex: 1 1 120px;
+        }
+        .mission-stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--soft-leaf);
+            line-height: 1;
+        }
+        .mission-stat-label {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.8);
+        }
+        .mission-image {
+            border-radius: 2rem;
+            overflow: hidden;
+            height: 300px;
+            background: url('https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?q=80&w=2070&auto=format&fit=crop') center/cover;
+            border: 4px solid var(--soft-leaf);
+        }
+
+        /* section 2: our story timeline */
+        .story-section {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+        }
+        .timeline {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .timeline-item {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: auto 1fr;
+            align-items: start;
+        }
+        .timeline-year {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--deep-green);
+            background: rgba(116, 198, 157, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            line-height: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+        .timeline-content {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            border-left: 6px solid var(--soft-leaf);
+        }
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* section 3: team grid */
+        .team-section {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        .team-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            margin-top: 3rem;
+        }
+        @media (min-width: 640px) {
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .team-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        .team-card {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 1px solid var(--border-light);
+        }
+        .team-card:hover {
+            transform: translateY(-8px);
+        }
+        .team-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .team-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .team-role {
+            color: var(--soft-leaf);
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        .team-bio {
+            color: var(--text-main);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* section 4: partners & supporters with HD images */
+        .partners-section {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+        }
+        .partners-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            margin-top: 3rem;
+        }
+        @media (min-width: 768px) {
+            .partners-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        .partner-card {
+            background-color: var(--card-bg);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s;
+            aspect-ratio: 1/1;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .partner-card:hover {
+            transform: scale(1.05);
+            border-color: var(--soft-leaf);
+            box-shadow: 0 12px 24px rgba(27, 67, 50, 0.2);
+        }
+        .partner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+        .partner-card:hover .partner-image {
+            transform: scale(1.1);
+        }
+        .partner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(27, 67, 50, 0.8));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            backdrop-filter: blur(2px);
+        }
+
+        /* section 5: awards & recognition */
+        .awards-section {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        .awards-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+            .awards-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        .award-card {
+            background: linear-gradient(145deg, var(--deep-green), #0f2b1f);
+            padding: 2rem;
+            border-radius: 2rem;
+            color: white;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .award-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(27, 67, 50, 0.4);
+        }
+        .award-card i {
+            font-size: 3rem;
+            color: var(--soft-leaf);
+            margin-bottom: 1rem;
+        }
+        .award-card h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .award-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.875rem;
+        }
+        .award-year {
+            display: inline-block;
+            background: var(--soft-leaf);
+            color: var(--jet-black);
+            padding: 0.25rem 1rem;
+            border-radius: 999px;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        /* section 6: conservation commitment */
+        .conservation-section {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+        }
+        .conservation-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            margin-top: 3rem;
+        }
+        @media (min-width: 768px) {
+            .conservation-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .conservation-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border-light);
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        .conservation-icon {
+            width: 5rem;
+            height: 5rem;
+            background: rgba(116, 198, 157, 0.15);
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--deep-green);
+            flex-shrink: 0;
+        }
+        [data-theme="dark"] .conservation-icon {
+            color: var(--soft-leaf);
+        }
+        .conservation-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* footer same as index */
+        .footer {
+            background-color: var(--jet-black);
+            color: var(--pure-white);
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--soft-leaf), var(--deep-green), var(--soft-leaf));
+        }
+        .footer-main {
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: 1fr;
+            margin-bottom: 3rem;
+        }
+        @media (min-width: 768px) {
+            .footer-main {
+                grid-template-columns: 2fr 1fr 1fr 2fr;
+            }
+        }
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .footer-logo-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+        }
+        .footer-logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 2.5rem;
+        }
+        .footer-logo-text {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .footer-logo-text span {
+            color: var(--soft-leaf);
+        }
+        .footer-tagline {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+            max-width: 300px;
+        }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .footer-social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-leaf);
+            transition: all 0.2s;
+        }
+        .footer-social-link:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: translateY(-3px);
+        }
+        .footer-heading {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--soft-leaf);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 2rem;
+            height: 2px;
+            background-color: var(--soft-leaf);
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        .footer-links a {
+            color: #B0B0B0;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .footer-links a:hover {
+            color: var(--soft-leaf);
+            transform: translateX(5px);
+        }
+        .footer-links a i {
+            font-size: 0.75rem;
+            color: var(--soft-leaf);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .footer-links a:hover i {
+            opacity: 1;
+        }
+        .footer-newsletter p {
+            color: #B0B0B0;
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer-input {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border-radius: 9999px;
+            border: none;
+            background: #1A1A1A;
+            color: var(--pure-white);
+            font-size: 0.875rem;
+        }
+        .footer-input:focus {
+            outline: 2px solid var(--soft-leaf);
+        }
+        .footer-btn {
+            width: 100%;
+            background-color: var(--deep-green);
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .footer-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: scale(1.02);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+        .copyright {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+        }
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .footer-bottom-links a {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        .footer-bottom-links a:hover {
+            color: var(--soft-leaf);
+        }
+
+        #scroll-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--deep-green);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 100;
+            display: none;
+        }
+        #scroll-top:hover { background-color: var(--soft-leaf); color: var(--jet-black); }
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.7s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR (same as index, with active class on About) -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-tree"></i></div>
+            <div>
+                <div class="logo-text">Groww<span> Garden</span></div>
+                <span class="logo-tagline">botanical preserve</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="events.html" class="nav-link">Events</a>
+            <a href="visit.html" class="nav-link">Visit</a>
+            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <div class="dropdown" id="dashboard-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="client.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> Client</a>
+                    <a href="admin.html" class="dropdown-item"><i class="fas fa-user-shield"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+            <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Login/Register</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu (About active via class) -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-tree"></i></div>
+            <div>
+                <div class="logo-text">Groww<span> Garden</span></div>
+                <span class="logo-tagline">botanical preserve</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                <span><i class="fas fa-home"></i> Home </span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="home-mobile" class="mobile-dropdown-content">
+                <a href="index.html">Home 1</a>
+                <a href="home2.html">Home 2</a>
+            </div>
+        </div>
+        <a href="about.html" class="mobile-menu-item active-mobile"><i class="fas fa-users"></i> About</a>
+        <a href="gallery.html" class="mobile-menu-item"><i class="fas fa-hiking"></i> Gallery</a>
+        <a href="events.html" class="mobile-menu-item"><i class="fas fa-calendar"></i> Events</a>
+        <a href="visit.html" class="mobile-menu-item"><i class="fas fa-map-marked-alt"></i> Visit</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> FAQ</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('dashboard-mobile')">
+                <span><i class="fas fa-chart-pie"></i> Dashboard</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="dashboard-mobile" class="mobile-dropdown-content">
+                <a href="client.html">Client</a>
+                <a href="admin.html">Admin</a>
+            </div>
+        </div>
+        <div class="mobile-separator"></div>
+        <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> login/register</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- HERO SECTION WITH HD BACKGROUND IMAGE -->
+<section class="about-hero">
+    <div class="about-hero-bg"></div>
+    <div class="about-hero-content">
+        
+        <h1 class="about-hero-title">Cultivating <span>connections</span> with nature</h1>
+        <p class="about-hero-description">Since 1987, we've been a sanctuary for native ecosystems and a place for people to find peace, wonder, and knowledge in the heart of the city.</p>
+    </div>
+</section>
+
+<!-- SECTION 1: OUR MISSION (deep green card) -->
+<section class="mission-section">
+    <div class="container">
+        <div class="mission-card">
+            <div class="mission-content">
+                <span class="section-sub" style="color: var(--soft-leaf);">our purpose</span>
+                <h2>preserve, educate, inspire</h2>
+                <p>Groww Garden is more than a collection of plants – we're a living laboratory and a refuge for both wildlife and weary souls. Our mission is to protect biodiversity, offer environmental education, and foster a deep appreciation for the natural world.</p>
+                <p>We believe that when people connect with nature, they become its stewards. Every gallery, every program, and every conserved acre reflects this commitment.</p>
+                <div class="mission-stats">
+                    <div class="mission-stat"><span class="mission-stat-number">80</span> <span class="mission-stat-label">acres</span></div>
+                    <div class="mission-stat"><span class="mission-stat-number">16</span> <span class="mission-stat-label">habitats</span></div>
+                    <div class="mission-stat"><span class="mission-stat-number">40k+</span> <span class="mission-stat-label">visitors/yr</span></div>
+                </div>
+            </div>
+            <div class="mission-image"></div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 2: OUR STORY (timeline) -->
+<section class="story-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span class="section-sub">roots & growth</span>
+            <h2 class="section-title">Our story</h2>
+            <p class="section-description">From a small community garden to a renowned botanical preserve.</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">1987</div>
+                <div class="timeline-content">
+                    <h3>founding vision</h3>
+                    <p>A group of local naturalists and volunteers transform a neglected city lot into the first community garden, planting 50 native trees.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1995</div>
+                <div class="timeline-content">
+                    <h3>wetland restoration</h3>
+                    <p>Heron Wetland is restored, bringing back native aquatic plants and attracting great blue herons for the first time in decades.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2004</div>
+                <div class="timeline-content">
+                    <h3>education center opens</h3>
+                    <p>The Groww Center opens, offering year-round classes, school field trips, and a native plant nursery.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-content">
+                    <h3>80 acres preserved</h3>
+                    <p>With community support, we expand to 80 contiguous acres, protecting critical habitat for over 200 species.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3: MEET THE TEAM -->
+<section class="team-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span class="section-sub">people behind the petals</span>
+            <h2 class="section-title">Meet our naturalists</h2>
+            <p class="section-description">Dedicated staff and volunteers who care for this land every day.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-image" style="background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="team-info">
+                    <h3 class="team-name">Elena Vance</h3>
+                    <div class="team-role">executive director</div>
+                    <p class="team-bio">Botanist with 20 years experience in habitat restoration and community engagement.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image" style="background-image: url('https://images.unsplash.com/photo-1590080875512-670c5e117d7b?q=80&w=1974&auto=format&fit=crop');"></div>
+                <div class="team-info">
+                    <h3 class="team-name">Marcus Webb</h3>
+                    <div class="team-role">head naturalist</div>
+                    <p class="team-bio">Wildlife ecologist who leads bird walks and wetland monitoring programs.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=2030&auto=format&fit=crop');"></div>
+                <div class="team-info">
+                    <h3 class="team-name">Dr. Priya Singh</h3>
+                    <div class="team-role">conservation scientist</div>
+                    <p class="team-bio">Studies native pollinators and leads prairie restoration efforts.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image" style="background-image: url('https://images.unsplash.com/photo-1544717301-9cdcb1f5940f?q=80&w=1974&auto=format&fit=crop');"></div>
+                <div class="team-info">
+                    <h3 class="team-name">James O'Connor</h3>
+                    <div class="team-role">volunteer coordinator</div>
+                    <p class="team-bio">Connects community Dashboard with hands-on conservation projects.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 4: PARTNERS & SUPPORTERS WITH HD IMAGES -->
+<section class="partners-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span class="section-sub">grateful collaborations</span>
+            <h2 class="section-title">Our partners</h2>
+            <p class="section-description">Working together to protect and nurture our green spaces.</p>
+        </div>
+        <div class="partners-grid">
+            <div class="partner-card">
+                <img class="partner-image" src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=2069&auto=format&fit=crop" alt="partner logo">
+                <div class="partner-overlay">nature conservancy</div>
+            </div>
+            <div class="partner-card">
+                <img class="partner-image" src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=2044&auto=format&fit=crop" alt="partner logo">
+                <div class="partner-overlay">audubon society</div>
+            </div>
+            <div class="partner-card">
+                <img class="partner-image" src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013&auto=format&fit=crop" alt="partner logo">
+                <div class="partner-overlay">native plant trust</div>
+            </div>
+            <div class="partner-card">
+                <img class="partner-image" src="https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1932&auto=format&fit=crop" alt="partner logo">
+                <div class="partner-overlay">city parks foundation</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 5: AWARDS & RECOGNITION -->
+<section class="awards-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span class="section-sub">accolades</span>
+            <h2 class="section-title">Recognized for excellence</h2>
+            <p class="section-description">We're honored to receive these awards for our conservation and education work.</p>
+        </div>
+        <div class="awards-grid">
+            <div class="award-card">
+                <i class="fas fa-award"></i>
+                <h3>Botanical garden of excellence</h3>
+                <p>American Public Gardens Association</p>
+                <span class="award-year">2025</span>
+            </div>
+            <div class="award-card">
+                <i class="fas fa-leaf"></i>
+                <h3>Wetland conservation award</h3>
+                <p>National Wildlife Federation</p>
+                <span class="award-year">2023</span>
+            </div>
+            <div class="award-card">
+                <i class="fas fa-hand-sparkles"></i>
+                <h3>Community engagement leader</h3>
+                <p>City Environmental Council</p>
+                <span class="award-year">2024</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 6: CONSERVATION COMMITMENT -->
+<section class="conservation-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span class="section-sub">our promise</span>
+            <h2 class="section-title">Conservation in action</h2>
+            <p class="section-description">Every day we work to restore, protect, and study our native ecosystems.</p>
+        </div>
+        <div class="conservation-grid">
+            <div class="conservation-card">
+                <div class="conservation-icon"><i class="fas fa-droplet"></i></div>
+                <div class="conservation-content">
+                    <h3>Water stewardship</h3>
+                    <p>Rainwater harvesting, native plant buffers, and wetland monitoring preserve water quality.</p>
+                </div>
+            </div>
+            <div class="conservation-card">
+                <div class="conservation-icon"><i class="fas fa-bug"></i></div>
+                <div class="conservation-content">
+                    <h3>Pollinator pathways</h3>
+                    <p>We maintain pesticide-free corridors for bees, butterflies, and other essential insects.</p>
+                </div>
+            </div>
+            <div class="conservation-card">
+                <div class="conservation-icon"><i class="fas fa-seedling"></i></div>
+                <div class="conservation-content">
+                    <h3>Native plant nursery</h3>
+                    <p>Growing 50+ local species for restoration projects and community gardens.</p>
+                </div>
+            </div>
+            <div class="conservation-card">
+                <div class="conservation-icon"><i class="fas fa-users"></i></div>
+                <div class="conservation-content">
+                    <h3>Citizen science</h3>
+                    <p>Volunteers help monitor bird populations, water quality, and plant phenology.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REDESIGNED FOOTER (same as index) -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-tree"></i></div>
+                    <div>
+                        <div class="logo-text">Groww<span> Garden</span></div>
+                        <span class="logo-tagline">botanical preserve</span>
+                    </div>
+                </a>
+                <p class="footer-tagline">A living sanctuary for native flora, fauna, and the human spirit. Open daily 8am–dusk.</p>
+                <div class="footer-social">
+                    <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-heading">Explore</h3>
+                <ul class="footer-links">
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                    <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
+                    <li><a href="visit.html"><i class="fas fa-chevron-right"></i> Hours & admission</a></li>
+                    <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Dashboardhip</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Donate</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3 class="footer-heading">Stay grounded</h3>
+                <p>Subscribe to receive seasonal updates, event invites, and nature notes.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" class="footer-input">
+                    <button class="footer-btn"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">© 2026 Groww Garden – a city sanctuary. All rights reserved.</div>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Accessibility</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    (function() {
+        const htmlEl = document.documentElement;
+        const desktopTheme = document.getElementById('desktop-theme-toggle');
+        const mobileTheme = document.getElementById('mobile-theme-toggle');
+        const desktopIcon = document.getElementById('desktop-theme-icon');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopRtl = document.getElementById('desktop-rtl-toggle');
+        const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+        // initial theme from localStorage
+        let theme = localStorage.getItem('theme') || 'light';
+        htmlEl.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+            htmlEl.classList.add('dark');
+            if(desktopIcon) desktopIcon.className = 'fas fa-sun';
+            if(mobileIcon) mobileIcon.className = 'fas fa-sun';
+        } else {
+            htmlEl.classList.remove('dark');
+            if(desktopIcon) desktopIcon.className = 'fas fa-circle-half-stroke';
+            if(mobileIcon) mobileIcon.className = 'fas fa-circle-half-stroke';
+        }
+
+        function toggleTheme() {
+            let currentTheme = htmlEl.getAttribute('data-theme');
+            let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            if (newTheme === 'dark') {
+                htmlEl.classList.add('dark');
+                if(desktopIcon) desktopIcon.className = 'fas fa-sun';
+                if(mobileIcon) mobileIcon.className = 'fas fa-sun';
+            } else {
+                htmlEl.classList.remove('dark');
+                if(desktopIcon) desktopIcon.className = 'fas fa-circle-half-stroke';
+                if(mobileIcon) mobileIcon.className = 'fas fa-circle-half-stroke';
+            }
+        }
+
+        if(desktopTheme) desktopTheme.addEventListener('click', toggleTheme);
+        if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+
+        function toggleRtl() {
+            let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlEl.setAttribute('dir', dir);
+            localStorage.setItem('direction', dir);
+        }
+        if(desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+        if(mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+        window.toggleDesktopDropdown = function(id) {
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            document.getElementById(id).classList.toggle('active');
+        };
+        window.toggleMobileDropdown = function(id) {
+            document.getElementById(id).classList.toggle('active');
+        };
+
+        // mobile menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        if(menuBtn) {
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.add('active');
+            });
+        }
+        if(closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.remove('active');
+            });
+        }
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) mobileMenu.classList.remove('active');
+        });
+
+        // scroll top
+        const scrollBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) scrollBtn.style.display = 'block';
+            else scrollBtn.style.display = 'none';
+        });
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1280) mobileMenu.classList.remove('active');
+        });
+    })();
+</script>
+</body>
+</html>

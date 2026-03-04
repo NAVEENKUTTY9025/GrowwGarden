@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Groww Garden – a botanical garden and nature preserve in the heart of the city.">
+    <title>Groww Garden | botanical garden & preserve</title>
+    <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & FRESH PALETTE (jet black, pure white, deep green, soft leaf) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --jet-black: #0E0E0E;           /* primary dark, elegant typography */
+            --pure-white: #FFFFFF;            /* backgrounds, cards */
+            --deep-green: #1B4332;            /* deep botanical green – headings, accents */
+            --soft-leaf: #74C69D;              /* soft leaf green – secondary, highlights, buttons */
+            --text-main: #0E0E0E;              /* default text on light */
+            --text-heading: #0E0E0E;
+            --card-bg: #FFFFFF;
+            --border-light: #D0E6D5;           /* subtle greenish border */
+            --navbar-bg: #0E0E0E;               /* jet black */
+            --bg-primary: #FFFFFF;               /* pure white main background */
+            --bg-secondary: #F2F9F2;             /* very light tint of soft leaf for contrast */
+            --accent-deep: #1B4332;
+            --accent-soft: #74C69D;
+
+            /* text on colored backgrounds */
+            --text-on-deep: #FFFFFF;             /* white on deep green */
+            --text-on-soft: #0E0E0E;              /* jet black on soft leaf */
+            --text-on-dark: #FFFFFF;               /* white on jet black */
+        }
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1E2A1E;
+            --text-main: #E8F0E8;                 /* light greenish white for main text */
+            --text-heading: #FFFFFF;
+            --card-bg: #1F2A1F;
+            --border-light: #2D6A4F;              /* deep green tint */
+            --navbar-bg: #0E0E0E;
+            --accent-deep: #2D6A4F;
+            --accent-soft: #8FDEB0;                /* brighter soft leaf for dark mode */
+            
+            /* ensure all text is visible on dark backgrounds */
+            --text-on-deep: #FFFFFF;
+            --text-on-soft: #0E0E0E;
+            --text-on-dark: #FFFFFF;
+            
+            /* additional visibility fixes */
+            --hero-text-dark: #C0E0C0;             /* light green for hero paragraph */
+            --stat-label-dark: #B0D0B0;
+            --gallery-text-dark: #E0F0E0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        a {
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /* navbar – jet black */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border-bottom: 1px solid #1e2e24;
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+            overflow: hidden;
+        }
+        .logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 2rem;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .logo-text span {
+            color: var(--soft-leaf);
+        }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        /* desktop nav */
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .nav-link {
+            color: #e0e0e0;
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #FAFAFA;
+            background-color: #2a2a2a;
+            border-radius: 30px;
+        }
+        .nav-link.active {
+            color: #FAFAFA;
+            font-weight: 600;
+            background: var(--deep-green);
+            border-radius: 30px;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1c1c1c;
+            border: 1px solid #1B4332;
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #ccc;
+            transition: 0.2s;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .dropdown-item:hover {
+            background-color: var(--deep-green);
+            color: #fff;
+            padding-left: 28px;
+            border-radius: 12px;
+        }
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: 0.2s;
+        }
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        .navbar-right-desktop {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .icon-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+        .login-btn {
+            background-color: var(--deep-green);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        .login-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: white;
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        /* mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--jet-black);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #2a4c3b;
+        }
+        .mobile-menu-close {
+            color: white;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .mobile-menu-items {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a4c3b;
+            transition: 0.2s;
+        }
+        .mobile-menu-item i {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-menu-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-dropdown {
+            border-bottom: 1px solid #2a4c3b;
+        }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 1rem 0;
+            cursor: pointer;
+        }
+        .mobile-dropdown-btn i:first-child {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-dropdown-btn .fa-chevron-down {
+            color: var(--soft-leaf);
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #1a1a1a;
+            border-radius: 16px;
+            margin-bottom: 0.5rem;
+        }
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+            padding: 0.75rem 0;
+        }
+        .mobile-dropdown-content a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: #ccc;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+        .mobile-dropdown-content a:hover {
+            background-color: var(--deep-green);
+            color: white;
+        }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a4c3b;
+            transition: 0.2s;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        .mobile-action-item i {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-separator {
+            margin: 1rem 0 0.5rem 0;
+            border-top: 2px solid #2f4f3a;
+        }
+
+        /* ===== NEW HERO – FULLSCREEN, NO LEFT/RIGHT SPLIT ===== */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            margin-top: 0;
+            padding-top: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: var(--bg-primary);
+            overflow: hidden;
+        }
+        /* HD background image with overlay */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1932&auto=format&fit=crop'); /* serene garden pathway HD */
+            background-size: cover;
+            background-position: center 30%;
+            background-repeat: no-repeat;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2); /* subtle dark overlay for text contrast */
+            backdrop-filter: brightness(0.9);
+        }
+        [data-theme="dark"] .hero-bg::after {
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: brightness(0.7);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            color: var(--pure-white);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+        .hero-sub {
+            font-size: 1.125rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: var(--soft-leaf);
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 0.4rem 1.5rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+        .hero-title {
+            font-size: clamp(2.8rem, 12vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .hero-title span {
+            color: var(--soft-leaf);
+        }
+        .hero-description {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            font-weight: 400;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .hero-actions .btn-primary {
+            background-color: var(--deep-green);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.4);
+        }
+        .hero-actions .btn-primary:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+        .hero-actions .btn-outline {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            border: 2px solid white;
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+        }
+        .hero-actions .btn-outline:hover {
+            background: white;
+            color: var(--deep-green);
+            border-color: white;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        .hero-stat-item {
+            text-align: center;
+        }
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--soft-leaf);
+            line-height: 1;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+        .hero-stat-label {
+            font-size: 1rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* remainder of styles (sections after hero) from original – kept intact */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-heading);
+        }
+        .section-sub {
+            color: var(--deep-green);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+        [data-theme="dark"] .section-sub {
+            color: var(--soft-leaf);
+        }
+        .section-description {
+            color: var(--deep-green);
+        }
+        [data-theme="dark"] .section-description {
+            color: #C0E0C0;
+        }
+        .card-deep-green-bg {
+            background-color: var(--deep-green);
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid var(--soft-leaf);
+            transition: transform 0.2s;
+            color: var(--pure-white);
+        }
+        .card-deep-green-bg:hover {
+            transform: translateY(-4px);
+        }
+        .card-deep-green-bg h3, .card-deep-green-bg p {
+            color: var(--pure-white);
+        }
+        .card-soft-white {
+            background-color: var(--pure-white);
+            border-radius: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--soft-leaf);
+        }
+        .card-soft-white h3, .card-soft-white p {
+            color: var(--jet-black);
+        }
+        [data-theme="dark"] .card-soft-white {
+            background-color: #1F2A1F;
+            border-color: var(--deep-green);
+        }
+        [data-theme="dark"] .card-soft-white h3 {
+            color: var(--pure-white);
+        }
+        [data-theme="dark"] .card-soft-white p {
+            color: #D0E8D0;
+        }
+        [data-theme="dark"] .card-soft-white .icon-circle-deep {
+            background-color: rgba(116, 198, 157, 0.2);
+            color: var(--soft-leaf);
+        }
+        .badge-deep {
+            background-color: var(--deep-green);
+            color: white;
+            padding: 0.375rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+        .icon-circle-deep {
+            width: 4rem;
+            height: 4rem;
+            background-color: rgba(27, 67, 50, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-green);
+            font-size: 1.8rem;
+        }
+        .grid-3 {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(2,1fr); } }
+        @media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3,1fr); } }
+
+        .grid-2 {
+            display: grid;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+        .gallery-item {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            border-left: 8px solid var(--deep-green);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .gallery-item h3 {
+            color: var(--text-heading);
+        }
+        .gallery-item p {
+            color: var(--deep-green);
+        }
+        [data-theme="dark"] .gallery-item {
+            background-color: #1F2A1F;
+        }
+        [data-theme="dark"] .gallery-item h3 {
+            color: var(--pure-white);
+        }
+        [data-theme="dark"] .gallery-item p {
+            color: var(--soft-leaf);
+        }
+
+        /* SUPPORT SECTION (deep green background) */
+        .support-section {
+            background-color: var(--deep-green);
+            padding: 5rem 0;
+            color: var(--pure-white);
+        }
+        .support-title {
+            font-size: 3rem;
+            color: var(--pure-white);
+            margin-bottom: 1.5rem;
+        }
+        .support-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) { .support-grid { grid-template-columns: repeat(3, 1fr); } }
+        .support-card {
+            background-color: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--soft-leaf);
+            transition: background 0.2s;
+            color: var(--pure-white);
+        }
+        .support-card:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        .support-card i {
+            font-size: 2.5rem;
+            color: var(--soft-leaf);
+            margin-bottom: 1rem;
+        }
+        .support-card h3, .support-card p {
+            color: var(--pure-white);
+        }
+
+        /* NEW GARDEN STORIES SECTION */
+        .stories-section {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+        }
+        .stories-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            margin-top: 3rem;
+        }
+        @media (min-width: 768px) {
+            .stories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .story-card {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .story-card:hover {
+            transform: translateY(-8px);
+        }
+        .story-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        .story-content {
+            padding: 1.5rem;
+        }
+        .story-date {
+            color: var(--soft-leaf);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .story-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-heading);
+        }
+        .story-excerpt {
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .story-link {
+            color: var(--deep-green);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.2s;
+        }
+        .story-link:hover {
+            gap: 0.75rem;
+            color: var(--soft-leaf);
+        }
+        [data-theme="dark"] .story-link {
+            color: var(--soft-leaf);
+        }
+
+        /* REDESIGNED FOOTER */
+        .footer {
+            background-color: var(--jet-black);
+            color: var(--pure-white);
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--soft-leaf), var(--deep-green), var(--soft-leaf));
+        }
+        .footer-main {
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: 1fr;
+            margin-bottom: 3rem;
+        }
+        @media (min-width: 768px) {
+            .footer-main {
+                grid-template-columns: 2fr 1fr 1fr 2fr;
+            }
+        }
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .footer-logo-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+        }
+        .footer-logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 2.5rem;
+        }
+        .footer-logo-text {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .footer-logo-text span {
+            color: var(--soft-leaf);
+        }
+        .footer-tagline {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+            max-width: 300px;
+        }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .footer-social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-leaf);
+            transition: all 0.2s;
+        }
+        .footer-social-link:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: translateY(-3px);
+        }
+        .footer-heading {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--soft-leaf);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 2rem;
+            height: 2px;
+            background-color: var(--soft-leaf);
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        .footer-links a {
+            color: #B0B0B0;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .footer-links a:hover {
+            color: var(--soft-leaf);
+            transform: translateX(5px);
+        }
+        .footer-links a i {
+            font-size: 0.75rem;
+            color: var(--soft-leaf);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .footer-links a:hover i {
+            opacity: 1;
+        }
+        .footer-newsletter p {
+            color: #B0B0B0;
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer-input {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border-radius: 9999px;
+            border: none;
+            background: #1A1A1A;
+            color: var(--pure-white);
+            font-size: 0.875rem;
+        }
+        .footer-input:focus {
+            outline: 2px solid var(--soft-leaf);
+        }
+        .footer-btn {
+            width: 100%;
+            background-color: var(--deep-green);
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .footer-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: scale(1.02);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+        .copyright {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+        }
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .footer-bottom-links a {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        .footer-bottom-links a:hover {
+            color: var(--soft-leaf);
+        }
+
+        #scroll-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--deep-green);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 100;
+            display: none;
+        }
+        #scroll-top:hover { background-color: var(--soft-leaf); color: var(--jet-black); }
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.7s ease;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR (unchanged, jet black) -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-tree"></i></div>
+            <div>
+                <div class="logo-text">Groww<span> Garden</span></div>
+                <span class="logo-tagline">botanical preserve</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <div class="nav-link active" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="events.html" class="nav-link">Events</a>
+            <a href="visit.html" class="nav-link">Visit</a>
+            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <div class="dropdown" id="dashboard-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="client.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> Client</a>
+                    <a href="admin.html" class="dropdown-item"><i class="fas fa-user-shield"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+            <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Login/Register</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu (unchanged) -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-tree"></i></div>
+            <div>
+                <div class="logo-text">Haven<span>Wild</span></div>
+                <span class="logo-tagline">botanical preserve</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                <span><i class="fas fa-home"></i> Home </span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="home-mobile" class="mobile-dropdown-content">
+                <a href="index.html">Home 1</a>
+                <a href="home2.html">Home 2</a>
+            </div>
+        </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="gallery.html" class="mobile-menu-item"><i class="fas fa-hiking"></i> Gallery</a>
+        <a href="events.html" class="mobile-menu-item"><i class="fas fa-calendar"></i> Events</a>
+        <a href="visit.html" class="mobile-menu-item"><i class="fas fa-map-marked-alt"></i> Visit</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> FAQ</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('dashboard-mobile')">
+                <span><i class="fas fa-chart-pie"></i> Dashboard</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="dashboard-mobile" class="mobile-dropdown-content">
+                <a href="client.html">Client</a>
+                <a href="admin.html">Admin</a>
+            </div>
+        </div>
+        <div class="mobile-separator"></div>
+        <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> login/register</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- NEW HERO – fullscreen centered with HD botanical image -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <span class="hero-sub">Groww Garden preserve</span>
+        <h1 class="hero-title">where nature <span>finds you</span></h1>
+        <p class="hero-description">Eighty acres of protected woodlands, wetlands, and prairie — open daily for exploration and quiet reflection.</p>
+        <div class="hero-actions">
+            <a href="#visit" class="btn-primary"><i class="fas fa-map-signs"></i> Plan your visit</a>
+            <a href="#Gallery" class="btn-outline"><i class="fas fa-leaf"></i> Explore Gallery</a>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat-item"><span class="hero-stat-number">16</span> <span class="hero-stat-label">habitats</span></div>
+            <div class="hero-stat-item"><span class="hero-stat-number">7km</span> <span class="hero-stat-label">Gallery</span></div>
+            <div class="hero-stat-item"><span class="hero-stat-number">200+</span> <span class="hero-stat-label">species</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- HABITATS SECTION – deep green cards with white text (HD imagery backgrounds) -->
+<section style="padding: 5rem 0; background-color: var(--bg-primary);">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto 3rem;">
+            <span class="section-sub">a living museum</span>
+            <h2 class="section-title">Explore our habitats</h2>
+            <p class="section-description">From ancient oaks to vernal pools — each area teems with life.</p>
+        </div>
+        <div class="grid-3">
+            <div class="card-deep-green-bg" style="background-image: linear-gradient(145deg, #1B4332 0%, #1B4332 100%), url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=1974&auto=format&fit=crop'); background-blend-mode: overlay; background-size: cover;">
+                <div style="background-color: rgba(27,67,50,0.7); border-radius: 2rem; padding: 1.5rem;">
+                    <div class="icon-circle-deep" style="background: rgba(255,255,255,0.2); color: var(--soft-leaf); margin-bottom: 1rem;"><i class="fas fa-tree"></i></div>
+                    <h3 style="font-weight: 700; font-size: 1.5rem; color:white;">Candler Woods</h3>
+                    <p style="margin-top: 0.5rem; color: #f0f7f0;">Old‑growth forest with towering oaks, trillium, and pileated woodpeckers.</p>
+                </div>
+            </div>
+            <div class="card-deep-green-bg" style="background-image: linear-gradient(145deg, #1B4332 0%, #1B4332 100%), url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=2070&auto=format&fit=crop'); background-blend-mode: overlay; background-size: cover;">
+                <div style="background-color: rgba(27,67,50,0.7); border-radius: 2rem; padding: 1.5rem;">
+                    <div class="icon-circle-deep" style="background: rgba(255,255,255,0.2); color: var(--soft-leaf); margin-bottom: 1rem;"><i class="fas fa-water"></i></div>
+                    <h3 style="font-weight: 700; font-size: 1.5rem; color:white;">Heron Wetland</h3>
+                    <p style="margin-top: 0.5rem; color: #f0f7f0;">Boardwalk gallery through cattails – watch for turtles, herons, and dragonflies.</p>
+                </div>
+            </div>
+            <div class="card-deep-green-bg" style="background-image: linear-gradient(145deg, #1B4332 0%, #1B4332 100%), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1932&auto=format&fit=crop'); background-blend-mode: overlay; background-size: cover;">
+                <div style="background-color: rgba(27,67,50,0.7); border-radius: 2rem; padding: 1.5rem;">
+                    <div class="icon-circle-deep" style="background: rgba(255,255,255,0.2); color: var(--soft-leaf); margin-bottom: 1rem;"><i class="fas fa-seedling"></i></div>
+                    <h3 style="font-weight: 700; font-size: 1.5rem; color:white;">Prairie Remnant</h3>
+                    <p style="margin-top: 0.5rem; color: #f0f7f0;">Native bluestem, coneflowers, and monarchs in late summer.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery PREVIEW – soft white / fresh green -->
+<section style="padding: 5rem 0; background-color: var(--bg-secondary);">
+    <div class="container">
+        <div class="grid-2" style="align-items: center;">
+            <div>
+                <span class="section-sub">self‑guided Gallery</span>
+                <h2 class="section-title" style="font-size: 3rem;">Wander & wonder</h2>
+                <p style="margin-bottom: 2rem; color: var(--deep-green);">Pick up a map at the galleryhead or download our app. Benches and shaded rest spots along every path.</p>
+                <div class="gallery-item" style="margin-bottom: 1rem;">
+                    <h3 style="font-weight: 700;">🌲 Fern Canyon gallery – 1.2 miles</h3>
+                    <p>Easy • boardwalk & packed soil</p>
+                </div>
+                <div class="gallery-item" style="margin-bottom: 1rem;">
+                    <h3 style="font-weight: 700;">🌾 Prairie Loop – 2 miles</h3>
+                    <p>Moderate • open meadow</p>
+                </div>
+                <div class="gallery-item">
+                    <h3 style="font-weight: 700;">🌳 Ridge Overlook – 2.8 miles</h3>
+                    <p>Strenuous • reward: skyline view</p>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="#" class="story-date"><i class="fas fa-download"></i> gallery map PDF</a>
+                </div>
+            </div>
+            <div style="background-color: var(--soft-leaf); border-radius: 2rem; padding: 0.75rem; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1976&auto=format&fit=crop" alt="forest gallery" style="width: 100%; border-radius: 1.5rem; border: 4px solid var(--deep-green); aspect-ratio: 4/3; object-fit: cover;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EVENTS SECTION – pure white cards with green details -->
+<section style="padding: 5rem 0; background-color: var(--bg-primary);">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span class="section-sub">seasonal programs</span>
+            <h2 class="section-title">Learn with naturalists</h2>
+        </div>
+        <div class="grid-3">
+            <div class="card-soft-white">
+                <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                    <div class="icon-circle-deep"><i class="fas fa-calendar-alt"></i></div>
+                    <div><h3 style="font-weight: 700;">Bird walk</h3><br><p class="story-date"> Sat 9am</p></div>
+                </div>
+                <p>Identify migratory warblers with binoculars provided.</p>
+            </div>
+            <div class="card-soft-white">
+                <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                    <div class="icon-circle-deep"><i class="fas fa-hand-holding-heart"></i></div>
+                    <div><h3 style="font-weight: 700;">Native plant sale</h3><br><p class="story-date"> May 10–12</p></div>
+                </div>
+                <p>Help restore habitats – take home wildflower seedlings.</p>
+            </div>
+            <div class="card-soft-white">
+                <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                    <div class="icon-circle-deep"><i class="fas fa-camera"></i></div>
+                    <div><h3 style="font-weight: 700;">Forest photography</h3><br><p class="story-date"> Jun 2</p></div>
+                </div>
+                <p>Workshop with a professional nature photographer.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GARDEN STORIES SECTION -->
+<section class="stories-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span class="section-sub">from the garden</span>
+            <h2 class="section-title">Recent stories</h2>
+            <p class="section-description">Discover the magic of Groww Garden through the eyes of our naturalists and visitors.</p>
+        </div>
+        <div class="stories-grid">
+            <div class="story-card">
+                <div class="story-image" style="background-image: url('/images/b1.jpg');"></div>
+                <div class="story-content">
+                    <div class="story-date">May 15, 2026</div>
+                    <h3 class="story-title">The Return of the Warblers</h3>
+                    <p class="story-excerpt">Spring migration brings a symphony of color and song to Candler Woods. Our naturalist spots 23 species in one morning.</p>
+                    <a href="#" class="story-link">Read more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="story-card">
+                <div class="story-image" style="background-image: url('/images/b2.jpg');"></div>
+                <div class="story-content">
+                    <div class="story-date">April 28, 2026</div>
+                    <h3 class="story-title">Prairie Restoration Progress</h3>
+                    <p class="story-excerpt">Thanks to volunteers, over 2,000 native seedlings now call the prairie remnant home. See the transformation.</p>
+                    <a href="#" class="story-link">Read more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="story-card">
+                <div class="story-image" style="background-image: url('/images/b3.jpg');"></div>
+                <div class="story-content">
+                    <div class="story-date">April 10, 2026</div>
+                    <h3 class="story-title">Night Skies Over the Wetland</h3>
+                    <p class="story-excerpt">Our first astronomy night of the season drew 80 visitors. The herons seemed to enjoy it too.</p>
+                    <a href="#" class="story-link">Read more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SUPPORT US SECTION -->
+<section class="support-section">
+    <div class="container" style="text-align: center;">
+        <span style="color: var(--soft-leaf); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">help us thrive</span>
+        <h2 class="support-title">Support Groww Garden</h2>
+        <p style="max-width: 36rem; margin: 0 auto 3rem; color: rgba(255,255,255,0.9);">Your contribution keeps Gallery open, restores habitat, and connects city dwellers with nature.</p>
+        <div class="support-grid">
+            <div class="support-card">
+                <i class="fas fa-leaf"></i>
+                <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;">Adopt a tree</h3>
+                <p>Sponsor the care of a century‑old oak or a newly planted sapling.</p>
+            </div>
+            <div class="support-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;">Monthly gift</h3>
+                <p>Steady support for gallery maintenance, education, and wildlife care.</p>
+            </div>
+            <div class="support-card">
+                <i class="fas fa-users"></i>
+                <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;">Become a client</h3>
+                <p>Free guided tours, event discounts, and preserve updates.</p>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<!-- REDESIGNED FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-tree"></i></div>
+            <div>
+                <div class="logo-text">Groww<span> Garden</span></div>
+                <span class="logo-tagline">botanical preserve</span>
+            </div>
+        </a>
+                <p class="footer-tagline">A living sanctuary for native flora, fauna, and the human spirit. Open daily 8am–dusk.</p>
+                <div class="footer-social">
+                    <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-heading">Explore</h3>
+                <ul class="footer-links">
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                    <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
+                    <li><a href="visit.html"><i class="fas fa-chevron-right"></i> Hours & admission</a></li>
+                    <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Dashboardhip</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Donate</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3 class="footer-heading">Stay grounded</h3>
+                <p>Subscribe to receive seasonal updates, event invites, and nature notes.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" class="footer-input">
+                    <button class="footer-btn"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">© 2026 Groww Garden – a city sanctuary. All rights reserved.</div>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Accessibility</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    (function() {
+        const htmlEl = document.documentElement;
+        const desktopTheme = document.getElementById('desktop-theme-toggle');
+        const mobileTheme = document.getElementById('mobile-theme-toggle');
+        const desktopIcon = document.getElementById('desktop-theme-icon');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopRtl = document.getElementById('desktop-rtl-toggle');
+        const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+        // initial theme from localStorage
+        let theme = localStorage.getItem('theme') || 'light';
+        htmlEl.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+            htmlEl.classList.add('dark');
+            if(desktopIcon) desktopIcon.className = 'fas fa-sun';
+            if(mobileIcon) mobileIcon.className = 'fas fa-sun';
+        } else {
+            htmlEl.classList.remove('dark');
+            if(desktopIcon) desktopIcon.className = 'fas fa-circle-half-stroke';
+            if(mobileIcon) mobileIcon.className = 'fas fa-circle-half-stroke';
+        }
+
+        function toggleTheme() {
+            let currentTheme = htmlEl.getAttribute('data-theme');
+            let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            if (newTheme === 'dark') {
+                htmlEl.classList.add('dark');
+                if(desktopIcon) desktopIcon.className = 'fas fa-sun';
+                if(mobileIcon) mobileIcon.className = 'fas fa-sun';
+            } else {
+                htmlEl.classList.remove('dark');
+                if(desktopIcon) desktopIcon.className = 'fas fa-circle-half-stroke';
+                if(mobileIcon) mobileIcon.className = 'fas fa-circle-half-stroke';
+            }
+        }
+
+        if(desktopTheme) desktopTheme.addEventListener('click', toggleTheme);
+        if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+
+        function toggleRtl() {
+            let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlEl.setAttribute('dir', dir);
+            localStorage.setItem('direction', dir);
+        }
+        if(desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+        if(mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+        window.toggleDesktopDropdown = function(id) {
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            document.getElementById(id).classList.toggle('active');
+        };
+        window.toggleMobileDropdown = function(id) {
+            document.getElementById(id).classList.toggle('active');
+        };
+
+        // mobile menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        if(menuBtn) {
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.add('active');
+            });
+        }
+        if(closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.remove('active');
+            });
+        }
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) mobileMenu.classList.remove('active');
+        });
+
+        // scroll top
+        const scrollBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) scrollBtn.style.display = 'block';
+            else scrollBtn.style.display = 'none';
+        });
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1280) mobileMenu.classList.remove('active');
+        });
+    })();
+</script>
+</body>
+</html>

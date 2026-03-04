@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Events at Groww Garden – seasonal programs, workshops, and nature experiences.">
+    <title>Events | Groww Garden</title>
+    <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & FRESH PALETTE (jet black, pure white, deep green, soft leaf) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --jet-black: #0E0E0E;           /* primary dark, elegant typography */
+            --pure-white: #FFFFFF;            /* backgrounds, cards */
+            --deep-green: #1B4332;            /* deep botanical green – headings, accents */
+            --soft-leaf: #74C69D;              /* soft leaf green – secondary, highlights, buttons */
+            --text-main: #0E0E0E;              /* default text on light */
+            --text-heading: #0E0E0E;
+            --card-bg: #FFFFFF;
+            --border-light: #D0E6D5;           /* subtle greenish border */
+            --navbar-bg: #0E0E0E;               /* jet black */
+            --bg-primary: #FFFFFF;               /* pure white main background */
+            --bg-secondary: #F2F9F2;             /* very light tint of soft leaf for contrast */
+            --accent-deep: #1B4332;
+            --accent-soft: #74C69D;
+
+            /* text on colored backgrounds */
+            --text-on-deep: #FFFFFF;             /* white on deep green */
+            --text-on-soft: #0E0E0E;              /* jet black on soft leaf */
+            --text-on-dark: #FFFFFF;               /* white on jet black */
+        }
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1E2A1E;
+            --text-main: #E8F0E8;                 /* light greenish white for main text */
+            --text-heading: #FFFFFF;
+            --card-bg: #1F2A1F;
+            --border-light: #2D6A4F;              /* deep green tint */
+            --navbar-bg: #0E0E0E;
+            --accent-deep: #2D6A4F;
+            --accent-soft: #8FDEB0;                /* brighter soft leaf for dark mode */
+            
+            /* text on colored backgrounds */
+            --text-on-deep: #FFFFFF;
+            --text-on-soft: #0E0E0E;
+            --text-on-dark: #FFFFFF;
+            
+            /* additional visibility fixes */
+            --hero-text-dark: #C0E0C0;             /* light green for hero paragraph */
+            --stat-label-dark: #B0D0B0;
+            --gallery-text-dark: #E0F0E0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        a {
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /* navbar – jet black */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border-bottom: 1px solid #1e2e24;
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+            overflow: hidden;
+        }
+        .logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 2rem;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .logo-text span {
+            color: var(--soft-leaf);
+        }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        /* desktop nav */
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .nav-link {
+            color: #e0e0e0;
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #FAFAFA;
+            background-color: #2a2a2a;
+            border-radius: 30px;
+        }
+        .nav-link.active {
+            color: #FAFAFA;
+            font-weight: 600;
+            background: var(--deep-green);
+            border-radius: 30px;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1c1c1c;
+            border: 1px solid #1B4332;
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #ccc;
+            transition: 0.2s;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .dropdown-item:hover {
+            background-color: var(--deep-green);
+            color: #fff;
+            padding-left: 28px;
+            border-radius: 12px;
+        }
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: 0.2s;
+        }
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        .navbar-right-desktop {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .icon-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+        .login-btn {
+            background-color: var(--deep-green);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        .login-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: white;
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        /* mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--jet-black);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #2a4c3b;
+        }
+        .mobile-menu-close {
+            color: white;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .mobile-menu-items {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a4c3b;
+            transition: 0.2s;
+        }
+        .mobile-menu-item i {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-menu-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-dropdown {
+            border-bottom: 1px solid #2a4c3b;
+        }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 1rem 0;
+            cursor: pointer;
+        }
+        .mobile-dropdown-btn i:first-child {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-dropdown-btn .fa-chevron-down {
+            color: var(--soft-leaf);
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #1a1a1a;
+            border-radius: 16px;
+            margin-bottom: 0.5rem;
+        }
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+            padding: 0.75rem 0;
+        }
+        .mobile-dropdown-content a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: #ccc;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+        .mobile-dropdown-content a:hover {
+            background-color: var(--deep-green);
+            color: white;
+        }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a4c3b;
+            transition: 0.2s;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        .mobile-action-item i {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-separator {
+            margin: 1rem 0 0.5rem 0;
+            border-top: 2px solid #2f4f3a;
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            padding: 8rem 0 4rem;
+            background-color: var(--deep-green);
+            color: var(--pure-white);
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(116,198,157,0.2) 0%, rgba(27,67,50,0.8) 100%);
+            z-index: 1;
+        }
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .page-header h1 {
+            color: var(--pure-white);
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 1rem;
+        }
+        .page-header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--soft-leaf);
+        }
+        .breadcrumb a {
+            color: rgba(255,255,255,0.8);
+            transition: color 0.2s;
+        }
+        .breadcrumb a:hover {
+            color: var(--soft-leaf);
+        }
+
+        /* ===== EVENTS SECTION ===== */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-heading);
+        }
+        .section-sub {
+            color: var(--deep-green);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+        [data-theme="dark"] .section-sub {
+            color: var(--soft-leaf);
+        }
+        
+        /* Event filters */
+        .event-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0 2rem;
+        }
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            border: 2px solid var(--deep-green);
+            background: transparent;
+            color: var(--deep-green);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--deep-green);
+            color: white;
+        }
+        [data-theme="dark"] .filter-btn {
+            border-color: var(--soft-leaf);
+            color: var(--soft-leaf);
+        }
+        [data-theme="dark"] .filter-btn:hover,
+        [data-theme="dark"] .filter-btn.active {
+            background: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+
+        /* Event cards */
+        .events-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            margin-bottom: 4rem;
+        }
+        @media (min-width: 768px) {
+            .events-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .events-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .event-card {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border-light);
+        }
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+        }
+        .event-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .event-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+        .event-content {
+            padding: 1.5rem;
+        }
+        .event-date {
+            color: var(--soft-leaf);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .event-date i {
+            font-size: 1rem;
+        }
+        .event-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-heading);
+        }
+        .event-description {
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .event-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--deep-green);
+            font-size: 0.875rem;
+        }
+        .event-meta i {
+            color: var(--soft-leaf);
+            margin-right: 0.25rem;
+        }
+        .event-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--deep-green);
+            font-weight: 600;
+            transition: gap 0.2s;
+        }
+        .event-link:hover {
+            gap: 0.75rem;
+            color: var(--soft-leaf);
+        }
+        [data-theme="dark"] .event-link {
+            color: var(--soft-leaf);
+        }
+
+        /* Featured event */
+        .featured-event {
+            background: linear-gradient(135deg, var(--deep-green) 0%, #2d5a4a 100%);
+            border-radius: 2rem;
+            padding: 3rem;
+            margin: 4rem 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .featured-event::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(116,198,157,0.2);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .featured-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+        .featured-badge {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .featured-event h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .featured-event p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            font-size: 1.125rem;
+        }
+        .featured-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .featured-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .featured-meta-item i {
+            color: var(--soft-leaf);
+        }
+        .featured-btn {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s;
+        }
+        .featured-btn:hover {
+            transform: translateX(5px);
+        }
+
+        /* Calendar section */
+        .calendar-section {
+            background-color: var(--bg-secondary);
+            padding: 5rem 0;
+        }
+        .calendar-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            margin-top: 3rem;
+        }
+        @media (min-width: 768px) {
+            .calendar-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+        .calendar-month {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+        }
+        .month-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .month-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+        .month-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .month-nav-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
+            background: transparent;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .month-nav-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            border-color: var(--soft-leaf);
+        }
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-weight: 600;
+            color: var(--deep-green);
+            margin-bottom: 1rem;
+        }
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-primary);
+            border-radius: 50%;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+        }
+        .calendar-day:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+        .calendar-day.has-event::after {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background-color: var(--deep-green);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 4px;
+        }
+        .calendar-day.today {
+            background-color: var(--deep-green);
+            color: white;
+        }
+        .upcoming-events {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+        }
+        .upcoming-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-heading);
+        }
+        .upcoming-list {
+            list-style: none;
+        }
+        .upcoming-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .upcoming-item:last-child {
+            border-bottom: none;
+        }
+        .upcoming-date {
+            text-align: center;
+            min-width: 50px;
+        }
+        .upcoming-day {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--deep-green);
+            line-height: 1;
+        }
+        .upcoming-month {
+            font-size: 0.75rem;
+            color: var(--text-main);
+        }
+        .upcoming-details h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-heading);
+        }
+        .upcoming-details p {
+            font-size: 0.875rem;
+            color: var(--text-main);
+        }
+
+        /* Footer (same as index) */
+        .footer {
+            background-color: var(--jet-black);
+            color: var(--pure-white);
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--soft-leaf), var(--deep-green), var(--soft-leaf));
+        }
+        .footer-main {
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: 1fr;
+            margin-bottom: 3rem;
+        }
+        @media (min-width: 768px) {
+            .footer-main {
+                grid-template-columns: 2fr 1fr 1fr 2fr;
+            }
+        }
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .footer-logo-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+        }
+        .footer-logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 2.5rem;
+        }
+        .footer-logo-text {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .footer-logo-text span {
+            color: var(--soft-leaf);
+        }
+        .footer-tagline {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+            max-width: 300px;
+        }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .footer-social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-leaf);
+            transition: all 0.2s;
+        }
+        .footer-social-link:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: translateY(-3px);
+        }
+        .footer-heading {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--soft-leaf);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 2rem;
+            height: 2px;
+            background-color: var(--soft-leaf);
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        .footer-links a {
+            color: #B0B0B0;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .footer-links a:hover {
+            color: var(--soft-leaf);
+            transform: translateX(5px);
+        }
+        .footer-links a i {
+            font-size: 0.75rem;
+            color: var(--soft-leaf);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .footer-links a:hover i {
+            opacity: 1;
+        }
+        .footer-newsletter p {
+            color: #B0B0B0;
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer-input {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border-radius: 9999px;
+            border: none;
+            background: #1A1A1A;
+            color: var(--pure-white);
+            font-size: 0.875rem;
+        }
+        .footer-input:focus {
+            outline: 2px solid var(--soft-leaf);
+        }
+        .footer-btn {
+            width: 100%;
+            background-color: var(--deep-green);
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .footer-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: scale(1.02);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+        .copyright {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+        }
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .footer-bottom-links a {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        .footer-bottom-links a:hover {
+            color: var(--soft-leaf);
+        }
+
+        #scroll-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--deep-green);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 100;
+            display: none;
+        }
+        #scroll-top:hover { background-color: var(--soft-leaf); color: var(--jet-black); }
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.7s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR (same as index) -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-tree"></i></div>
+            <div>
+                <div class="logo-text">Groww<span> Garden</span></div>
+                <span class="logo-tagline">botanical preserve</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="events.html" class="nav-link active">Events</a>
+            <a href="visit.html" class="nav-link">Visit</a>
+            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <div class="dropdown" id="dashboard-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="client.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> Client</a>
+                    <a href="admin.html" class="dropdown-item"><i class="fas fa-user-shield"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+            <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Login/Register</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu (same as index) -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-tree"></i></div>
+            <div>
+                <div class="logo-text">Groww<span> Garden</span></div>
+                <span class="logo-tagline">botanical preserve</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                <span><i class="fas fa-home"></i> Home </span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="home-mobile" class="mobile-dropdown-content">
+                <a href="index.html">Home 1</a>
+                <a href="home2.html">Home 2</a>
+            </div>
+        </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="gallery.html" class="mobile-menu-item"><i class="fas fa-hiking"></i> Gallery</a>
+        <a href="events.html" class="mobile-menu-item active-mobile"><i class="fas fa-calendar"></i> Events</a>
+        <a href="visit.html" class="mobile-menu-item"><i class="fas fa-map-marked-alt"></i> Visit</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> FAQ</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('dashboard-mobile')">
+                <span><i class="fas fa-chart-pie"></i> Dashboard</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="dashboard-mobile" class="mobile-dropdown-content">
+                <a href="client.html">Client</a>
+                <a href="admin.html">Admin</a>
+            </div>
+        </div>
+        <div class="mobile-separator"></div>
+        <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> login/register</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+    <div class="container page-header-content">
+        <h1>Events & Programs</h1>
+        <p>Discover seasonal workshops, guided walks, and special celebrations at Groww Garden</p>
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> <i class="fas fa-chevron-right"></i> <span>Events</span>
+        </div>
+    </div>
+</section>
+
+<!-- EVENT FILTERS -->
+<div class="container">
+    <div class="event-filters">
+        <button class="filter-btn active" data-filter="all">All Events</button>
+        <button class="filter-btn" data-filter="workshop">Workshops</button>
+        <button class="filter-btn" data-filter="walk">Guided Walks</button>
+        <button class="filter-btn" data-filter="family">Family</button>
+        <button class="filter-btn" data-filter="special">Special</button>
+    </div>
+</div>
+
+<!-- MAIN EVENTS GRID -->
+<section style="padding: 2rem 0 5rem;">
+    <div class="container">
+        <!-- Featured Event -->
+        <div class="featured-event">
+            <div class="featured-content">
+                <span class="featured-badge">✨ Featured Event</span>
+                <h2>Annual Wildflower Festival</h2>
+                <p>Celebrate spring with three days of guided wildflower walks, photography workshops, and live music in the meadow.</p>
+                <div class="featured-meta">
+                    <div class="featured-meta-item"><i class="fas fa-calendar"></i> May 15-17, 2026</div>
+                    <div class="featured-meta-item"><i class="fas fa-clock"></i> 9am - 5pm</div>
+                    <div class="featured-meta-item"><i class="fas fa-map-marker-alt"></i> Meadow Pavilion</div>
+                </div>
+                <a href="event-details.html?id=wildflower-festival" class="featured-btn">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Events Grid -->
+        <div class="events-grid">
+            <!-- Event 1 -->
+            <div class="event-card" data-category="walk">
+                <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1976&auto=format&fit=crop');">
+                    <span class="event-badge">Guided Walk</span>
+                </div>
+                <div class="event-content">
+                    <div class="event-date"><i class="far fa-calendar"></i> Every Saturday, 9am</div>
+                    <h3 class="event-title">Morning Bird Walk</h3>
+                    <p class="event-description">Join our naturalist for a peaceful morning identifying migratory birds in Candler Woods. Binoculars provided.</p>
+                    <div class="event-meta">
+                        <span><i class="far fa-clock"></i> 2 hours</span>
+                        <span><i class="fas fa-user-friends"></i> Max 15</span>
+                        <span><i class="fas fa-tag"></i> Free</span>
+                    </div>
+                    <a href="event-details.html?id=bird-walk" class="event-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="event-card" data-category="workshop">
+                <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=2070&auto=format&fit=crop');">
+                    <span class="event-badge">Workshop</span>
+                </div>
+                <div class="event-content">
+                    <div class="event-date"><i class="far fa-calendar"></i> May 10, 2026</div>
+                    <h3 class="event-title">Native Plant Propagation</h3>
+                    <p class="event-description">Learn how to grow native plants from seeds and cuttings. Take home your own starts to support local biodiversity.</p>
+                    <div class="event-meta">
+                        <span><i class="far fa-clock"></i> 3 hours</span>
+                        <span><i class="fas fa-user-friends"></i> Max 12</span>
+                        <span><i class="fas fa-tag"></i> $35</span>
+                    </div>
+                    <a href="event-details.html?id=plant-propagation" class="event-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="event-card" data-category="family">
+                <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1533460004989-cef01064af7e?q=80&w=2070&auto=format&fit=crop');">
+                    <span class="event-badge">Family</span>
+                </div>
+                <div class="event-content">
+                    <div class="event-date"><i class="far fa-calendar"></i> May 23, 2026</div>
+                    <h3 class="event-title">Family Nature Quest</h3>
+                    <p class="event-description">A scavenger hunt through the garden. Perfect for families with children ages 4-10. Prizes for all participants!</p>
+                    <div class="event-meta">
+                        <span><i class="far fa-clock"></i> 2 hours</span>
+                        <span><i class="fas fa-user-friends"></i> All ages</span>
+                        <span><i class="fas fa-tag"></i> $10/family</span>
+                    </div>
+                    <a href="event-details.html?id=family-nature-quest" class="event-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Event 4 -->
+            <div class="event-card" data-category="special">
+                <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1503788311183-fa3bf9c4bc32?q=80&w=2070&auto=format&fit=crop');">
+                    <span class="event-badge">Special</span>
+                </div>
+                <div class="event-content">
+                    <div class="event-date"><i class="far fa-calendar"></i> June 2, 2026</div>
+                    <h3 class="event-title">Forest Photography Workshop</h3>
+                    <p class="event-description">Professional nature photographer leads a hands-on workshop. Learn composition, lighting, and capturing wildlife.</p>
+                    <div class="event-meta">
+                        <span><i class="far fa-clock"></i> 4 hours</span>
+                        <span><i class="fas fa-user-friends"></i> Max 10</span>
+                        <span><i class="fas fa-tag"></i> $75</span>
+                    </div>
+                    <a href="event-details.html?id=photography-workshop" class="event-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Event 5 -->
+            <div class="event-card" data-category="walk">
+                <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=2076&auto=format&fit=crop');">
+                    <span class="event-badge">Guided Walk</span>
+                </div>
+                <div class="event-content">
+                    <div class="event-date"><i class="far fa-calendar"></i> June 15, 2026</div>
+                    <h3 class="event-title">Full Moon Walk</h3>
+                    <p class="event-description">Experience the garden by moonlight. A guided evening walk followed by storytelling around a campfire.</p>
+                    <div class="event-meta">
+                        <span><i class="far fa-clock"></i> 2 hours</span>
+                        <span><i class="fas fa-user-friends"></i> Max 20</span>
+                        <span><i class="fas fa-tag"></i> $15</span>
+                    </div>
+                    <a href="event-details.html?id=full-moon-walk" class="event-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Event 6 -->
+            <div class="event-card" data-category="workshop">
+                <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013&auto=format&fit=crop');">
+                    <span class="event-badge">Workshop</span>
+                </div>
+                <div class="event-content">
+                    <div class="event-date"><i class="far fa-calendar"></i> June 20, 2026</div>
+                    <h3 class="event-title">Composting 101</h3>
+                    <p class="event-description">Turn kitchen scraps into garden gold. Learn the basics of composting and take home a starter kit.</p>
+                    <div class="event-meta">
+                        <span><i class="far fa-clock"></i> 2 hours</span>
+                        <span><i class="fas fa-user-friends"></i> Max 15</span>
+                        <span><i class="fas fa-tag"></i> $25</span>
+                    </div>
+                    <a href="event-details.html?id=composting-101" class="event-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CALENDAR SECTION -->
+<section class="calendar-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span class="section-sub">plan ahead</span>
+            <h2 class="section-title">Event Calendar</h2>
+            <p class="section-description">Browse our monthly calendar and find the perfect event for your visit.</p>
+        </div>
+
+        <div class="calendar-grid">
+            <!-- Month Calendar -->
+            <div class="calendar-month">
+                <div class="month-header">
+                    <h3 class="month-title">June 2026</h3>
+                    <div class="month-nav">
+                        <button class="month-nav-btn"><i class="fas fa-chevron-left"></i></button>
+                        <button class="month-nav-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="weekdays">
+                    <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                </div>
+                <div class="days">
+                    <!-- Simulated calendar days - in production would be dynamic -->
+                    <div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div><div class="calendar-day">31</div><div class="calendar-day">1</div>
+                    <div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div>
+                    <div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day has-event">15</div>
+                    <div class="calendar-day">16</div><div class="calendar-day has-event">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day has-event">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div>
+                    <div class="calendar-day has-event">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div>
+                    <div class="calendar-day">30</div><div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div>
+                </div>
+            </div>
+
+            <!-- Upcoming Events List -->
+            <div class="upcoming-events">
+                <h3 class="upcoming-title">📅 Upcoming This Week</h3>
+                <ul class="upcoming-list">
+                    <li class="upcoming-item">
+                        <div class="upcoming-date">
+                            <div class="upcoming-day">15</div>
+                            <div class="upcoming-month">JUN</div>
+                        </div>
+                        <div class="upcoming-details">
+                            <h4>Full Moon Walk</h4>
+                            <p>7:30 PM • Meet at Visitor Center</p>
+                        </div>
+                    </li>
+                    <li class="upcoming-item">
+                        <div class="upcoming-date">
+                            <div class="upcoming-day">17</div>
+                            <div class="upcoming-month">JUN</div>
+                        </div>
+                        <div class="upcoming-details">
+                            <h4>Morning Bird Walk</h4>
+                            <p>9:00 AM • Candler Woods</p>
+                        </div>
+                    </li>
+                    <li class="upcoming-item">
+                        <div class="upcoming-date">
+                            <div class="upcoming-day">20</div>
+                            <div class="upcoming-month">JUN</div>
+                        </div>
+                        <div class="upcoming-details">
+                            <h4>Composting 101</h4>
+                            <p>10:00 AM • Education Center</p>
+                        </div>
+                    </li>
+                    <li class="upcoming-item">
+                        <div class="upcoming-date">
+                            <div class="upcoming-day">23</div>
+                            <div class="upcoming-month">JUN</div>
+                        </div>
+                        <div class="upcoming-details">
+                            <h4>Family Nature Quest</h4>
+                            <p>1:00 PM • Meadow Pavilion</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REDESIGNED FOOTER (same as index) -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-tree"></i></div>
+                    <div>
+                        <div class="logo-text">Groww<span> Garden</span></div>
+                        <span class="logo-tagline">botanical preserve</span>
+                    </div>
+                </a>
+                <p class="footer-tagline">A living sanctuary for native flora, fauna, and the human spirit. Open daily 8am–dusk.</p>
+                <div class="footer-social">
+                    <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-heading">Explore</h3>
+                <ul class="footer-links">
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Trails</a></li>
+                    <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
+                    <li><a href="visit.html"><i class="fas fa-chevron-right"></i> Hours & admission</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Dashboardhip</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Donate</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3 class="footer-heading">Stay grounded</h3>
+                <p>Subscribe to receive seasonal updates, event invites, and nature notes.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" class="footer-input">
+                    <button class="footer-btn"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">© 2026 Groww Garden – a city sanctuary. All rights reserved.</div>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Accessibility</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    (function() {
+        const htmlEl = document.documentElement;
+        const desktopTheme = document.getElementById('desktop-theme-toggle');
+        const mobileTheme = document.getElementById('mobile-theme-toggle');
+        const desktopIcon = document.getElementById('desktop-theme-icon');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopRtl = document.getElementById('desktop-rtl-toggle');
+        const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+        // initial theme from localStorage
+        let theme = localStorage.getItem('theme') || 'light';
+        htmlEl.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+            htmlEl.classList.add('dark');
+            if(desktopIcon) desktopIcon.className = 'fas fa-sun';
+            if(mobileIcon) mobileIcon.className = 'fas fa-sun';
+        } else {
+            htmlEl.classList.remove('dark');
+            if(desktopIcon) desktopIcon.className = 'fas fa-circle-half-stroke';
+            if(mobileIcon) mobileIcon.className = 'fas fa-circle-half-stroke';
+        }
+
+        function toggleTheme() {
+            let currentTheme = htmlEl.getAttribute('data-theme');
+            let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            if (newTheme === 'dark') {
+                htmlEl.classList.add('dark');
+                if(desktopIcon) desktopIcon.className = 'fas fa-sun';
+                if(mobileIcon) mobileIcon.className = 'fas fa-sun';
+            } else {
+                htmlEl.classList.remove('dark');
+                if(desktopIcon) desktopIcon.className = 'fas fa-circle-half-stroke';
+                if(mobileIcon) mobileIcon.className = 'fas fa-circle-half-stroke';
+            }
+        }
+
+        if(desktopTheme) desktopTheme.addEventListener('click', toggleTheme);
+        if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+
+        function toggleRtl() {
+            let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlEl.setAttribute('dir', dir);
+            localStorage.setItem('direction', dir);
+        }
+        if(desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+        if(mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+        window.toggleDesktopDropdown = function(id) {
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            document.getElementById(id).classList.toggle('active');
+        };
+        window.toggleMobileDropdown = function(id) {
+            document.getElementById(id).classList.toggle('active');
+        };
+
+        // mobile menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        if(menuBtn) {
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.add('active');
+            });
+        }
+        if(closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.remove('active');
+            });
+        }
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) mobileMenu.classList.remove('active');
+        });
+
+        // scroll top
+        const scrollBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) scrollBtn.style.display = 'block';
+            else scrollBtn.style.display = 'none';
+        });
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1280) mobileMenu.classList.remove('active');
+        });
+
+        // Event filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const eventCards = document.querySelectorAll('.event-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                eventCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Groww Garden FAQ – answers to common questions about hours, Gallery, events, and visiting.">
+    <title>FAQ | Groww Garden</title>
+    <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & FRESH PALETTE (jet black, pure white, deep green, soft leaf) – identical to index ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --jet-black: #0E0E0E;
+            --pure-white: #FFFFFF;
+            --deep-green: #1B4332;
+            --soft-leaf: #74C69D;
+            --text-main: #0E0E0E;
+            --text-heading: #0E0E0E;
+            --card-bg: #FFFFFF;
+            --border-light: #D0E6D5;
+            --navbar-bg: #0E0E0E;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F2F9F2;
+            --accent-deep: #1B4332;
+            --accent-soft: #74C69D;
+            --text-on-deep: #FFFFFF;
+            --text-on-soft: #0E0E0E;
+            --text-on-dark: #FFFFFF;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1E2A1E;
+            --text-main: #E8F0E8;
+            --text-heading: #FFFFFF;
+            --card-bg: #1F2A1F;
+            --border-light: #2D6A4F;
+            --navbar-bg: #0E0E0E;
+            --accent-deep: #2D6A4F;
+            --accent-soft: #8FDEB0;
+            --text-on-deep: #FFFFFF;
+            --text-on-soft: #0E0E0E;
+            --text-on-dark: #FFFFFF;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        a {
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /* navbar – jet black (identical) */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border-bottom: 1px solid #1e2e24;
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+            overflow: hidden;
+        }
+        .logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 2rem;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .logo-text span {
+            color: var(--soft-leaf);
+        }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .nav-link {
+            color: #e0e0e0;
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #FAFAFA;
+            background-color: #2a2a2a;
+            border-radius: 30px;
+        }
+        .nav-link.active {
+            color: #FAFAFA;
+            font-weight: 600;
+            background: var(--deep-green);
+            border-radius: 30px;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1c1c1c;
+            border: 1px solid #1B4332;
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #ccc;
+            transition: 0.2s;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .dropdown-item:hover {
+            background-color: var(--deep-green);
+            color: #fff;
+            padding-left: 28px;
+            border-radius: 12px;
+        }
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: 0.2s;
+        }
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        .navbar-right-desktop {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .icon-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+        .login-btn {
+            background-color: var(--deep-green);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        .login-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: white;
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--jet-black);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #2a4c3b;
+        }
+        .mobile-menu-close {
+            color: white;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .mobile-menu-items {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a4c3b;
+            transition: 0.2s;
+        }
+        .mobile-menu-item i {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-menu-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-dropdown {
+            border-bottom: 1px solid #2a4c3b;
+        }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 1rem 0;
+            cursor: pointer;
+        }
+        .mobile-dropdown-btn i:first-child {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-dropdown-btn .fa-chevron-down {
+            color: var(--soft-leaf);
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #1a1a1a;
+            border-radius: 16px;
+            margin-bottom: 0.5rem;
+        }
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+            padding: 0.75rem 0;
+        }
+        .mobile-dropdown-content a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: #ccc;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+        .mobile-dropdown-content a:hover {
+            background-color: var(--deep-green);
+            color: white;
+        }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a4c3b;
+            transition: 0.2s;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        .mobile-action-item i {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-separator {
+            margin: 1rem 0 0.5rem 0;
+            border-top: 2px solid #2f4f3a;
+        }
+
+        /* FAQ HERO – consistent with gallery but smaller */
+        .faq-hero {
+            height: 40vh;
+            min-height: 300px;
+            width: 100%;
+            margin-top: 0;
+            padding-top: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: var(--bg-primary);
+            overflow: hidden;
+        }
+        .faq-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1974&auto=format&fit=crop'); /* serene forest ferns */
+            background-size: cover;
+            background-position: center 30%;
+        }
+        .faq-hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: brightness(0.85);
+        }
+        [data-theme="dark"] .faq-hero-bg::after {
+            background: rgba(0, 0, 0, 0.55);
+        }
+        .faq-hero-content {
+            position: relative;
+            z-index: 10;
+            color: var(--pure-white);
+            text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        }
+        .faq-hero-sub {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--soft-leaf);
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 0.4rem 1.5rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            margin-bottom: 1rem;
+        }
+        .faq-hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: white;
+        }
+        .faq-hero-title span {
+            color: var(--soft-leaf);
+        }
+
+        /* FAQ SECTION */
+        .faq-section {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        .section-sub {
+            color: var(--deep-green);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+        [data-theme="dark"] .section-sub {
+            color: var(--soft-leaf);
+        }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-heading);
+        }
+        .section-description {
+            color: var(--text-main);
+            font-size: 1.1rem;
+        }
+
+        /* FAQ GRID & ACCORDION */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .faq-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .faq-category {
+            grid-column: 1 / -1;
+            margin: 1rem 0 0.5rem;
+        }
+        .faq-category h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--deep-green);
+            border-left: 8px solid var(--soft-leaf);
+            padding-left: 1.5rem;
+        }
+        [data-theme="dark"] .faq-category h3 {
+            color: var(--soft-leaf);
+            border-left-color: var(--deep-green);
+        }
+
+        .accordion-item {
+            background-color: var(--card-bg);
+            border-radius: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .accordion-item:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .accordion-header {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-heading);
+            background-color: var(--card-bg);
+            transition: background 0.2s;
+        }
+        .accordion-header:hover {
+            background-color: var(--bg-secondary);
+        }
+        .accordion-header i {
+            color: var(--soft-leaf);
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background-color: var(--bg-secondary);
+            border-top: 0 solid var(--border-light);
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 300px; /* enough for answers */
+            border-top-width: 1px;
+        }
+        .accordion-content-inner {
+            padding: 1.5rem;
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+        .accordion-content-inner a {
+            color: var(--deep-green);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        .accordion-content-inner a:hover {
+            color: var(--soft-leaf);
+        }
+        [data-theme="dark"] .accordion-content-inner a {
+            color: var(--soft-leaf);
+        }
+
+        /* still need help box */
+        .help-box {
+            background-color: var(--deep-green);
+            color: white;
+            border-radius: 2rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 4rem auto 0;
+        }
+        .help-box h3 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .help-box p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .help-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .btn-primary {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .btn-primary:hover {
+            background-color: white;
+            color: var(--deep-green);
+            transform: scale(1.02);
+        }
+        .btn-outline-light {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(5px);
+            border: 2px solid white;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+        }
+        .btn-outline-light:hover {
+            background: white;
+            color: var(--deep-green);
+            border-color: white;
+        }
+
+        /* redesigned footer (identical) */
+        .footer {
+            background-color: var(--jet-black);
+            color: var(--pure-white);
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--soft-leaf), var(--deep-green), var(--soft-leaf));
+        }
+        .footer-main {
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: 1fr;
+            margin-bottom: 3rem;
+        }
+        @media (min-width: 768px) {
+            .footer-main {
+                grid-template-columns: 2fr 1fr 1fr 2fr;
+            }
+        }
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .footer-logo-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+        }
+        .footer-logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 2.5rem;
+        }
+        .footer-logo-text {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .footer-logo-text span {
+            color: var(--soft-leaf);
+        }
+        .footer-tagline {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+            max-width: 300px;
+        }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .footer-social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-leaf);
+            transition: all 0.2s;
+        }
+        .footer-social-link:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: translateY(-3px);
+        }
+        .footer-heading {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--soft-leaf);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 2rem;
+            height: 2px;
+            background-color: var(--soft-leaf);
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        .footer-links a {
+            color: #B0B0B0;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .footer-links a:hover {
+            color: var(--soft-leaf);
+            transform: translateX(5px);
+        }
+        .footer-links a i {
+            font-size: 0.75rem;
+            color: var(--soft-leaf);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .footer-links a:hover i {
+            opacity: 1;
+        }
+        .footer-newsletter p {
+            color: #B0B0B0;
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer-input {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border-radius: 9999px;
+            border: none;
+            background: #1A1A1A;
+            color: var(--pure-white);
+            font-size: 0.875rem;
+        }
+        .footer-input:focus {
+            outline: 2px solid var(--soft-leaf);
+        }
+        .footer-btn {
+            width: 100%;
+            background-color: var(--deep-green);
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .footer-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: scale(1.02);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+        .copyright {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+        }
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .footer-bottom-links a {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        .footer-bottom-links a:hover {
+            color: var(--soft-leaf);
+        }
+        #scroll-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--deep-green);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 100;
+            display: none;
+        }
+        #scroll-top:hover { background-color: var(--soft-leaf); color: var(--jet-black); }
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR (identical to index) -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-tree"></i></div>
+            <div>
+                <div class="logo-text">Groww<span> Garden</span></div>
+                <span class="logo-tagline">botanical preserve</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="Gallery.html" class="nav-link">Gallery</a>
+            <a href="events.html" class="nav-link">Events</a>
+            <a href="visit.html" class="nav-link">Visit</a>
+            <a href="faq.html" class="nav-link active">FAQ</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <div class="dropdown" id="dashboard-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="client.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> Client</a>
+                    <a href="admin.html" class="dropdown-item"><i class="fas fa-user-shield"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+            <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Login/Register</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-tree"></i></div>
+            <div>
+                <div class="logo-text">Groww<span> Garden</span></div>
+                <span class="logo-tagline">botanical preserve</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                <span><i class="fas fa-home"></i> Home </span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="home-mobile" class="mobile-dropdown-content">
+                <a href="index.html">Home 1</a>
+                <a href="home2.html">Home 2</a>
+            </div>
+        </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="Gallery.html" class="mobile-menu-item"><i class="fas fa-hiking"></i> Gallery</a>
+        <a href="events.html" class="mobile-menu-item"><i class="fas fa-calendar"></i> Events</a>
+        <a href="visit.html" class="mobile-menu-item"><i class="fas fa-map-marked-alt"></i> Visit</a>
+        <a href="faq.html" class="mobile-menu-item active-mobile"><i class="fas fa-question-circle"></i> FAQ</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('dashboard-mobile')">
+                <span><i class="fas fa-chart-pie"></i> Dashboard</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="dashboard-mobile" class="mobile-dropdown-content">
+                <a href="client.html">Client</a>
+                <a href="admin.html">Admin</a>
+            </div>
+        </div>
+        <div class="mobile-separator"></div>
+        <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> login/register</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- FAQ HERO -->
+<section class="faq-hero">
+    <div class="faq-hero-bg"></div>
+    <div class="faq-hero-content">
+        <span class="faq-hero-sub">got questions?</span>
+        <h1 class="faq-hero-title">frequently <span>asked</span></h1>
+    </div>
+</section>
+
+<!-- MAIN FAQ SECTION -->
+<section class="faq-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-sub">find answers</span>
+            <h2 class="section-title">How can we help?</h2>
+            <p class="section-description">Quick answers to common questions about visiting, events, and our preserve.</p>
+        </div>
+
+        <div class="faq-grid">
+            <!-- CATEGORY: Visiting -->
+            <div class="faq-category"><h3>🌿 Visiting</h3></div>
+
+            <!-- Accordion Item 1 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>What are your opening hours?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        We're open daily from 8:00 AM until dusk (approximately 7:30 PM in summer, 5:30 PM in winter). The visitor center is open 9 AM – 5 PM. Last trail entry is one hour before dusk.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 2 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Is there an admission fee?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        Admission is free for Dashboard. Non-Dashboard: $10 for adults, $5 for children (3–17), under 3 free. We offer discounted family passes and annual Dashboardhips.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 3 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Are dogs allowed on Gallery?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        Yes, leashed dogs are welcome on all Gallery. Please clean up after your pet and keep them on a 6-foot leash. Service animals are always welcome.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 4 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Is the garden accessible for strollers/wheelchairs?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        Many of our main Gallery (Fern Canyon, Prairie Loop) are accessible with packed gravel or boardwalk surfaces. The visitor center and wetland boardwalk are fully wheelchair accessible. You can borrow a wheelchair at the visitor center with ID.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORY: Events & Programs -->
+            <div class="faq-category"><h3>📅 Events & Programs</h3></div>
+
+            <!-- Accordion Item 5 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>How do I register for a workshop?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        You can register online through our <a href="events.html">events page</a> or at the visitor center. Most programs require advance registration as space is limited. Dashboard receive a 20% discount.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 6 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Do you host private events like weddings?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        Absolutely! We offer several beautiful venues including the Garden Pavilion and the Woodland Meadow. Please <a href="contact.html">contact us</a> for rental information and availability.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 7 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Are there programs for children?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        Yes! We offer weekly Nature Tots (ages 2–5), Junior Naturalist clubs (6–12), and seasonal camps. Check our <a href="events.html">events calendar</a> for upcoming dates.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORY: Dashboardhip & Support -->
+            <div class="faq-category"><h3>🤝 Dashboardhip & Support</h3></div>
+
+            <!-- Accordion Item 8 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>What are the benefits of Dashboardhip?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        Dashboard enjoy free daily admission, discounts on workshops and in the gift shop, early registration for events, a quarterly newsletter, and invitations to Dashboard-only previews. Plus you support our conservation work!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 9 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>How do I become a volunteer?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        We'd love your help! Volunteers assist with trail maintenance, visitor education, gardening, and office tasks. Fill out our <a href="volunteer.html">volunteer interest form</a> and we'll invite you to an orientation.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 10 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Is my donation tax-deductible?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        Yes, Groww Garden is a 501(c)(3) nonprofit organization. All donations are tax-deductible to the fullest extent of the law. You'll receive a receipt via email.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORY: Photography & Policies -->
+            <div class="faq-category"><h3>📸 Photography & Policies</h3></div>
+
+            <!-- Accordion Item 11 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Can I take photos for personal use?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        Personal photography (including smartphones and small cameras) is welcome. For professional/portrait sessions, tripods, or drones, you need a permit. Please <a href="contact.html">contact us</a> for details.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 12 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Are there picnic areas?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        Yes! We have two picnic groves with tables and benches – one near the visitor center and one at the Prairie Loop trailhead. Alcohol and grills are not permitted.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 13 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>What happens if it rains?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        We're open rain or shine! Gallery may be muddy – wear appropriate footwear. In case of severe weather (lightning, high winds), we may close Gallery for safety. Check our <a href="#">weather policy</a> or call ahead.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Still need help? box -->
+        <div class="help-box">
+            <h3>Still have questions?</h3>
+            <p>We're here to help! Reach out to our friendly team – we typically respond within 24 hours.</p>
+            <div class="help-buttons">
+                <a href="contact.html" class="btn-primary"><i class="fas fa-envelope"></i> Contact us</a>
+                <a href="tel:+15551234567" class="btn-outline-light"><i class="fas fa-phone-alt"></i> Call (555) 123-4567</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REDESIGNED FOOTER (identical to index) -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-tree"></i></div>
+                    <div>
+                        <div class="logo-text">Groww<span> Garden</span></div>
+                        <span class="logo-tagline">botanical preserve</span>
+                    </div>
+                </a>
+                <p class="footer-tagline">A living sanctuary for native flora, fauna, and the human spirit. Open daily 8am–dusk.</p>
+                <div class="footer-social">
+                    <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-heading">Explore</h3>
+                <ul class="footer-links">
+                    <li><a href="Gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                    <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
+                    <li><a href="visit.html"><i class="fas fa-chevron-right"></i> Hours & admission</a></li>
+                    <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Dashboardhip</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Donate</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3 class="footer-heading">Stay grounded</h3>
+                <p>Subscribe to receive seasonal updates, event invites, and nature notes.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" class="footer-input">
+                    <button class="footer-btn"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">© 2026 Groww Garden – a city sanctuary. All rights reserved.</div>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Accessibility</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    (function() {
+        // ---------- THEME / RTL / MOBILE (identical to index) ----------
+        const htmlEl = document.documentElement;
+        const desktopTheme = document.getElementById('desktop-theme-toggle');
+        const mobileTheme = document.getElementById('mobile-theme-toggle');
+        const desktopIcon = document.getElementById('desktop-theme-icon');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopRtl = document.getElementById('desktop-rtl-toggle');
+        const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+        let theme = localStorage.getItem('theme') || 'light';
+        htmlEl.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+            htmlEl.classList.add('dark');
+            if(desktopIcon) desktopIcon.className = 'fas fa-sun';
+            if(mobileIcon) mobileIcon.className = 'fas fa-sun';
+        } else {
+            htmlEl.classList.remove('dark');
+            if(desktopIcon) desktopIcon.className = 'fas fa-circle-half-stroke';
+            if(mobileIcon) mobileIcon.className = 'fas fa-circle-half-stroke';
+        }
+
+        function toggleTheme() {
+            let currentTheme = htmlEl.getAttribute('data-theme');
+            let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            if (newTheme === 'dark') {
+                htmlEl.classList.add('dark');
+                if(desktopIcon) desktopIcon.className = 'fas fa-sun';
+                if(mobileIcon) mobileIcon.className = 'fas fa-sun';
+            } else {
+                htmlEl.classList.remove('dark');
+                if(desktopIcon) desktopIcon.className = 'fas fa-circle-half-stroke';
+                if(mobileIcon) mobileIcon.className = 'fas fa-circle-half-stroke';
+            }
+        }
+
+        if(desktopTheme) desktopTheme.addEventListener('click', toggleTheme);
+        if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+
+        function toggleRtl() {
+            let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlEl.setAttribute('dir', dir);
+            localStorage.setItem('direction', dir);
+        }
+        if(desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+        if(mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+        window.toggleDesktopDropdown = function(id) {
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            document.getElementById(id).classList.toggle('active');
+        };
+        window.toggleMobileDropdown = function(id) {
+            document.getElementById(id).classList.toggle('active');
+        };
+
+        // mobile menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        if(menuBtn) {
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.add('active');
+            });
+        }
+        if(closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.remove('active');
+            });
+        }
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) mobileMenu.classList.remove('active');
+        });
+
+        // scroll top
+        const scrollBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) scrollBtn.style.display = 'block';
+            else scrollBtn.style.display = 'none';
+        });
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1280) mobileMenu.classList.remove('active');
+        });
+
+        // ---------- FAQ ACCORDION ----------
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                // close others if you want single open – but we allow multiple
+                item.classList.toggle('active');
+            });
+        });
+    })();
+</script>
+</body>
+</html>

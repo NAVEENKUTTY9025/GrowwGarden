@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plan your visit to Groww Garden – hours, admission, directions, and visitor information.">
+    <title>Visit Us | Groww Garden</title>
+    <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & FRESH PALETTE (jet black, pure white, deep green, soft leaf) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --jet-black: #0E0E0E;           /* primary dark, elegant typography */
+            --pure-white: #FFFFFF;            /* backgrounds, cards */
+            --deep-green: #1B4332;            /* deep botanical green – headings, accents */
+            --soft-leaf: #74C69D;              /* soft leaf green – secondary, highlights, buttons */
+            --text-main: #0E0E0E;              /* default text on light */
+            --text-heading: #0E0E0E;
+            --card-bg: #FFFFFF;
+            --border-light: #D0E6D5;           /* subtle greenish border */
+            --navbar-bg: #0E0E0E;               /* jet black */
+            --bg-primary: #FFFFFF;               /* pure white main background */
+            --bg-secondary: #F2F9F2;             /* very light tint of soft leaf for contrast */
+            --accent-deep: #1B4332;
+            --accent-soft: #74C69D;
+
+            /* text on colored backgrounds */
+            --text-on-deep: #FFFFFF;             /* white on deep green */
+            --text-on-soft: #0E0E0E;              /* jet black on soft leaf */
+            --text-on-dark: #FFFFFF;               /* white on jet black */
+        }
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1E2A1E;
+            --text-main: #E8F0E8;                 /* light greenish white for main text */
+            --text-heading: #FFFFFF;
+            --card-bg: #1F2A1F;
+            --border-light: #2D6A4F;              /* deep green tint */
+            --navbar-bg: #0E0E0E;
+            --accent-deep: #2D6A4F;
+            --accent-soft: #8FDEB0;                /* brighter soft leaf for dark mode */
+            
+            /* text on colored backgrounds */
+            --text-on-deep: #FFFFFF;
+            --text-on-soft: #0E0E0E;
+            --text-on-dark: #FFFFFF;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        a {
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /* navbar – jet black */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border-bottom: 1px solid #1e2e24;
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+            overflow: hidden;
+        }
+        .logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 2rem;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .logo-text span {
+            color: var(--soft-leaf);
+        }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        /* desktop nav */
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .nav-link {
+            color: #e0e0e0;
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #FAFAFA;
+            background-color: #2a2a2a;
+            border-radius: 30px;
+        }
+        .nav-link.active {
+            color: #FAFAFA;
+            font-weight: 600;
+            background: var(--deep-green);
+            border-radius: 30px;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1c1c1c;
+            border: 1px solid #1B4332;
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #ccc;
+            transition: 0.2s;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .dropdown-item:hover {
+            background-color: var(--deep-green);
+            color: #fff;
+            padding-left: 28px;
+            border-radius: 12px;
+        }
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: 0.2s;
+        }
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        .navbar-right-desktop {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .icon-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+        .login-btn {
+            background-color: var(--deep-green);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        .login-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: white;
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        /* mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--jet-black);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #2a4c3b;
+        }
+        .mobile-menu-close {
+            color: white;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .mobile-menu-items {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a4c3b;
+            transition: 0.2s;
+        }
+        .mobile-menu-item i {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-menu-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-dropdown {
+            border-bottom: 1px solid #2a4c3b;
+        }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 1rem 0;
+            cursor: pointer;
+        }
+        .mobile-dropdown-btn i:first-child {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-dropdown-btn .fa-chevron-down {
+            color: var(--soft-leaf);
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #1a1a1a;
+            border-radius: 16px;
+            margin-bottom: 0.5rem;
+        }
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+            padding: 0.75rem 0;
+        }
+        .mobile-dropdown-content a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: #ccc;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+        .mobile-dropdown-content a:hover {
+            background-color: var(--deep-green);
+            color: white;
+        }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a4c3b;
+            transition: 0.2s;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        .mobile-action-item i {
+            color: var(--soft-leaf);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-separator {
+            margin: 1rem 0 0.5rem 0;
+            border-top: 2px solid #2f4f3a;
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, var(--deep-green) 0%, #2d5a4a 100%);
+            color: var(--pure-white);
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1932&auto=format&fit=crop') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .page-header h1 {
+            color: var(--pure-white);
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 1rem;
+        }
+        .page-header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--soft-leaf);
+        }
+        .breadcrumb a {
+            color: rgba(255,255,255,0.8);
+            transition: color 0.2s;
+        }
+        .breadcrumb a:hover {
+            color: var(--soft-leaf);
+        }
+
+        /* ===== SECTION STYLES ===== */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-heading);
+        }
+        .section-sub {
+            color: var(--deep-green);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+        [data-theme="dark"] .section-sub {
+            color: var(--soft-leaf);
+        }
+
+        /* Section 1: Hours & Admission */
+        .hours-section {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        .hours-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            margin-top: 3rem;
+        }
+        @media (min-width: 768px) {
+            .hours-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .hours-card {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .hours-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--deep-green);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hours-card h3 i {
+            color: var(--soft-leaf);
+        }
+        .hours-table {
+            width: 100%;
+        }
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        .hours-day {
+            font-weight: 600;
+            color: var(--text-heading);
+        }
+        .hours-time {
+            color: var(--text-main);
+        }
+        .holiday-note {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: var(--bg-secondary);
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            color: var(--deep-green);
+        }
+        .admission-card {
+            background: linear-gradient(135deg, var(--deep-green) 0%, #2d5a4a 100%);
+            border-radius: 2rem;
+            padding: 2rem;
+            color: white;
+        }
+        .admission-card h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        .admission-card h3 i {
+            color: var(--soft-leaf);
+        }
+        .price-list {
+            list-style: none;
+        }
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .price-item:last-child {
+            border-bottom: none;
+        }
+        .price-label {
+            color: rgba(255,255,255,0.9);
+        }
+        .price-value {
+            font-weight: 700;
+            color: var(--soft-leaf);
+        }
+        .Dashboardhip-note {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            font-size: 0.875rem;
+        }
+        .Dashboardhip-note a {
+            color: var(--soft-leaf);
+            font-weight: 600;
+        }
+
+        /* Section 2: Directions & Map */
+        .directions-section {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+        }
+        .directions-grid {
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: 1fr;
+            margin-top: 3rem;
+        }
+        @media (min-width: 992px) {
+            .directions-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .map-container {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-light);
+        }
+        .map-image {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+        .map-info {
+            padding: 1.5rem;
+        }
+        .map-info h3 {
+            margin-bottom: 1rem;
+            color: var(--deep-green);
+        }
+        .map-info p {
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .map-info i {
+            color: var(--soft-leaf);
+            width: 1.5rem;
+        }
+        .directions-card {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+        }
+        .transport-option {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .transport-option:last-child {
+            border-bottom: none;
+        }
+        .transport-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-green);
+            font-size: 1.25rem;
+        }
+        .transport-details h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-heading);
+        }
+        .transport-details p {
+            color: var(--text-main);
+            font-size: 0.875rem;
+        }
+
+        /* Section 3: What to Expect */
+        .expect-section {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        .expect-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            margin-top: 3rem;
+        }
+        @media (min-width: 768px) {
+            .expect-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .expect-card {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s;
+        }
+        .expect-card:hover {
+            transform: translateY(-8px);
+        }
+        .expect-icon {
+            width: 5rem;
+            height: 5rem;
+            background-color: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--deep-green);
+            font-size: 2rem;
+        }
+        .expect-card h3 {
+            margin-bottom: 1rem;
+            color: var(--deep-green);
+        }
+        .expect-card p {
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Section 4: Accessibility */
+        .accessibility-section {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+        }
+        .accessibility-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            margin-top: 3rem;
+        }
+        @media (min-width: 768px) {
+            .accessibility-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .accessibility-card {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            padding: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            border: 1px solid var(--border-light);
+        }
+        .accessibility-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: var(--soft-leaf);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--jet-black);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .accessibility-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--deep-green);
+        }
+        .accessibility-content p {
+            color: var(--text-main);
+        }
+
+        /* Section 5: Amenities */
+        .amenities-section {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        .amenities-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            margin-top: 3rem;
+        }
+        @media (min-width: 640px) {
+            .amenities-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .amenities-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+        .amenity-item {
+            text-align: center;
+        }
+        .amenity-icon {
+            width: 5rem;
+            height: 5rem;
+            background-color: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--deep-green);
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+        .amenity-item:hover .amenity-icon {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: scale(1.1);
+        }
+        .amenity-item p {
+            font-weight: 600;
+            color: var(--text-heading);
+        }
+
+        /* Section 6: Plan Your Visit Tips */
+        .tips-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--deep-green) 0%, #2d5a4a 100%);
+            color: white;
+        }
+        .tips-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            margin-top: 3rem;
+        }
+        @media (min-width: 768px) {
+            .tips-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .tip-card {
+            background-color: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--soft-leaf);
+        }
+        .tip-card i {
+            font-size: 2rem;
+            color: var(--soft-leaf);
+            margin-bottom: 1rem;
+        }
+        .tip-card h3 {
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .tip-card p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.875rem;
+        }
+
+        /* Footer (same as index) */
+        .footer {
+            background-color: var(--jet-black);
+            color: var(--pure-white);
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--soft-leaf), var(--deep-green), var(--soft-leaf));
+        }
+        .footer-main {
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: 1fr;
+            margin-bottom: 3rem;
+        }
+        @media (min-width: 768px) {
+            .footer-main {
+                grid-template-columns: 2fr 1fr 1fr 2fr;
+            }
+        }
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .footer-logo-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+        }
+        .footer-logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 2.5rem;
+        }
+        .footer-logo-text {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .footer-logo-text span {
+            color: var(--soft-leaf);
+        }
+        .footer-tagline {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+            max-width: 300px;
+        }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .footer-social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-leaf);
+            transition: all 0.2s;
+        }
+        .footer-social-link:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: translateY(-3px);
+        }
+        .footer-heading {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--soft-leaf);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 2rem;
+            height: 2px;
+            background-color: var(--soft-leaf);
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        .footer-links a {
+            color: #B0B0B0;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .footer-links a:hover {
+            color: var(--soft-leaf);
+            transform: translateX(5px);
+        }
+        .footer-links a i {
+            font-size: 0.75rem;
+            color: var(--soft-leaf);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .footer-links a:hover i {
+            opacity: 1;
+        }
+        .footer-newsletter p {
+            color: #B0B0B0;
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer-input {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border-radius: 9999px;
+            border: none;
+            background: #1A1A1A;
+            color: var(--pure-white);
+            font-size: 0.875rem;
+        }
+        .footer-input:focus {
+            outline: 2px solid var(--soft-leaf);
+        }
+        .footer-btn {
+            width: 100%;
+            background-color: var(--deep-green);
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .footer-btn:hover {
+            background-color: var(--soft-leaf);
+            color: var(--jet-black);
+            transform: scale(1.02);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+        .copyright {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+        }
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .footer-bottom-links a {
+            color: #B0B0B0;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        .footer-bottom-links a:hover {
+            color: var(--soft-leaf);
+        }
+
+        #scroll-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--deep-green);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 100;
+            display: none;
+        }
+        #scroll-top:hover { background-color: var(--soft-leaf); color: var(--jet-black); }
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.7s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR (same as index) -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-tree"></i></div>
+            <div>
+                <div class="logo-text">Groww<span> Garden</span></div>
+                <span class="logo-tagline">botanical preserve</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="events.html" class="nav-link">Events</a>
+            <a href="visit.html" class="nav-link active">Visit</a>
+            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <div class="dropdown" id="dashboard-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="client.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> Client</a>
+                    <a href="admin.html" class="dropdown-item"><i class="fas fa-user-shield"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+            <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Login/Register</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu (same as index) -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-tree"></i></div>
+            <div>
+                <div class="logo-text">Groww<span> Garden</span></div>
+                <span class="logo-tagline">botanical preserve</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                <span><i class="fas fa-home"></i> Home </span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="home-mobile" class="mobile-dropdown-content">
+                <a href="index.html">Home 1</a>
+                <a href="home2.html">Home 2</a>
+            </div>
+        </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="gallery.html" class="mobile-menu-item"><i class="fas fa-hiking"></i> Gallery</a>
+        <a href="events.html" class="mobile-menu-item"><i class="fas fa-calendar"></i> Events</a>
+        <a href="visit.html" class="mobile-menu-item active-mobile"><i class="fas fa-map-marked-alt"></i> Visit</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> FAQ</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('dashboard-mobile')">
+                <span><i class="fas fa-chart-pie"></i> Dashboard</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="dashboard-mobile" class="mobile-dropdown-content">
+                <a href="client.html">Client</a>
+                <a href="admin.html">Admin</a>
+            </div>
+        </div>
+        <div class="mobile-separator"></div>
+        <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> login/register</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+    <div class="container page-header-content">
+        <h1>Plan Your Visit</h1>
+        <p>Experience the beauty of nature at Groww Garden – open daily for exploration and quiet reflection</p>
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> <i class="fas fa-chevron-right"></i> 
+            <span>Visit</span>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 1: HOURS & ADMISSION -->
+<section class="hours-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span class="section-sub">plan ahead</span>
+            <h2 class="section-title">Hours & Admission</h2>
+            <p class="section-description">We're open every day of the year except Christmas Day and New Year's Day.</p>
+        </div>
+
+        <div class="hours-grid">
+            <!-- Hours Card -->
+            <div class="hours-card">
+                <h3><i class="fas fa-clock"></i> Garden Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row">
+                        <span class="hours-day">Monday - Friday</span>
+                        <span class="hours-time">8:00 AM - 6:00 PM</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="hours-day">Saturday</span>
+                        <span class="hours-time">8:00 AM - 7:00 PM</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="hours-day">Sunday</span>
+                        <span class="hours-time">9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="hours-day">Holidays</span>
+                        <span class="hours-time">9:00 AM - 4:00 PM</span>
+                    </div>
+                </div>
+                <div class="holiday-note">
+                    <i class="fas fa-info-circle"></i> Closed on Christmas Day and New Year's Day. Last admission 1 hour before closing.
+                </div>
+            </div>
+
+            <!-- Admission Card -->
+            <div class="admission-card">
+                <h3><i class="fas fa-ticket-alt"></i> Admission Prices</h3>
+                <ul class="price-list">
+                    <li class="price-item">
+                        <span class="price-label">Adults (18-64)</span>
+                        <span class="price-value">$15</span>
+                    </li>
+                    <li class="price-item">
+                        <span class="price-label">Seniors (65+)</span>
+                        <span class="price-value">$12</span>
+                    </li>
+                    <li class="price-item">
+                        <span class="price-label">Students (with ID)</span>
+                        <span class="price-value">$10</span>
+                    </li>
+                    <li class="price-item">
+                        <span class="price-label">Children (5-17)</span>
+                        <span class="price-value">$8</span>
+                    </li>
+                    <li class="price-item">
+                        <span class="price-label">Children under 5</span>
+                        <span class="price-value">Free</span>
+                    </li>
+                    <li class="price-item">
+                        <span class="price-label">Dashboard</span>
+                        <span class="price-value">Free</span>
+                    </li>
+                </ul>
+                <div class="Dashboardhip-note">
+                    <i class="fas fa-leaf"></i> Become a client and visit free all year! <a href="#">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 2: DIRECTIONS & MAP -->
+<section class="directions-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span class="section-sub">getting here</span>
+            <h2 class="section-title">Directions & Map</h2>
+            <p class="section-description">Located in the heart of the city, easily accessible by car, public transit, or bike.</p>
+        </div>
+
+        <div class="directions-grid">
+            <!-- Map Container -->
+            <div class="map-container">
+                <div class="map-image" style="background-image: url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=1931&auto=format&fit=crop');">
+                    <!-- Map placeholder - in production would be embedded Google Map -->
+                </div>
+                <div class="map-info">
+                    <h3><i class="fas fa-map-pin"></i> Groww Garden</h3>
+                    <p><i class="fas fa-location-dot"></i> 123 Botanical Lane, Green City, ST 12345</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> visit@growwgarden.org</p>
+                    <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                        <a href="#" style="color: var(--deep-green); font-weight: 600;"><i class="fas fa-directions"></i> Get Directions</a>
+                        <a href="#" style="color: var(--deep-green); font-weight: 600;"><i class="fas fa-download"></i> Map PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transportation Options -->
+            <div class="directions-card">
+                <h3 style="margin-bottom: 1.5rem; color: var(--deep-green);">Transportation Options</h3>
+                
+                <div class="transport-option">
+                    <div class="transport-icon"><i class="fas fa-car"></i></div>
+                    <div class="transport-details">
+                        <h4>By Car</h4>
+                        <p>Free parking available in our main lot. Enter from Botanical Lane. EV charging stations available.</p>
+                    </div>
+                </div>
+
+                <div class="transport-option">
+                    <div class="transport-icon"><i class="fas fa-bus"></i></div>
+                    <div class="transport-details">
+                        <h4>Public Transit</h4>
+                        <p>Take Metro Bus #12 or #24 to the "Garden Gate" stop, just steps from our entrance.</p>
+                    </div>
+                </div>
+
+                <div class="transport-option">
+                    <div class="transport-icon"><i class="fas fa-bicycle"></i></div>
+                    <div class="transport-details">
+                        <h4>Bicycle</h4>
+                        <p>Bike racks available at the main entrance. The Greenway Trail connects directly to the garden.</p>
+                    </div>
+                </div>
+
+                <div class="transport-option">
+                    <div class="transport-icon"><i class="fas fa-person-walking"></i></div>
+                    <div class="transport-details">
+                        <h4>Walking</h4>
+                        <p>Located just 15 minutes from downtown via the Riverwalk path.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3: WHAT TO EXPECT -->
+<section class="expect-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span class="section-sub">your experience</span>
+            <h2 class="section-title">What to Expect</h2>
+            <p class="section-description">Everything you need to know before you arrive.</p>
+        </div>
+
+        <div class="expect-grid">
+            <div class="expect-card">
+                <div class="expect-icon"><i class="fas fa-shoe-prints"></i></div>
+                <h3>Trails & Terrain</h3>
+                <p>Over 7 miles of trails ranging from easy boardwalks to moderate hills. Wear comfortable walking shoes and dress for the weather.</p>
+            </div>
+            <div class="expect-card">
+                <div class="expect-icon"><i class="fas fa-clock"></i></div>
+                <h3>Suggested Visit Time</h3>
+                <p>Most visitors spend 2-3 hours exploring. Plan extra time for the visitor center, gift shop, and photography stops.</p>
+            </div>
+            <div class="expect-card">
+                <div class="expect-icon"><i class="fas fa-dog"></i></div>
+                <h3>Pets</h3>
+                <p>Well-behaved dogs on leashes are welcome on most trails. Service animals always welcome. Pet waste stations available.</p>
+            </div>
+            <div class="expect-card">
+                <div class="expect-icon"><i class="fas fa-camera"></i></div>
+                <h3>Photography</h3>
+                <p>Personal photography welcome. For professional or commercial photography, please contact us in advance.</p>
+            </div>
+            <div class="expect-card">
+                <div class="expect-icon"><i class="fas fa-umbrella-beach"></i></div>
+                <h3>Weather</h3>
+                <p>The garden is open rain or shine. In case of severe weather, check our website or social media for updates.</p>
+            </div>
+            <div class="expect-card">
+                <div class="expect-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <h3>Accessibility</h3>
+                <p>Most main paths are wheelchair and stroller accessible. Manual wheelchairs available at the visitor center.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 4: ACCESSIBILITY -->
+<section class="accessibility-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span class="section-sub">everyone welcome</span>
+            <h2 class="section-title">Accessibility</h2>
+            <p class="section-description">We're committed to making the garden accessible to all visitors.</p>
+        </div>
+
+        <div class="accessibility-grid">
+            <div class="accessibility-card">
+                <div class="accessibility-icon"><i class="fas fa-wheelchair"></i></div>
+                <div class="accessibility-content">
+                    <h3>Wheelchair Access</h3>
+                    <p>All major paths and facilities are wheelchair accessible. Manual wheelchairs available free at the visitor center (first-come, first-served).</p>
+                </div>
+            </div>
+            <div class="accessibility-card">
+                <div class="accessibility-icon"><i class="fas fa-ear-listen"></i></div>
+                <div class="accessibility-content">
+                    <h3>Hearing Assistance</h3>
+                    <p>Printed guides available. Some programs offer ASL interpretation with 2 weeks advance notice.</p>
+                </div>
+            </div>
+            <div class="accessibility-card">
+                <div class="accessibility-icon"><i class="fas fa-eye"></i></div>
+                <div class="accessibility-content">
+                    <h3>Visual Impairment</h3>
+                    <p>Braille guides available. Many trails have tactile elements and sensory experiences.</p>
+                </div>
+            </div>
+            <div class="accessibility-card">
+                <div class="accessibility-icon"><i class="fas fa-restroom"></i></div>
+                <div class="accessibility-content">
+                    <h3>Accessible Facilities</h3>
+                    <p>Accessible restrooms at visitor center and main pavilion. Family restrooms available.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 5: AMENITIES -->
+<section class="amenities-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span class="section-sub">facilities</span>
+            <h2 class="section-title">Amenities</h2>
+            <p class="section-description">Everything you need for a comfortable visit.</p>
+        </div>
+
+        <div class="amenities-grid">
+            <div class="amenity-item">
+                <div class="amenity-icon"><i class="fas fa-parking"></i></div>
+                <p>Free Parking</p>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon"><i class="fas fa-restroom"></i></div>
+                <p>Restrooms</p>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon"><i class="fas fa-utensils"></i></div>
+                <p>Picnic Areas</p>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon"><i class="fas fa-shop"></i></div>
+                <p>Gift Shop</p>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon"><i class="fas fa-wifi"></i></div>
+                <p>Free WiFi</p>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon"><i class="fas fa-water"></i></div>
+                <p>Water Fountains</p>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon"><i class="fas fa-child"></i></div>
+                <p>Playground</p>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon"><i class="fas fa-first-aid"></i></div>
+                <p>First Aid</p>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon"><i class="fas fa-coffee"></i></div>
+                <p>Café</p>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon"><i class="fas fa-bicycle"></i></div>
+                <p>Bike Racks</p>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon"><i class="fas fa-dog"></i></div>
+                <p>Pet Friendly</p>
+            </div>
+            <div class="amenity-item">
+                <div class="amenity-icon"><i class="fas fa-charging-station"></i></div>
+                <p>EV Charging</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 6: PLAN YOUR VISIT TIPS -->
+<section class="tips-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 1rem;">Plan Your Visit Tips</h2>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Make the most of your time at Groww Garden</p>
+        </div>
+
+        <div class="tips-grid">
+            <div class="tip-card">
+                <i class="fas fa-sun"></i>
+                <h3>Best Time to Visit</h3>
+                <p>Weekday mornings are quietest. Spring and fall offer peak colors and mild weather.</p>
+            </div>
+            <div class="tip-card">
+                <i class="fas fa-backpack"></i>
+                <h3>What to Bring</h3>
+                <p>Water, sunscreen, camera, comfortable shoes, and a sense of wonder!</p>
+            </div>
+            <div class="tip-card">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Special Events</h3>
+                <p>Check our events calendar for guided walks, workshops, and seasonal celebrations.</p>
+            </div>
+            <div class="tip-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Garden App</h3>
+                <p>Download our free app for self-guided tours, trail maps, and plant identification.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER (same as index) -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-tree"></i></div>
+                    <div>
+                        <div class="logo-text">Groww<span> Garden</span></div>
+                        <span class="logo-tagline">botanical preserve</span>
+                    </div>
+                </a>
+                <p class="footer-tagline">A living sanctuary for native flora, fauna, and the human spirit. Open daily 8am–dusk.</p>
+                <div class="footer-social">
+                    <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-heading">Explore</h3>
+                <ul class="footer-links">
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Trails</a></li>
+                    <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
+                    <li><a href="visit.html"><i class="fas fa-chevron-right"></i> Hours & admission</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Dashboardhip</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Donate</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3 class="footer-heading">Stay grounded</h3>
+                <p>Subscribe to receive seasonal updates, event invites, and nature notes.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" class="footer-input">
+                    <button class="footer-btn"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">© 2026 Groww Garden – a city sanctuary. All rights reserved.</div>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Accessibility</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    (function() {
+        const htmlEl = document.documentElement;
+        const desktopTheme = document.getElementById('desktop-theme-toggle');
+        const mobileTheme = document.getElementById('mobile-theme-toggle');
+        const desktopIcon = document.getElementById('desktop-theme-icon');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopRtl = document.getElementById('desktop-rtl-toggle');
+        const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+        // initial theme from localStorage
+        let theme = localStorage.getItem('theme') || 'light';
+        htmlEl.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+            htmlEl.classList.add('dark');
+            if(desktopIcon) desktopIcon.className = 'fas fa-sun';
+            if(mobileIcon) mobileIcon.className = 'fas fa-sun';
+        } else {
+            htmlEl.classList.remove('dark');
+            if(desktopIcon) desktopIcon.className = 'fas fa-circle-half-stroke';
+            if(mobileIcon) mobileIcon.className = 'fas fa-circle-half-stroke';
+        }
+
+        function toggleTheme() {
+            let currentTheme = htmlEl.getAttribute('data-theme');
+            let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            if (newTheme === 'dark') {
+                htmlEl.classList.add('dark');
+                if(desktopIcon) desktopIcon.className = 'fas fa-sun';
+                if(mobileIcon) mobileIcon.className = 'fas fa-sun';
+            } else {
+                htmlEl.classList.remove('dark');
+                if(desktopIcon) desktopIcon.className = 'fas fa-circle-half-stroke';
+                if(mobileIcon) mobileIcon.className = 'fas fa-circle-half-stroke';
+            }
+        }
+
+        if(desktopTheme) desktopTheme.addEventListener('click', toggleTheme);
+        if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+
+        function toggleRtl() {
+            let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlEl.setAttribute('dir', dir);
+            localStorage.setItem('direction', dir);
+        }
+        if(desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+        if(mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+        window.toggleDesktopDropdown = function(id) {
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            document.getElementById(id).classList.toggle('active');
+        };
+        window.toggleMobileDropdown = function(id) {
+            document.getElementById(id).classList.toggle('active');
+        };
+
+        // mobile menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        if(menuBtn) {
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.add('active');
+            });
+        }
+        if(closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.remove('active');
+            });
+        }
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) mobileMenu.classList.remove('active');
+        });
+
+        // scroll top
+        const scrollBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) scrollBtn.style.display = 'block';
+            else scrollBtn.style.display = 'none';
+        });
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1280) mobileMenu.classList.remove('active');
+        });
+    })();
+</script>
+</body>
+</html>

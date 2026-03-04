@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>Admin · Groww Garden</title>
+    <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- favicon -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- BOTANICAL THEME – EXACTLY FROM INDEX.HTML (jet black, deep green, soft leaf) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --jet-black: #0E0E0E;           /* primary dark, elegant background */
+            --pure-white: #FFFFFF;            /* cards, text on dark */
+            --deep-green: #1B4332;            /* deep botanical green – headings, accents */
+            --soft-leaf: #74C69D;              /* soft leaf green – secondary, highlights, buttons */
+            --text-main: #0E0E0E;              /* default text on light */
+            --text-heading: #0E0E0E;
+            --card-bg: #FFFFFF;
+            --border-light: #D0E6D5;           /* subtle greenish border */
+            --navbar-bg: #0E0E0E;               /* jet black */
+            --bg-primary: #FFFFFF;               /* pure white main background */
+            --bg-secondary: #F2F9F2;             /* very light tint of soft leaf */
+            --accent-deep: #1B4332;
+            --accent-soft: #74C69D;
+            
+            /* text on colored backgrounds */
+            --text-on-deep: #FFFFFF;             /* white on deep green */
+            --text-on-soft: #0E0E0E;              /* jet black on soft leaf */
+            --text-on-dark: #FFFFFF;               /* white on jet black */
+
+            /* sidebar specific – keep deep black with green accents */
+            --sidebar-bg: #0E0E0E;                /* jet black */
+            --sidebar-hover: #1f2e1f;
+            --sidebar-active: var(--deep-green);
+            --sidebar-text: #eeeeee;
+            --sidebar-icon: var(--soft-leaf);
+            
+            /* header */
+            --header-bg: #0E0E0E;
+            --header-text: #FFFFFF;
+            
+            /* cards & stats */
+            --stat-bg: #FFFFFF;
+            --stat-text: #0E0E0E;
+            --stat-border: var(--border-light);
+            
+            /* table */
+            --table-header-bg: #1B4332;
+            --table-header-text: #FFFFFF;
+            --table-row-hover: #F2F9F2;
+            
+            /* badge colors */
+            --badge-active-bg: rgba(27, 67, 50, 0.15);
+            --badge-active-text: #1B4332;
+            --badge-pending-bg: rgba(255, 193, 7, 0.15);
+            --badge-pending-text: #b85e00;
+            --badge-cancelled-bg: rgba(220, 53, 69, 0.1);
+            --badge-cancelled-text: #b02a37;
+            
+            --border-radius: 1rem;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            --transition: all 0.25s ease;
+            --sidebar-width: 280px;
+            --header-height: 80px;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1E2A1E;
+            --text-main: #E8F0E8;                 /* light greenish white */
+            --text-heading: #FFFFFF;
+            --card-bg: #1F2A1F;
+            --border-light: #2D6A4F;              /* deep green tint */
+            --navbar-bg: #0E0E0E;
+            --accent-deep: #2D6A4F;
+            --accent-soft: #8FDEB0;                /* brighter soft leaf */
+            
+            --stat-bg: #1F2A1F;
+            --stat-text: #E8F0E8;
+            --stat-border: #2D6A4F;
+            
+            --table-header-bg: #2D6A4F;
+            --table-header-text: #FFFFFF;
+            --table-row-hover: #2a3a2a;
+            
+            --badge-active-bg: rgba(116, 198, 157, 0.25);
+            --badge-active-text: #8FDEB0;
+            --badge-pending-bg: rgba(255, 193, 7, 0.2);
+            --badge-pending-text: #ffc107;
+            --badge-cancelled-bg: rgba(220, 53, 69, 0.2);
+            --badge-cancelled-text: #f28b82;
+            
+            --sidebar-bg: #0E0E0E;
+            --sidebar-hover: #2a3a2a;
+            --sidebar-active: #2D6A4F;
+            --sidebar-text: #f0f0f0;
+            --sidebar-icon: #8FDEB0;
+            --header-bg: #0E0E0E;
+            --header-text: #FFFFFF;
+
+            /* additional dark mode fixes */
+            --stat-value-dark: #FFFFFF;
+            --stat-label-dark: #B0D0B0;
+            --card-header-text: #FFFFFF;
+            --message-text-dark: #D0E0D0;
+            --table-text-dark: #E0F0E0;
+            --report-text-dark: #C0E0C0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        body.admin-dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        /* ----- SIDEBAR (jet black with botanical touches) – NO SCROLL, FIXED HEIGHT ----- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--deep-green);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+            left: -280px;                 /* hidden by default (mobile) */
+            overflow: hidden;              /* NO SCROLLBAR – hidden overflow */
+            color: var(--sidebar-text);
+            top: 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+        }
+        body:not(.rtl) .sidebar.active {
+            left: 0;                       /* LTR active */
+        }
+        /* RTL sidebar – start from right */
+        body.rtl .sidebar {
+            left: auto;                     /* reset left */
+            right: -280px;                   /* hidden off right */
+            border-right: none;
+            border-left: 1px solid var(--deep-green);
+        }
+        body.rtl .sidebar.active {
+            right: 0;                        /* RTL active – visible from right */
+            left: auto;
+        }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            border-bottom: 1px solid var(--deep-green);
+            flex-shrink: 0;              /* prevent shrinking */
+        }
+        /* exact logo style from index.html */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.03);
+        }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-leaf);
+        }
+        .logo-icon i {
+            color: var(--soft-leaf);
+            font-size: 2rem;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .logo-text span {
+            color: var(--soft-leaf);
+        }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .sidebar-nav {
+            padding: 20px 16px;
+            flex: 1;                     /* takes remaining space */
+            overflow: visible;            /* NO scrolling */
+            display: flex;
+            flex-direction: column;
+        }
+        .nav-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #a0b0a0;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 30px;
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: 40px;
+            color: var(--sidebar-text);
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .nav-link:hover {
+            background-color: var(--sidebar-hover);
+            color: var(--soft-leaf);
+        }
+        .nav-link.active {
+            background-color: var(--sidebar-active);
+            color: #FFFFFF;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .nav-link i {
+            width: 22px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--sidebar-icon);
+        }
+        .nav-link.active i {
+            color: #FFFFFF;
+        }
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid var(--deep-green);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-shrink: 0;              /* stay at bottom */
+            background-color: var(--sidebar-bg);
+        }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 60px;
+            background-color: rgba(255,255,255,0.06);
+        }
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--deep-green);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: 2px solid var(--soft-leaf);
+        }
+        .user-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+        }
+        .user-info p {
+            font-size: 0.7rem;
+            color: #b0c0b0;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--soft-leaf);
+            color: var(--soft-leaf);
+            padding: 10px 16px;
+            border-radius: 60px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: var(--soft-leaf);
+            color: var(--jet-black);
+        }
+
+        /* ----- MAIN CONTENT ----- */
+        .main-content {
+            flex: 1;
+            width: 100%;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .top-header {
+            height: var(--header-height);
+            background-color: var(--header-bg);
+            border-bottom: 1px solid var(--deep-green);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            width: 100%;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+        .mobile-toggle {
+            display: flex;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: white;
+            background: rgba(255,255,255,0.08);
+            border: none;
+            padding: 8px;
+            border-radius: 12px;
+            width: 45px;
+            height: 45px;
+            align-items: center;
+            justify-content: center;
+        }
+        .page-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            padding-left: 12px;
+            border-left: 3px solid var(--soft-leaf);
+        }
+        .search-bar {
+            position: relative;
+            flex: 1;
+            max-width: 380px;
+            margin-left: 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            border: 1px solid var(--deep-green);
+            border-radius: 60px;
+            background-color: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .search-bar input::placeholder {
+            color: #a0b0a0;
+        }
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--soft-leaf);
+            box-shadow: 0 0 0 3px rgba(116,198,157,0.2);
+        }
+        .search-bar i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--soft-leaf);
+            font-size: 1rem;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header-action-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--deep-green);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        .header-action-btn:hover {
+            background: var(--soft-leaf);
+            color: black;
+            border-color: var(--soft-leaf);
+        }
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #dc3545;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        .theme-toggle, .rtl-toggle {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--deep-green);
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover, .rtl-toggle:hover {
+            background: var(--soft-leaf);
+            color: black;
+        }
+
+        /* Dashboard content */
+        .dashboard-content {
+            padding: 30px 24px;
+            flex: 1;
+            background-color: var(--bg-primary);
+        }
+        .content-header {
+            margin-bottom: 30px;
+        }
+        .content-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .content-header h1 i {
+            color: var(--soft-leaf);
+        }
+        .content-header p {
+            color: var(--text-main);
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        /* stats grid - dark mode text fix */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 22px;
+            margin-bottom: 35px;
+        }
+        .stat-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 24px 22px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--soft-leaf);
+            box-shadow: var(--shadow-lg);
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--deep-green);
+        }
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .stat-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 18px;
+            background-color: rgba(27, 67, 50, 0.12);
+            color: var(--deep-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+        }
+        [data-theme="dark"] .stat-icon {
+            color: var(--soft-leaf);
+            background-color: rgba(116, 198, 157, 0.15);
+        }
+        .stat-change {
+            color: #10b981;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+        [data-theme="dark"] .stat-value {
+            color: var(--pure-white);
+        }
+        .stat-label {
+            color: var(--text-main);
+            opacity: 0.8;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        [data-theme="dark"] .stat-label {
+            color: #B0D0B0;
+            opacity: 1;
+        }
+
+        /* cards grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+        .dashboard-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .card-header {
+            padding: 18px 22px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(27,67,50,0.03);
+        }
+        .card-header h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+        [data-theme="dark"] .card-header h3 {
+            color: var(--pure-white);
+        }
+        .card-header a {
+            color: var(--deep-green);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        [data-theme="dark"] .card-header a {
+            color: var(--soft-leaf);
+        }
+        .card-header a:hover {
+            color: var(--soft-leaf);
+        }
+        .card-body {
+            padding: 20px 22px;
+        }
+        .full-width-card {
+            grid-column: 1 / -1;
+        }
+
+        /* garden-specific items */
+        .booking-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-light);
+            gap: 10px;
+        }
+        .booking-item:last-child {
+            border-bottom: none;
+        }
+        .booking-info h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 4px;
+        }
+        [data-theme="dark"] .booking-info h4 {
+            color: var(--pure-white);
+        }
+        .booking-meta {
+            display: flex;
+            gap: 14px;
+            color: var(--text-main);
+            opacity: 0.8;
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+        }
+        [data-theme="dark"] .booking-meta {
+            color: #C0E0C0;
+            opacity: 1;
+        }
+        .booking-status {
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .status-active {
+            background-color: var(--badge-active-bg);
+            color: var(--badge-active-text);
+        }
+        .status-pending {
+            background-color: var(--badge-pending-bg);
+            color: var(--badge-pending-text);
+        }
+        .status-cancelled {
+            background-color: var(--badge-cancelled-bg);
+            color: var(--badge-cancelled-text);
+        }
+
+        /* message items */
+        .message-item {
+            display: flex;
+            gap: 15px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .message-item:last-child {
+            border-bottom: none;
+        }
+        .message-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            background-color: var(--deep-green);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .message-content {
+            flex: 1;
+        }
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .message-sender {
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+        [data-theme="dark"] .message-sender {
+            color: var(--pure-white);
+        }
+        .message-time {
+            font-size: 0.7rem;
+            color: var(--text-main);
+            opacity: 0.7;
+        }
+        [data-theme="dark"] .message-time {
+            color: #B0D0B0;
+        }
+        .message-text {
+            color: var(--text-main);
+            opacity: 0.9;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+        [data-theme="dark"] .message-text {
+            color: #D0E0D0;
+        }
+
+        /* table */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 0 -4px;
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+        .admin-table th {
+            text-align: left;
+            padding: 14px 12px;
+            background-color: var(--table-header-bg);
+            color: var(--table-header-text);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .admin-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-main);
+            font-size: 0.9rem;
+        }
+        [data-theme="dark"] .admin-table td {
+            color: #E0F0E0;
+        }
+        .user-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .user-avatar-sm {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background-color: var(--deep-green);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        .action-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.7;
+            cursor: pointer;
+            padding: 8px 10px;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        [data-theme="dark"] .action-btn {
+            color: #C0E0C0;
+        }
+        .action-btn:hover {
+            opacity: 1;
+            background-color: rgba(116,198,157,0.15);
+            color: var(--soft-leaf);
+        }
+        .action-btn.delete:hover {
+            background-color: rgba(220,53,69,0.15);
+            color: #dc3545;
+        }
+
+        /* reports & settings grid */
+        .reports-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+        .report-card {
+            background-color: var(--bg-secondary);
+            border-radius: 1.2rem;
+            padding: 22px 16px;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            transition: var(--transition);
+        }
+        .report-card:hover {
+            border-color: var(--soft-leaf);
+        }
+        .report-card h4 {
+            color: var(--text-heading);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        [data-theme="dark"] .report-card h4 {
+            color: var(--pure-white);
+        }
+        .report-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--deep-green);
+        }
+        [data-theme="dark"] .report-value {
+            color: var(--soft-leaf);
+        }
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px;
+            background-color: var(--bg-secondary);
+            border-radius: 1rem;
+            border: 1px solid var(--border-light);
+        }
+        .setting-info h4 {
+            font-size: 0.95rem;
+            color: var(--text-heading);
+            margin-bottom: 4px;
+        }
+        [data-theme="dark"] .setting-info h4 {
+            color: var(--pure-white);
+        }
+        .setting-info p {
+            color: var(--text-main);
+            opacity: 0.7;
+            font-size: 0.75rem;
+        }
+        [data-theme="dark"] .setting-info p {
+            color: #B0D0B0;
+        }
+        .toggle-switch {
+            width: 52px;
+            height: 28px;
+            background-color: #3a4a3a;
+            border-radius: 40px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border-radius: 50%;
+            top: 2px;
+            right: 2px;
+            transition: var(--transition);
+        }
+        .toggle-switch.active {
+            background-color: var(--soft-leaf);
+        }
+        .toggle-switch.active::after {
+            right: 26px;
+            background-color: var(--deep-green);
+        }
+
+        /* footer */
+        .dashboard-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border-light);
+            background-color: var(--header-bg);
+            color: #ccc;
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .footer-links a {
+            color: #aaa;
+            transition: var(--transition);
+        }
+        .footer-links a:hover {
+            color: var(--soft-leaf);
+        }
+
+        /* back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 52px;
+            height: 52px;
+            border-radius: 30px;
+            background-color: var(--deep-green);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            border: 2px solid var(--soft-leaf);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background-color: var(--soft-leaf);
+            color: black;
+        }
+
+        /* logout modal */
+        .logout-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        .logout-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .logout-modal-content {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            padding: 40px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid var(--soft-leaf);
+        }
+        .logout-modal-content i {
+            font-size: 3.5rem;
+            color: var(--soft-leaf);
+            margin-bottom: 20px;
+        }
+        .logout-modal-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: var(--text-heading);
+        }
+        [data-theme="dark"] .logout-modal-content h3 {
+            color: var(--pure-white);
+        }
+        .logout-modal-content p {
+            color: var(--text-main);
+            margin-bottom: 30px;
+        }
+        [data-theme="dark"] .logout-modal-content p {
+            color: #D0E0D0;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+        .modal-btn {
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.95rem;
+        }
+        .modal-btn.confirm {
+            background-color: var(--deep-green);
+            color: white;
+        }
+        .modal-btn.confirm:hover {
+            background-color: var(--soft-leaf);
+            color: black;
+        }
+        .modal-btn.cancel {
+            background: transparent;
+            border: 2px solid var(--border-light);
+            color: var(--text-main);
+        }
+        [data-theme="dark"] .modal-btn.cancel {
+            color: #E0E0E0;
+            border-color: #2D6A4F;
+        }
+        .modal-btn.cancel:hover {
+            border-color: var(--soft-leaf);
+        }
+
+        /* overlay for mobile */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* RTL fixes - ensure sidebar visible when active & correct text alignment */
+        body.rtl .page-title {
+            border-left: none;
+            border-right: 3px solid var(--soft-leaf);
+            padding-left: 0;
+            padding-right: 12px;
+        }
+        body.rtl .search-bar i {
+            left: auto;
+            right: 16px;
+        }
+        body.rtl .search-bar input {
+            padding: 12px 44px 12px 16px;
+        }
+        body.rtl .stat-card::before {
+            left: auto;
+            right: 0;
+        }
+        body.rtl .user-cell,
+        body.rtl .message-item {
+            flex-direction: row-reverse;
+        }
+        body.rtl .booking-item {
+            flex-direction: row-reverse;
+        }
+        body.rtl .toggle-switch::after {
+            right: auto;
+            left: 2px;
+        }
+        body.rtl .toggle-switch.active::after {
+            left: 26px;
+            right: auto;
+        }
+
+        /* desktop sidebar always visible */
+        @media (min-width: 1024px) {
+            .sidebar {
+                left: 0;                 /* LTR desktop visible */
+            }
+            body.rtl .sidebar {
+                left: auto;
+                right: 0;                /* RTL desktop visible */
+            }
+            body:not(.rtl) .main-content {
+                margin-left: var(--sidebar-width);
+                width: calc(100% - var(--sidebar-width));
+            }
+            body.rtl .main-content {
+                margin-right: var(--sidebar-width);
+                width: calc(100% - var(--sidebar-width));
+            }
+            .mobile-toggle {
+                display: none;
+            }
+            .overlay {
+                display: none;
+            }
+        }
+        /* mobile adjustments: sidebar hidden by default, overlay shown */
+        @media (max-width: 1023px) {
+            .sidebar {
+                position: fixed;
+                transition: left 0.25s ease, right 0.25s ease; /* smooth transition */
+            }
+            body:not(.rtl) .sidebar {
+                left: -280px;             /* hidden off left */
+                right: auto;
+            }
+            body.rtl .sidebar {
+                right: -280px;            /* hidden off right */
+                left: auto;
+            }
+            body:not(.rtl) .sidebar.active {
+                left: 0;                  /* LTR active */
+            }
+            body.rtl .sidebar.active {
+                right: 0;                  /* RTL active */
+            }
+        }
+
+        /* tightened responsive breakpoints for TAB view (768px–1024px) */
+        @media (min-width: 640px) {
+            .stats-grid { grid-template-columns: repeat(2,1fr); }
+            .reports-grid { grid-template-columns: repeat(2,1fr); }
+            .settings-grid { grid-template-columns: repeat(2,1fr); }
+        }
+        @media (min-width: 768px) {
+            .dashboard-grid { grid-template-columns: repeat(2,1fr); }
+            /* tighten card padding for tab */
+            .card-body { padding: 18px 20px; }
+            .stat-card { padding: 20px 18px; }
+            .content-header h1 { font-size: 1.8rem; }
+        }
+        @media (min-width: 1024px) {
+            .stats-grid { grid-template-columns: repeat(4,1fr); }
+            .reports-grid { grid-template-columns: repeat(3,1fr); }
+        }
+        /* fine-tune spacing between sections */
+        .dashboard-content > section,
+        .dashboard-content > .dashboard-grid {
+            margin-bottom: 28px;
+        }
+        #visitors { margin-top: 0 !important; } /* removed extra top margin */
+        #habitats { margin-top: 0 !important; }
+        #settings { margin: 0 0 28px 0 !important; }
+
+        /* ensure habitat reports grid is tighter on tab */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .reports-grid[style*="repeat(4,1fr)"] {
+                grid-template-columns: repeat(2,1fr) !important;
+            }
+        }
+        /* fix table min-width to avoid overflow on tab */
+        @media (max-width: 820px) {
+            .admin-table { min-width: 600px; }
+        }
+        @media (max-width: 640px) {
+            .admin-table { min-width: 500px; }
+        }
+
+        @media (max-width: 1024px) {
+            .search-bar { display: none; }
+        }
+        @media (max-width: 576px) {
+            .dashboard-content { padding: 20px 16px; }
+            .content-header h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body class="admin-dashboard">
+    <div class="overlay" id="overlay"></div>
+
+    <!-- SIDEBAR (botanical preserve style) – NO SCROLL -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-tree"></i></div>
+                <div>
+                    <div class="logo-text">Groww<span> Garden</span></div>
+                    <span class="logo-tagline">admin · preserve</span>
+                </div>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-title">SANCTUARY</div>
+            <ul class="nav-menu">
+                <li><a href="#overview" class="nav-link active" data-section="overview"><i class="fas fa-leaf"></i> Dashboard</a></li>
+                <li><a href="#visitors" class="nav-link" data-section="visitors"><i class="fas fa-users"></i> Visitors</a></li>
+                <li><a href="#bookings" class="nav-link" data-section="bookings"><i class="fas fa-calendar-check"></i> Tour Bookings</a></li>
+                <li><a href="#habitats" class="nav-link" data-section="habitats"><i class="fas fa-seedling"></i> Habitats</a></li>
+                <li><a href="#events" class="nav-link" data-section="events"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="#messages" class="nav-link" data-section="messages"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="#reports" class="nav-link" data-section="reports"><i class="fas fa-chart-line"></i> Reports</a></li>
+                <li><a href="#settings" class="nav-link" data-section="settings"><i class="fas fa-sliders-h"></i> Settings</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">JD</div>
+                <div class="user-info">
+                    <h4>Juniper Dawn</h4>
+                    <p>Head Naturalist</p>
+                </div>
+            </div>
+            <a href="#" class="btn-outline" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i> Log out
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="mainContent">
+        <header class="top-header">
+            <div class="header-left">
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="page-title">🌿 GARDEN ADMIN</div>
+                
+            </div>
+            <div class="header-right">
+                
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <button class="rtl-toggle" id="rtlToggle"><i class="fas fa-arrow-right-arrow-left"></i></button>
+            </div>
+        </header>
+
+        <section class="dashboard-content" id="dashboardContent">
+            <div class="content-header">
+                <h1><i class="fas fa-seedling"></i> Groww Garden · Stewardship</h1>
+                <p>Monitor trails, memberships, and habitat health</p>
+            </div>
+
+            <!-- OVERVIEW stats -->
+            <section id="overview">
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-header"><div class="stat-icon"><i class="fas fa-tree"></i></div><span class="stat-change"><i class="fas fa-arrow-up"></i> 8%</span></div><div class="stat-value">3,240</div><div class="stat-label">Members</div></div>
+                    <div class="stat-card"><div class="stat-header"><div class="stat-icon"><i class="fas fa-person-hiking"></i></div><span class="stat-change"><i class="fas fa-arrow-up"></i> 12%</span></div><div class="stat-value">1,892</div><div class="stat-label">Visitors (this week)</div></div>
+                    <div class="stat-card"><div class="stat-header"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><span class="stat-change"><i class="fas fa-arrow-up"></i> 5%</span></div><div class="stat-value">47</div><div class="stat-label">Guided tours</div></div>
+                    <div class="stat-card"><div class="stat-header"><div class="stat-icon"><i class="fas fa-hand-holding-heart"></i></div><span class="stat-change"><i class="fas fa-arrow-up"></i> 21%</span></div><div class="stat-value">$8,430</div><div class="stat-label">Donations (MTD)</div></div>
+                </div>
+            </section>
+
+            <!-- VISITORS table -->
+            <section id="visitors">
+                <div class="dashboard-card full-width-card">
+                    <div class="card-header"><h3>Recent visitor check‑ins</h3><a href="#">View all <i class="fas fa-arrow-right"></i></a></div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead><tr><th>Visitor</th><th>Email</th><th>Membership</th><th>Checked in</th><th>Actions</th></tr></thead>
+                                <tbody>
+                                    <tr><td><div class="user-cell"><div class="user-avatar-sm">EC</div>Elena Cruz</div></td><td>elena@example.com</td><td>Family Plus</td><td>09:45 AM</td><td><button class="action-btn"><i class="fas fa-eye"></i></button></td></tr>
+                                    <tr><td><div class="user-cell"><div class="user-avatar-sm">MR</div>Mark Rivera</div></td><td>mark.r@example.com</td><td>Individual</td><td>10:12 AM</td><td><button class="action-btn"><i class="fas fa-eye"></i></button></td></tr>
+                                    <tr><td><div class="user-cell"><div class="user-avatar-sm">SW</div>Sophia Wu</div></td><td>sophia.w@example.com</td><td>Student</td><td>10:30 AM</td><td><button class="action-btn"><i class="fas fa-eye"></i></button></td></tr>
+                                    <tr><td><div class="user-cell"><div class="user-avatar-sm">JL</div>James Liu</div></td><td>james.liu@example.com</td><td>Supporter</td><td>11:05 AM</td><td><button class="action-btn"><i class="fas fa-eye"></i></button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- bookings + messages grid -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card" id="bookings">
+                    <div class="card-header"><h3>Upcoming tour bookings</h3><a href="#">Manage <i class="fas fa-arrow-right"></i></a></div>
+                    <div class="card-body">
+                        <div class="booking-item"><div class="booking-info"><h4>🌲 Fern Canyon walk</h4><div class="booking-meta">Today 2pm · 8 guests</div></div><span class="booking-status status-active">Confirmed</span></div>
+                        <div class="booking-item"><div class="booking-info"><h4>🌾 Prairie sunrise</h4><div class="booking-meta">Tomorrow 7am · 4 guests</div></div><span class="booking-status status-active">Confirmed</span></div>
+                        <div class="booking-item"><div class="booking-info"><h4>🦋 Monarch workshop</h4><div class="booking-meta">Sat 10am · 12 guests</div></div><span class="booking-status status-pending">Pending</span></div>
+                        <div class="booking-item"><div class="booking-info"><h4>🌿 Heron wetland kayak</h4><div class="booking-meta">Sun 9am · 6 guests</div></div><span class="booking-status status-active">Confirmed</span></div>
+                    </div>
+                </div>
+                <div class="dashboard-card" id="messages">
+                    <div class="card-header"><h3>Recent inquiries</h3><a href="#">All messages <i class="fas fa-arrow-right"></i></a></div>
+                    <div class="card-body">
+                        <div class="message-item"><div class="message-avatar">MC</div><div class="message-content"><div class="message-header"><span class="message-sender">Mia Chen</span><span class="message-time">25 min</span></div><div class="message-text">Are dogs allowed on the trails?</div></div></div>
+                        <div class="message-item"><div class="message-avatar">TR</div><div class="message-content"><div class="message-header"><span class="message-sender">Tomas Reyes</span><span class="message-time">2h</span></div><div class="message-text">I'd like to volunteer for prairie restoration</div></div></div>
+                        <div class="message-item"><div class="message-avatar">LK</div><div class="message-content"><div class="message-header"><span class="message-sender">Leila K.</span><span class="message-time">yesterday</span></div><div class="message-text">When is the next native plant sale?</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HABITATS section -->
+            <section id="habitats">
+                <div class="dashboard-card full-width-card">
+                    <div class="card-header"><h3>🌱 Habitat & collection health</h3><a href="#">details</a></div>
+                    <div class="card-body">
+                        <div class="reports-grid" style="grid-template-columns: repeat(4,1fr);">
+                            <div class="report-card"><h4>Candler Woods</h4><div class="report-value">92%</div><span>canopy health</span></div>
+                            <div class="report-card"><h4>Heron Wetland</h4><div class="report-value">87%</div><span>water quality</span></div>
+                            <div class="report-card"><h4>Prairie remnant</h4><div class="report-value">78%</div><span>native cover</span></div>
+                            <div class="report-card"><h4>Fern glen</h4><div class="report-value">95%</div><span>trail condition</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EVENTS + REPORTS -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card" id="events">
+                    <div class="card-header"><h3>Upcoming events</h3><a href="#">edit</a></div>
+                    <div class="card-body">
+                        <div class="booking-item"><div class="booking-info"><h4>🌕 Full moon walk</h4><div class="booking-meta">May 25 · 7:30pm</div></div><span class="booking-status status-active">56 spots</span></div>
+                        <div class="booking-item"><div class="booking-info"><h4>🐦 Bird banding demo</h4><div class="booking-meta">June 2 · 8am</div></div><span class="booking-status status-active">24 spots</span></div>
+                        <div class="booking-item"><div class="booking-info"><h4>📸 Macro photo workshop</h4><div class="booking-meta">June 10 · 9am</div></div><span class="booking-status status-pending">12 pending</span></div>
+                    </div>
+                </div>
+                <div class="dashboard-card" id="reports">
+                    <div class="card-header"><h3>Monthly report snapshot</h3><a href="#">download</a></div>
+                    <div class="card-body">
+                        <div class="reports-grid">
+                            <div class="report-card"><h4>total visits</h4><div class="report-value">7.2k</div></div>
+                            <div class="report-card"><h4>new members</h4><div class="report-value">203</div></div>
+                            <div class="report-card"><h4>donations</h4><div class="report-value">$8.4k</div></div>
+                            <div class="report-card"><h4>event attendance</h4><div class="report-value">412</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SETTINGS -->
+            <section id="settings">
+                <div class="dashboard-card">
+                    <div class="card-header"><h3>Preserve settings</h3><a href="#">save</a></div>
+                    <div class="card-body">
+                        <div class="settings-grid">
+                            <div class="setting-item"><div class="setting-info"><h4>Online booking</h4><p>accept tour reservations</p></div><div class="toggle-switch active"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Member discounts</h4><p>auto-apply 10%</p></div><div class="toggle-switch active"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Donation goal</h4><p>display progress bar</p></div><div class="toggle-switch"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Trail alerts</h4><p>notify visitors of closures</p></div><div class="toggle-switch active"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- footer inside main -->
+            <footer class="dashboard-footer">
+                <div class="footer-links">
+                    <a href="#">Trail map</a><a href="#">Membership</a><a href="#">Contact ranger</a><a href="#">Privacy</a>
+                </div>
+                <div>© 2026 Groww Garden · a living sanctuary</div>
+            </footer>
+        </section>
+
+        <!-- back to top -->
+        <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+    </main>
+
+    <!-- logout modal -->
+    <div class="logout-modal" id="logoutModal">
+        <div class="logout-modal-content">
+            <i class="fas fa-tree"></i>
+            <h3>Leave the garden?</h3>
+            <p>Log out from admin dashboard</p>
+            <div class="modal-actions">
+                <button class="modal-btn cancel" id="cancelLogout">Stay</button>
+                <button class="modal-btn confirm" id="confirmLogout">Log out</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const body = document.body;
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            const rtlBtn = document.getElementById('rtlToggle');
+            const mobileToggle = document.getElementById('mobileToggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const backToTop = document.getElementById('backToTop');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const logoutModal = document.getElementById('logoutModal');
+            const cancelLogout = document.getElementById('cancelLogout');
+            const confirmLogout = document.getElementById('confirmLogout');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+
+            // THEME TOGGLE with icon update and dark mode visibility fixes
+            themeToggle?.addEventListener('click', ()=>{
+                const currentTheme = html.getAttribute('data-theme') || 'light';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                // update icon
+                themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                localStorage.setItem('garden-theme', newTheme);
+            });
+
+            // RTL TOGGLE - now sidebar works correctly (fixed CSS)
+            rtlBtn?.addEventListener('click', ()=>{
+                body.classList.toggle('rtl');
+                const isRTL = body.classList.contains('rtl');
+                localStorage.setItem('garden-rtl', isRTL);
+                
+                // If sidebar is open in mobile, ensure it stays on correct side
+                if (sidebar.classList.contains('active') && window.innerWidth < 1024) {
+                    // reposition is automatic via left/right rules
+                    // just trigger reflow
+                    sidebar.style.transition = 'none';
+                    setTimeout(() => { sidebar.style.transition = ''; }, 50);
+                }
+            });
+
+            // mobile menu toggle
+            mobileToggle?.addEventListener('click', ()=>{
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+                body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : 'auto';
+                mobileToggle.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+
+            overlay?.addEventListener('click', ()=>{
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                body.style.overflow = 'auto';
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+
+            // nav active + smooth scroll
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e)=>{
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    if(targetId && targetId!=='#') {
+                        const target = document.querySelector(targetId);
+                        if(target) target.scrollIntoView({behavior:'smooth'});
+                    }
+                    navLinks.forEach(l=> l.classList.remove('active'));
+                    link.classList.add('active');
+                    if(window.innerWidth < 1024) {
+                        sidebar.classList.remove('active');
+                        overlay.classList.remove('active');
+                        body.style.overflow = 'auto';
+                        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            });
+
+            // scroll active section & back to top
+            window.addEventListener('scroll', ()=>{
+                let current = '';
+                sections.forEach(s=>{
+                    const top = s.offsetTop - 100;
+                    if(window.scrollY >= top) current = s.getAttribute('id');
+                });
+                navLinks.forEach(link=>{
+                    link.classList.remove('active');
+                    if(link.getAttribute('href') === '#'+current) link.classList.add('active');
+                });
+                backToTop?.classList.toggle('visible', window.scrollY > 300);
+            });
+
+            backToTop?.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+            // logout modal
+            logoutBtn?.addEventListener('click', (e)=>{ e.preventDefault(); logoutModal.classList.add('active'); });
+            cancelLogout?.addEventListener('click', ()=> logoutModal.classList.remove('active'));
+            confirmLogout?.addEventListener('click', ()=> window.location.href='login.html');
+            window.addEventListener('click', (e)=> e.target === logoutModal && logoutModal.classList.remove('active'));
+
+            // toggle switches demo
+            document.querySelectorAll('.toggle-switch').forEach(t=> {
+                t.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                });
+            });
+
+            // action buttons demo
+            document.querySelectorAll('.action-btn').forEach(btn=>{
+                btn.addEventListener('click', (e)=>{
+                    e.stopPropagation();
+                    if(btn.classList.contains('delete')) alert('Delete action (demo)');
+                    else alert('View details (demo)');
+                });
+            });
+
+            // load saved theme & rtl
+            const savedTheme = localStorage.getItem('garden-theme');
+            if (savedTheme) {
+                html.setAttribute('data-theme', savedTheme);
+                themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            }
+            const savedRTL = localStorage.getItem('garden-rtl');
+            if (savedRTL === 'true') {
+                body.classList.add('rtl');
+            } else if (savedRTL === 'false') {
+                body.classList.remove('rtl');
+            }
+
+            // dispatch scroll to set active nav
+            setTimeout(() => window.dispatchEvent(new Event('scroll')), 100);
+        })();
+    </script>
+</body>
+</html>
