@@ -23,12 +23,18 @@
             --deep-green: #1B4332;
             --soft-leaf: #74C69D;
             --text-main: #0E0E0E;
+            --text-main-dark: #E8F0E8;
             --text-heading: #0E0E0E;
+            --text-heading-dark: #FFFFFF;
             --card-bg: #FFFFFF;
+            --card-bg-dark: #1F2A1F;
             --border-light: #D0E6D5;
+            --border-light-dark: #2D6A4F;
             --navbar-bg: #0E0E0E;
             --bg-primary: #FFFFFF;
+            --bg-primary-dark: #121212;
             --bg-secondary: #F2F9F2;
+            --bg-secondary-dark: #1E2A1E;
             --accent-deep: #1B4332;
             --accent-soft: #74C69D;
 
@@ -525,6 +531,7 @@
         .contact-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
+            color: var(--text-heading);
         }
         .contact-card p {
             color: var(--text-main);
@@ -536,6 +543,9 @@
             transition: color 0.2s;
         }
         .contact-card a:hover {
+            color: var(--soft-leaf);
+        }
+        [data-theme="dark"] .contact-card a {
             color: var(--soft-leaf);
         }
 
@@ -563,11 +573,15 @@
         .form-title {
             font-size: 2rem;
             margin-bottom: 1rem;
+            color: var(--text-heading);
         }
         .form-subtitle {
             color: var(--deep-green);
             margin-bottom: 2rem;
             font-size: 1.1rem;
+        }
+        [data-theme="dark"] .form-subtitle {
+            color: var(--soft-leaf);
         }
         .form-group {
             margin-bottom: 1.5rem;
@@ -593,6 +607,10 @@
             outline: none;
             border-color: var(--soft-leaf);
             box-shadow: 0 0 0 3px rgba(116, 198, 157, 0.2);
+        }
+        .form-control::placeholder {
+            color: var(--text-main);
+            opacity: 0.6;
         }
         textarea.form-control {
             resize: vertical;
@@ -690,6 +708,7 @@
         .visitor-content h3 {
             font-size: 1.25rem;
             margin-bottom: 0.5rem;
+            color: var(--text-heading);
         }
         .visitor-content p {
             color: var(--text-main);
@@ -700,6 +719,29 @@
         .faq-preview-section {
             padding: 5rem 0;
             background-color: var(--bg-secondary);
+        }
+        .section-sub {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--deep-green);
+            margin-bottom: 0.5rem;
+        }
+        [data-theme="dark"] .section-sub {
+            color: var(--soft-leaf);
+        }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-heading);
+        }
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            max-width: 600px;
+            margin: 0 auto;
         }
         .faq-grid {
             display: grid;
@@ -750,6 +792,9 @@
             align-items: center;
             gap: 0.5rem;
             transition: gap 0.2s;
+        }
+        [data-theme="dark"] .faq-more a {
+            color: var(--soft-leaf);
         }
         .faq-more a:hover {
             gap: 0.75rem;
@@ -906,6 +951,9 @@
         }
         .footer-input:focus {
             outline: 2px solid var(--soft-leaf);
+        }
+        .footer-input::placeholder {
+            color: #888;
         }
         .footer-btn {
             width: 100%;
@@ -1084,7 +1132,7 @@
 <section class="contact-hero">
     <div class="contact-hero-bg"></div>
     <div class="contact-hero-content">
-        <span class="contact-hero-sub"><i class="fas fa-map-pin"></i> get in touch</span>
+        <span class="contact-hero-sub"><i class="fas fa-map-pin"></i> Get in touch</span>
         <h1 class="contact-hero-title">We'd love to <span>hear</span> from you</h1>
         <p class="contact-hero-description">Whether you're planning a visit, have a question, or want to support our mission – reach out anytime.</p>
     </div>
@@ -1096,17 +1144,17 @@
         <div class="contact-grid">
             <div class="contact-card">
                 <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                <h3>visit us</h3>
+                <h3>Visit us</h3>
                 <p>285 Garden Way<br>Portland, OR 97202<br><a href="#">get directions →</a></p>
             </div>
             <div class="contact-card">
                 <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
-                <h3>call us</h3>
+                <h3>Call us</h3>
                 <p>main: <a href="tel:+15035551234">(503) 555-1234</a><br>events: <a href="tel:+15035555678">(503) 555-5678</a><br>office hours: 9am–5pm</p>
             </div>
             <div class="contact-card">
                 <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                <h3>email us</h3>
+                <h3>Email us</h3>
                 <p><a href="mailto:info@growwgarden.org">info@growwgarden.org</a><br><a href="mailto:events@growwgarden.org">events@growwgarden.org</a><br>response within 24hrs</p>
             </div>
         </div>
@@ -1119,30 +1167,30 @@
         <div class="form-map-grid">
             <!-- contact form -->
             <div class="form-container">
-                <h2 class="form-title">send us a message</h2>
+                <h2 class="form-title">Send us a message</h2>
                 <p class="form-subtitle">we'll get back to you as soon as possible</p>
                 <form>
                     <div class="form-group">
-                        <label class="form-label">your name *</label>
+                        <label class="form-label">Your name *</label>
                         <input type="text" class="form-control" placeholder="John Doe">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">email address *</label>
+                        <label class="form-label">Email address *</label>
                         <input type="email" class="form-control" placeholder="john@example.com">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">subject</label>
+                        <label class="form-label">Subject</label>
                         <input type="text" class="form-control" placeholder="general inquiry, visit, support...">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">message *</label>
+                        <label class="form-label">Message *</label>
                         <textarea class="form-control" placeholder="how can we help you?"></textarea>
                     </div>
                     <div class="form-check">
                         <input type="checkbox" id="newsletter">
-                        <label for="newsletter">subscribe to our newsletter for seasonal updates</label>
+                        <label for="newsletter">Subscribe to our newsletter for seasonal updates</label>
                     </div>
-                    <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> send message</button>
+                    <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send message</button>
                 </form>
             </div>
             <!-- map -->
@@ -1157,50 +1205,50 @@
 <section class="visitor-section">
     <div class="container">
         <div style="text-align: center; max-width: 48rem; margin: 0 auto 3rem;">
-            <span class="section-sub">plan your visit</span>
-            <h2 class="section-title">visitor information</h2>
-            <p class="section-description">everything you need to know before you arrive</p>
+            <span class="section-sub">Plan your visit</span>
+            <h2 class="section-title">Visitor information</h2>
+            <p class="section-description">Everything you need to know before you arrive</p>
         </div>
         <div class="visitor-grid">
             <div class="visitor-card">
                 <div class="visitor-icon"><i class="fas fa-clock"></i></div>
                 <div class="visitor-content">
-                    <h3>hours</h3>
+                    <h3>Hours</h3>
                     <p>daily 8am–dusk<br>visitor center: 9am–5pm<br>closed major holidays</p>
                 </div>
             </div>
             <div class="visitor-card">
                 <div class="visitor-icon"><i class="fas fa-ticket-alt"></i></div>
                 <div class="visitor-content">
-                    <h3>admission</h3>
+                    <h3>Admission</h3>
                     <p>adults: $12<br>seniors (65+): $8<br>youth (6-17): $5<br>under 6: free<br>Dashboard: always free</p>
                 </div>
             </div>
             <div class="visitor-card">
                 <div class="visitor-icon"><i class="fas fa-parking"></i></div>
                 <div class="visitor-content">
-                    <h3>parking & access</h3>
+                    <h3>Parking & access</h3>
                     <p>free on-site parking<br>wheelchair accessible Gallery<br>strollers welcome<br>service animals only</p>
                 </div>
             </div>
             <div class="visitor-card">
                 <div class="visitor-icon"><i class="fas fa-dog"></i></div>
                 <div class="visitor-content">
-                    <h3>pets</h3>
+                    <h3>Pets</h3>
                     <p>only service animals permitted<br>to protect wildlife habitats</p>
                 </div>
             </div>
             <div class="visitor-card">
                 <div class="visitor-icon"><i class="fas fa-camera"></i></div>
                 <div class="visitor-content">
-                    <h3>photography</h3>
+                    <h3>Photography</h3>
                     <p>personal photography welcome<br>commercial requires permit</p>
                 </div>
             </div>
             <div class="visitor-card">
                 <div class="visitor-icon"><i class="fas fa-utensils"></i></div>
                 <div class="visitor-content">
-                    <h3>food & drink</h3>
+                    <h3>Food & drink</h3>
                     <p>picnic areas available<br>no outside alcohol<br>water fountains on site</p>
                 </div>
             </div>
@@ -1213,29 +1261,29 @@
     <div class="container">
         <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
             <span class="section-sub">common questions</span>
-            <h2 class="section-title">frequently asked</h2>
-            <p class="section-description">quick answers to common inquiries</p>
+            <h2 class="section-title">Frequently asked</h2>
+            <p class="section-description">Quick answers to common inquiries</p>
         </div>
         <div class="faq-grid">
             <div class="faq-item">
-                <div class="faq-question"><i class="fas fa-question-circle"></i> are Gallery stroller-friendly?</div>
+                <div class="faq-question"><i class="fas fa-question-circle"></i> Are Gallery stroller-friendly?</div>
                 <div class="faq-answer">Yes! Fern Canyon gallery and Prairie Loop are packed gravel and boardwalk, suitable for strollers and wheelchairs.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question"><i class="fas fa-question-circle"></i> can i bring my own food?</div>
+                <div class="faq-question"><i class="fas fa-question-circle"></i> Can i bring my own food?</div>
                 <div class="faq-answer">Absolutely. Picnic tables are available near the visitor center. Please pack out all trash.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question"><i class="fas fa-question-circle"></i> is there wifi on site?</div>
+                <div class="faq-question"><i class="fas fa-question-circle"></i> Is there wifi on site?</div>
                 <div class="faq-answer">Free wifi is available at the visitor center and café area. Gallery are tech-free zones.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question"><i class="fas fa-question-circle"></i> do you offer group tours?</div>
+                <div class="faq-question"><i class="fas fa-question-circle"></i> Do you offer group tours?</div>
                 <div class="faq-answer">Yes, guided group tours available for 10+ people. Please book at least 2 weeks in advance.</div>
             </div>
         </div>
         <div class="faq-more">
-            <a href="faq.html">view all FAQs <i class="fas fa-arrow-right"></i></a>
+            <a href="faq.html">View all FAQs <i class="fas fa-arrow-right"></i></a>
         </div>
     </div>
 </section>

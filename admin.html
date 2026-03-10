@@ -1126,7 +1126,8 @@
             }
         }
 
-        /* tightened responsive breakpoints for TAB view (768px–1024px) */
+        /* tightened responsive breakpoints for TAB view (768px–1024px) 
+           IMPORTANT: Fix Monthly report snapshot alignment for 1024x1366 */
         @media (min-width: 640px) {
             .stats-grid { grid-template-columns: repeat(2,1fr); }
             .reports-grid { grid-template-columns: repeat(2,1fr); }
@@ -1141,7 +1142,11 @@
         }
         @media (min-width: 1024px) {
             .stats-grid { grid-template-columns: repeat(4,1fr); }
-            .reports-grid { grid-template-columns: repeat(3,1fr); }
+            /* Monthly report snapshot grid: use 2 columns for 1024–1200, 
+               but at 1024x1366 we want neat 2x2 (already from 640 rule) */
+            .reports-grid { 
+                grid-template-columns: repeat(2,1fr); 
+            }
         }
         /* fine-tune spacing between sections */
         .dashboard-content > section,
@@ -1173,6 +1178,20 @@
             .dashboard-content { padding: 20px 16px; }
             .content-header h1 { font-size: 1.6rem; }
         }
+
+        /* ---------- ADDITIONAL FIX: force 2 columns for monthly snapshot at 1024px+ ---------- */
+        @media (min-width: 1024px) and (max-width: 1200px) {
+            #reports .reports-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        /* ensure report cards inside monthly snapshot are balanced */
+        #reports .report-card {
+            padding: 20px 12px;
+        }
+        #reports .report-value {
+            font-size: 1.8rem;
+        }
     </style>
 </head>
 <body class="admin-dashboard">
@@ -1185,7 +1204,7 @@
                 <div class="logo-icon"><i class="fas fa-tree"></i></div>
                 <div>
                     <div class="logo-text">Groww<span> Garden</span></div>
-                    <span class="logo-tagline">admin · preserve</span>
+                    <span class="logo-tagline">botanical preserve</span>
                 </div>
             </a>
         </div>
@@ -1305,7 +1324,7 @@
                 </div>
             </section>
 
-            <!-- EVENTS + REPORTS -->
+            <!-- EVENTS + REPORTS (FIXED MONTHLY SNAPSHOT GRID) -->
             <div class="dashboard-grid">
                 <div class="dashboard-card" id="events">
                     <div class="card-header"><h3>Upcoming events</h3><a href="#">edit</a></div>
@@ -1318,7 +1337,8 @@
                 <div class="dashboard-card" id="reports">
                     <div class="card-header"><h3>Monthly report snapshot</h3><a href="#">download</a></div>
                     <div class="card-body">
-                        <div class="reports-grid">
+                        <!-- FIXED: neat 2x2 grid for 1024x1366 (and above) -->
+                        <div class="reports-grid" style="grid-template-columns: repeat(2,1fr);">
                             <div class="report-card"><h4>total visits</h4><div class="report-value">7.2k</div></div>
                             <div class="report-card"><h4>new members</h4><div class="report-value">203</div></div>
                             <div class="report-card"><h4>donations</h4><div class="report-value">$8.4k</div></div>
