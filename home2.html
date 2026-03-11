@@ -11,7 +11,7 @@
     <!-- Google Fonts Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
     <style>
-        /* ----- RESET & FRESH PALETTE (jet black, pure white, deep green, soft leaf) – identical to index ----- */
+        /* ----- RESET & FRESH PALETTE ----- */
         * {
             margin: 0;
             padding: 0;
@@ -34,6 +34,7 @@
             --text-on-deep: #FFFFFF;
             --text-on-soft: #0E0E0E;
             --text-on-dark: #FFFFFF;
+            --hero-bg: #F2F9F2;
         }
         [data-theme="dark"] {
             --bg-primary: #121212;
@@ -48,6 +49,7 @@
             --text-on-deep: #FFFFFF;
             --text-on-soft: #0E0E0E;
             --text-on-dark: #FFFFFF;
+            --hero-bg: #1E2A1E;
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -70,7 +72,7 @@
             margin: 0 auto;
             padding: 0 1rem;
         }
-        /* navbar – jet black (identical) */
+        /* navbar – jet black */
         .navbar-container {
             background-color: var(--navbar-bg);
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
@@ -378,49 +380,27 @@
             border-top: 2px solid #2f4f3a;
         }
 
-        /* HERO 2 – different layout: left aligned content, smaller */
+        /* HERO 2 – NO IMAGE, SOLID BACKGROUND */
         .hero2 {
-            height: 90vh;
-            min-height: 600px;
+            min-height: 90vh;
             width: 100%;
-            margin-top: 0;
-            padding-top: 0;
             position: relative;
             display: flex;
             align-items: center;
-            background-color: var(--bg-primary);
-            overflow: hidden;
+            justify-content: center;
+            text-align: center;
+            background-color: var(--hero-bg);
+            margin-top: 80px;
+            padding: 4rem 0;
         }
-        .hero2-bg {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60%;
-            height: 100%;
-            z-index: 0;
-            background-image: url('https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1932&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center left;
-        }
-        .hero2-bg::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--bg-primary) 0%, transparent 50%);
-        }
-        [data-theme="dark"] .hero2-bg::after {
-            background: linear-gradient(90deg, #121212 0%, transparent 70%);
-        }
+        
         .hero2-content {
             position: relative;
             z-index: 10;
-            max-width: 600px;
-            color: var(--text-heading);
-            animation: fadeInLeft 1s ease;
+            max-width: 700px;
+            margin: 0 auto;
         }
+        
         .hero2-sub {
             font-size: 1rem;
             font-weight: 600;
@@ -429,9 +409,11 @@
             color: var(--deep-green);
             margin-bottom: 1rem;
         }
+        
         [data-theme="dark"] .hero2-sub {
             color: var(--soft-leaf);
         }
+        
         .hero2-title {
             font-size: clamp(2.8rem, 8vw, 5rem);
             font-weight: 900;
@@ -439,23 +421,29 @@
             margin-bottom: 1.5rem;
             color: var(--text-heading);
         }
+        
         .hero2-title span {
             color: var(--deep-green);
         }
+        
         [data-theme="dark"] .hero2-title span {
             color: var(--soft-leaf);
         }
+        
         .hero2-description {
             font-size: 1.1rem;
             margin-bottom: 2rem;
             color: var(--text-main);
             opacity: 0.9;
         }
+        
         .hero2-actions {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
             gap: 1rem;
         }
+        
         .hero2-actions .btn-primary {
             background-color: var(--deep-green);
             color: white;
@@ -469,10 +457,12 @@
             gap: 0.5rem;
             transition: 0.2s;
         }
+        
         .hero2-actions .btn-primary:hover {
             background-color: var(--soft-leaf);
             color: var(--jet-black);
         }
+        
         .hero2-actions .btn-outline {
             background: transparent;
             border: 2px solid var(--deep-green);
@@ -485,16 +475,23 @@
             gap: 0.5rem;
             transition: 0.2s;
         }
+        
+        [data-theme="dark"] .hero2-actions .btn-outline {
+            color: var(--soft-leaf);
+            border-color: var(--soft-leaf);
+        }
+        
         .hero2-actions .btn-outline:hover {
             background: var(--deep-green);
             color: white;
         }
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
+        
+        [data-theme="dark"] .hero2-actions .btn-outline:hover {
+            background: var(--soft-leaf);
+            color: var(--jet-black);
         }
 
-        /* SECTION 1: featured story (alternating) */
+        /* SECTION 1: featured story */
         .featured-story {
             padding: 5rem 0;
             background-color: var(--bg-secondary);
@@ -536,6 +533,9 @@
             text-transform: uppercase;
             font-size: 0.875rem;
         }
+        [data-theme="dark"] .story-text-box .section-sub {
+            color: var(--soft-leaf);
+        }
         .story-text-box h2 {
             font-size: 2.5rem;
             margin: 0.5rem 0 1rem;
@@ -554,12 +554,15 @@
             gap: 0.5rem;
             transition: 0.2s;
         }
+        [data-theme="dark"] .story-link {
+            color: var(--soft-leaf);
+        }
         .story-link:hover {
             gap: 1rem;
             color: var(--soft-leaf);
         }
 
-        /* SECTION 2: garden highlights cards with icons */
+        /* SECTION 2: garden highlights */
         .highlights {
             padding: 5rem 0;
             background-color: var(--bg-primary);
@@ -606,6 +609,9 @@
             font-size: 2.5rem;
             transition: 0.3s;
         }
+        [data-theme="dark"] .highlight-icon {
+            color: var(--soft-leaf);
+        }
         .highlight-card:hover .highlight-icon {
             background-color: var(--deep-green);
             color: white;
@@ -613,6 +619,7 @@
         .highlight-card h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
+            color: var(--text-heading);
         }
         .highlight-card p {
             color: var(--text-main);
@@ -620,7 +627,7 @@
             line-height: 1.6;
         }
 
-        /* SECTION 3: seasonal program cards (different from index) */
+        /* SECTION 3: seasonal programs */
         .seasonal {
             padding: 5rem 0;
             background-color: var(--bg-secondary);
@@ -667,6 +674,7 @@
         .program-content h3 {
             font-size: 1.3rem;
             margin-bottom: 0.75rem;
+            color: var(--text-heading);
         }
         .program-content p {
             color: var(--text-main);
@@ -684,7 +692,7 @@
             color: var(--soft-leaf);
         }
 
-        /* SECTION 4: testimonial / quote */
+        /* SECTION 4: testimonial */
         .testimonial {
             padding: 5rem 0;
             background-color: var(--deep-green);
@@ -719,8 +727,8 @@
             color: rgba(255,255,255,0.7);
         }
 
-        /* SECTION 5: Dashboardhip options */
-        .Dashboardhip {
+        /* SECTION 5: Membership options */
+        .membership {
             padding: 5rem 0;
             background-color: var(--bg-primary);
         }
@@ -816,7 +824,7 @@
             color: var(--jet-black);
         }
 
-        /* SECTION 6: instagram / latest from garden */
+        /* SECTION 6: instagram feed */
         .instagram-feed {
             padding: 5rem 0;
             background-color: var(--bg-secondary);
@@ -866,8 +874,28 @@
         .insta-item:hover .insta-overlay {
             opacity: 1;
         }
+        .instagram-feed .btn-outline {
+            background: transparent;
+            border: 2px solid var(--deep-green);
+            color: var(--deep-green);
+            padding: 0.9rem 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+        }
+        [data-theme="dark"] .instagram-feed .btn-outline {
+            color: var(--soft-leaf);
+            border-color: var(--soft-leaf);
+        }
+        .instagram-feed .btn-outline:hover {
+            background: var(--deep-green);
+            color: white;
+        }
 
-        /* redesigned footer (identical) */
+        /* redesigned footer */
         .footer {
             background-color: var(--jet-black);
             color: var(--pure-white);
@@ -1086,7 +1114,10 @@
             z-index: 100;
             display: none;
         }
-        #scroll-top:hover { background-color: var(--soft-leaf); color: var(--jet-black); }
+        #scroll-top:hover { 
+            background-color: var(--soft-leaf); 
+            color: var(--jet-black); 
+        }
         @media (min-width: 1280px) {
             .desktop-nav { display: flex; }
             .navbar-right-desktop { display: flex; }
@@ -1096,7 +1127,7 @@
 </head>
 <body>
 
-<!-- NAVBAR (identical to index, active set to Home dropdown) -->
+<!-- NAVBAR -->
 <nav class="navbar-container">
     <div class="container navbar-flex">
         <a href="index.html" class="logo">
@@ -1183,23 +1214,22 @@
     </div>
 </div>
 
-<!-- HERO 2 – DIFFERENT LAYOUT -->
+<!-- HERO 2 – NO IMAGE, SOLID BACKGROUND -->
 <section class="hero2">
-    <div class="hero2-bg"></div>
-    <div class="container" style="position: relative; height: 100%; display: flex; align-items: center;">
+    <div class="container">
         <div class="hero2-content">
             <span class="hero2-sub">welcome to groww garden</span>
             <h1 class="hero2-title">Your <span>urban</span> sanctuary</h1>
             <p class="hero2-description">Nestled in the heart of the city, our 80-acre preserve offers a peaceful escape into native woodlands, wetlands, and prairie. Open every day.</p>
             <div class="hero2-actions">
                 <a href="visit.html" class="btn-primary"><i class="fas fa-map-marked-alt"></i> Plan your visit</a>
-                <a href="Dashboardhip.html" class="btn-outline"><i class="fas fa-heart"></i> Become a client</a>
+                <a href="#" class="btn-outline"><i class="fas fa-heart"></i> Become a member</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- SECTION 1: Featured story (different from index) -->
+<!-- SECTION 1: Featured story -->
 <section class="featured-story">
     <div class="container story-grid-2">
         <div class="story-image-box">
@@ -1214,17 +1244,17 @@
     </div>
 </section>
 
-<!-- SECTION 2: Garden highlights (icon cards) -->
+<!-- SECTION 2: Garden highlights -->
 <section class="highlights">
     <div class="container">
         <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <span class="section-sub">Why visit</span>
+            <span class="section-sub" style="color: var(--deep-green);">Why visit</span>
             <h2 class="section-title">Experience the preserve</h2>
         </div>
         <div class="highlights-grid">
             <div class="highlight-card">
                 <div class="highlight-icon"><i class="fas fa-tree"></i></div>
-                <h3>7 km of Gallery</h3>
+                <h3>7 km of Trails</h3>
                 <p>From easy boardwalks to challenging ridge hikes – every path offers a new perspective.</p>
             </div>
             <div class="highlight-card">
@@ -1246,16 +1276,16 @@
     </div>
 </section>
 
-<!-- SECTION 3: Seasonal programs (different cards from index) -->
+<!-- SECTION 3: Seasonal programs -->
 <section class="seasonal">
     <div class="container">
         <div style="text-align: center; margin-bottom: 2rem;">
-            <span class="section-sub">This month</span>
+            <span class="section-sub" style="color: var(--deep-green);">This month</span>
             <h2 class="section-title">Seasonal highlights</h2>
         </div>
         <div class="program-grid">
             <div class="program-card">
-                <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1465146344425-fa0f7c7a1b3f?q=80&w=1776&auto=format&fit=crop');"></div>
+                <div class="program-img" style="background-image: url('/images/b1.jpg');"></div>
                 <div class="program-content">
                     <div class="program-tag">june 10</div>
                     <h3>Monarch tagging workshop</h3>
@@ -1264,7 +1294,7 @@
                 </div>
             </div>
             <div class="program-card">
-                <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1504198266287-1659872e6590?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="program-img" style="background-image: url('/images/b2.jpg');"></div>
                 <div class="program-content">
                     <div class="program-tag">june 17</div>
                     <h3>Sunset yoga in the garden</h3>
@@ -1285,23 +1315,23 @@
     </div>
 </section>
 
-<!-- SECTION 4: Testimonial / quote -->
+<!-- SECTION 4: Testimonial -->
 <section class="testimonial">
     <div class="container testimonial-content">
         <div class="testimonial-quote"><i class="fas fa-quote-right"></i></div>
-        <p class="testimonial-text">"Groww Garden is my family's favorite weekend escape. The kids love the wetland boardwalk, and I find peace in the woodland Gallery. A true gem in the city."</p>
+        <p class="testimonial-text">"Groww Garden is my family's favorite weekend escape. The kids love the wetland boardwalk, and I find peace in the woodland trails. A true gem in the city."</p>
         <div class="testimonial-author">— Sarah Chen</div>
-        <div class="testimonial-role">client since 2023</div>
+        <div class="testimonial-role">Member since 2023</div>
     </div>
 </section>
 
-<!-- SECTION 5: Dashboardhip options -->
-<section class="Dashboardhip">
+<!-- SECTION 5: Membership options -->
+<section class="membership">
     <div class="container">
         <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <span class="section-sub">Join us</span>
-            <h2 class="section-title">Dashboardhip that grows with you</h2>
-            <p style="margin-bottom: 1rem;">Support the garden and enjoy free admission, discounts, and more.</p>
+            <span class="section-sub" style="color: var(--deep-green);">Join us</span>
+            <h2 class="section-title">Membership that grows with you</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-main);">Support the garden and enjoy free admission, discounts, and more.</p>
         </div>
         <div class="pricing-grid">
             <div class="pricing-card">
@@ -1342,11 +1372,11 @@
     </div>
 </section>
 
-<!-- SECTION 6: Instagram feed / latest from garden -->
+<!-- SECTION 6: Instagram feed -->
 <section class="instagram-feed">
     <div class="container">
         <div style="text-align: center; margin-bottom: 2rem;">
-            <span class="section-sub">@growwgarden</span>
+            <span class="section-sub" style="color: var(--deep-green);">@growwgarden</span>
             <h2 class="section-title">Latest from the garden</h2>
         </div>
         <div class="insta-grid">
@@ -1373,7 +1403,7 @@
     </div>
 </section>
 
-<!-- REDESIGNED FOOTER (identical to index) -->
+<!-- FOOTER -->
 <footer class="footer">
     <div class="container">
         <div class="footer-main">
@@ -1409,7 +1439,7 @@
                 <ul class="footer-links">
                     <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
                     <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Dashboardhip</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Membership</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Donate</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
                 </ul>
@@ -1438,7 +1468,7 @@
 
 <script>
     (function() {
-        // ---------- THEME / RTL / MOBILE (identical to index) ----------
+        // ---------- THEME / RTL / MOBILE ----------
         const htmlEl = document.documentElement;
         const desktopTheme = document.getElementById('desktop-theme-toggle');
         const mobileTheme = document.getElementById('mobile-theme-toggle');
