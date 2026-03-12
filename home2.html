@@ -1117,6 +1117,17 @@
             .navbar-right-desktop { display: flex; }
             .mobile-menu-btn { display: none; }
         }
+        .dropdown-item.active{
+    background: var(--deep-green);
+    color: white;
+    border-radius: 12px;
+}
+.mobile-dropdown-content a.mobile-active{
+    background: var(--deep-green);
+    color: white;
+    border-radius: 10px;
+    padding-left: 3.2rem;
+}
     </style>
 </head>
 <body>
@@ -1133,10 +1144,10 @@
         </a>
         <div class="desktop-nav">
             <div class="dropdown" id="home-dropdown">
-                <div class="nav-link active" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></div>
                 <div class="dropdown-menu">
                     <a href="index.html" class="dropdown-item">Home 1</a>
-                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                    <a href="home2.html" class="dropdown-item active">Home 2</a>
                 </div>
             </div>
             <a href="about.html" class="nav-link">About</a>
@@ -1180,10 +1191,10 @@
                 <span><i class="fas fa-home"></i> Home </span>
                 <i class="fas fa-chevron-down"></i>
             </button>
-            <div id="home-mobile" class="mobile-dropdown-content">
-                <a href="index.html">Home 1</a>
-                <a href="home2.html">Home 2</a>
-            </div>
+           <div id="home-mobile" class="mobile-dropdown-content">
+    <a href="index.html">Home 1</a>
+    <a href="home2.html" class="mobile-active">Home 2</a>
+</div>
         </div>
         <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
         <a href="Gallery.html" class="mobile-menu-item"><i class="fas fa-hiking"></i> Gallery</a>
