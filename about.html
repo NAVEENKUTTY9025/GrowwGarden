@@ -35,13 +35,44 @@
             --text-on-deep: #FFFFFF;
             --text-on-soft: #0E0E0E;
             --text-on-dark: #FFFFFF;
+            
+            /* Card text colors */
+            --card-text-primary: #0E0E0E;
+            --card-text-secondary: #2D2D2D;
+            --card-heading: #1B4332;
+            
+            /* Timeline specific */
+            --timeline-bg: #FFFFFF;
+            --timeline-border: #74C69D;
+            --timeline-year-bg: rgba(116, 198, 157, 0.1);
+            --timeline-year-text: #1B4332;
+            
+            /* Team card */
+            --team-card-bg: #FFFFFF;
+            --team-name: #0E0E0E;
+            --team-role: #1B4332;
+            --team-bio: #2D2D2D;
+            
+            /* Partner card */
+            --partner-overlay-bg: linear-gradient(transparent, rgba(27, 67, 50, 0.9));
+            --partner-text: #FFFFFF;
+            
+            /* Conservation card */
+            --conservation-card-bg: #FFFFFF;
+            --conservation-icon-bg: rgba(116, 198, 157, 0.15);
+            --conservation-icon-color: #1B4332;
+            --conservation-heading: #0E0E0E;
+            --conservation-text: #2D2D2D;
+            
+            /* Section descriptions */
+            --section-desc: #4A4A4A;
         }
         [data-theme="dark"] {
             --bg-primary: #121212;
-            --bg-secondary: #1E2A1E;
+            --bg-secondary: #1A2A1A;
             --text-main: #E8F0E8;
             --text-heading: #FFFFFF;
-            --card-bg: #1F2A1F;
+            --card-bg: #1E2A1E;
             --border-light: #2D6A4F;
             --navbar-bg: #0E0E0E;
             --accent-deep: #2D6A4F;
@@ -50,6 +81,37 @@
             --text-on-deep: #FFFFFF;
             --text-on-soft: #0E0E0E;
             --text-on-dark: #FFFFFF;
+            
+            /* Card text colors - DARK MODE FIXES */
+            --card-text-primary: #F0F8F0;
+            --card-text-secondary: #D0E0D0;
+            --card-heading: #8FDEB0;
+            
+            /* Timeline specific - DARK MODE FIXES */
+            --timeline-bg: #1E2A1E;
+            --timeline-border: #8FDEB0;
+            --timeline-year-bg: rgba(143, 222, 176, 0.15);
+            --timeline-year-text: #8FDEB0;
+            
+            /* Team card - DARK MODE FIXES */
+            --team-card-bg: #1E2A1E;
+            --team-name: #FFFFFF;
+            --team-role: #8FDEB0;
+            --team-bio: #D0E0D0;
+            
+            /* Partner card - DARK MODE FIXES */
+            --partner-overlay-bg: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            --partner-text: #FFFFFF;
+            
+            /* Conservation card - DARK MODE FIXES */
+            --conservation-card-bg: #1E2A1E;
+            --conservation-icon-bg: rgba(143, 222, 176, 0.2);
+            --conservation-icon-color: #8FDEB0;
+            --conservation-heading: #FFFFFF;
+            --conservation-text: #D0E0D0;
+            
+            /* Section descriptions - DARK MODE FIXES */
+            --section-desc: #B0C0B0;
             
             --hero-text-dark: #C0E0C0;
             --stat-label-dark: #B0D0B0;
@@ -494,6 +556,12 @@
         [data-theme="dark"] .section-sub {
             color: var(--soft-leaf);
         }
+        
+        .section-description {
+            color: var(--section-desc);
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
 
         /* about section 1: our mission (deep green card) */
         .mission-section {
@@ -553,7 +621,7 @@
             border: 4px solid var(--soft-leaf);
         }
 
-        /* section 2: our story timeline */
+        /* section 2: our story timeline - FIXED DARK MODE */
         .story-section {
             padding: 5rem 0;
             background-color: var(--bg-secondary);
@@ -572,8 +640,8 @@
         .timeline-year {
             font-size: 2rem;
             font-weight: 900;
-            color: var(--deep-green);
-            background: rgba(116, 198, 157, 0.1);
+            color: var(--timeline-year-text);
+            background: var(--timeline-year-bg);
             padding: 0.5rem 1rem;
             border-radius: 1rem;
             line-height: 1;
@@ -581,17 +649,22 @@
             text-align: center;
         }
         .timeline-content {
-            background-color: var(--card-bg);
+            background-color: var(--timeline-bg);
             padding: 1.5rem;
             border-radius: 1.5rem;
-            border-left: 6px solid var(--soft-leaf);
+            border-left: 6px solid var(--timeline-border);
+            color: var(--card-text-primary);
         }
         .timeline-content h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
+            color: var(--card-heading);
+        }
+        .timeline-content p {
+            color: var(--card-text-secondary);
         }
 
-        /* section 3: team grid */
+        /* section 3: team grid - FIXED DARK MODE */
         .team-section {
             padding: 5rem 0;
             background-color: var(--bg-primary);
@@ -609,7 +682,7 @@
             .team-grid { grid-template-columns: repeat(4, 1fr); }
         }
         .team-card {
-            background-color: var(--card-bg);
+            background-color: var(--team-card-bg);
             border-radius: 2rem;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -632,20 +705,21 @@
             font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.25rem;
+            color: var(--team-name);
         }
         .team-role {
-            color: var(--soft-leaf);
+            color: var(--team-role);
             font-weight: 600;
             font-size: 0.875rem;
             margin-bottom: 1rem;
         }
         .team-bio {
-            color: var(--text-main);
+            color: var(--team-bio);
             font-size: 0.875rem;
             line-height: 1.6;
         }
 
-        /* section 4: partners & supporters with HD images */
+        /* section 4: partners & supporters with HD images - FIXED DARK MODE */
         .partners-section {
             padding: 5rem 0;
             background-color: var(--bg-secondary);
@@ -689,8 +763,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(27, 67, 50, 0.8));
-            color: white;
+            background: var(--partner-overlay-bg);
+            color: var(--partner-text);
             padding: 1rem;
             text-align: center;
             font-weight: 600;
@@ -746,7 +820,7 @@
             margin-top: 1rem;
         }
 
-        /* section 6: conservation commitment */
+        /* section 6: conservation commitment - FIXED DARK MODE */
         .conservation-section {
             padding: 5rem 0;
             background-color: var(--bg-secondary);
@@ -761,7 +835,7 @@
             .conservation-grid { grid-template-columns: repeat(2, 1fr); }
         }
         .conservation-card {
-            background-color: var(--card-bg);
+            background-color: var(--conservation-card-bg);
             padding: 2rem;
             border-radius: 2rem;
             border: 1px solid var(--border-light);
@@ -772,21 +846,23 @@
         .conservation-icon {
             width: 5rem;
             height: 5rem;
-            background: rgba(116, 198, 157, 0.15);
+            background: var(--conservation-icon-bg);
             border-radius: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            color: var(--deep-green);
+            color: var(--conservation-icon-color);
             flex-shrink: 0;
-        }
-        [data-theme="dark"] .conservation-icon {
-            color: var(--soft-leaf);
         }
         .conservation-content h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
+            color: var(--conservation-heading);
+        }
+        .conservation-content p {
+            color: var(--conservation-text);
+            line-height: 1.6;
         }
 
         /* footer same as index */
@@ -1117,7 +1193,6 @@
 <section class="about-hero">
     <div class="about-hero-bg"></div>
     <div class="about-hero-content">
-        
         <h1 class="about-hero-title">Cultivating <span>connections</span> with nature</h1>
         <p class="about-hero-description">Since 1987, we've been a sanctuary for native ecosystems and a place for people to find peace, wonder, and knowledge in the heart of the city.</p>
     </div>
@@ -1184,78 +1259,58 @@
     </div>
 </section>
 
-<!-- SECTION 3: MEET THE TEAM -->
-<section class="team-section" style="padding:60px 20px; background:#f9f9f9;">
-<div style="max-width:1200px; margin:auto;">
-
-<!-- Heading -->
-<div style="text-align:center; max-width:48rem; margin:0 auto;">
-<span style="color:#2e7d32; font-weight:600; letter-spacing:1px;">People behind the petals</span>
-<h2 style="font-size:2.5rem; margin:10px 0;">Meet our naturalists</h2>
-<p style="color:#555;">Dedicated staff and volunteers who care for this land every day.</p>
-</div>
-
-<!-- Cards -->
-<div style="display:flex; flex-wrap:wrap; gap:25px; margin-top:40px; justify-content:center;">
-
-<!-- Card -->
-<div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.08); text-align:center; flex:1 1 260px; max-width:260px;">
-<div style="height:180px; overflow:hidden;">
-<img src="/images/g2.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
-<div style="padding:20px;">
-<h3 style="margin-bottom:5px;">Druv Vikram</h3>
-<div style="color:#2e7d32; font-size:14px;">executive director</div>
-<p style="font-size:14px; margin-top:8px; line-height:1.5;">
-Botanist with 20 years experience in habitat restoration and community engagement.
-</p>
-</div>
-</div>
-
-<!-- Card -->
-<div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.08); text-align:center; flex:1 1 260px; max-width:260px;">
-<div style="height:180px; overflow:hidden;">
-<img src="/images/g3.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
-<div style="padding:20px;">
-<h3 style="margin-bottom:5px;">Alex Pandiyan</h3>
-<div style="color:#2e7d32; font-size:14px;">head naturalist</div>
-<p style="font-size:14px; margin-top:8px; line-height:1.5;">
-Wildlife ecologist who leads bird walks and wetland monitoring programs.
-</p>
-</div>
-</div>
-
-<!-- Card -->
-<div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.08); text-align:center; flex:1 1 260px; max-width:260px;">
-<div style="height:180px; overflow:hidden;">
-<img src="/images/c4.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
-<div style="padding:20px;">
-<h3 style="margin-bottom:5px;">Dr. Priya Singh</h3>
-<div style="color:#2e7d32; font-size:14px;">conservation scientist</div>
-<p style="font-size:14px; margin-top:8px; line-height:1.5;">
-Studies native pollinators and leads prairie restoration efforts.
-</p>
-</div>
-</div>
-
-<!-- Card -->
-<div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.08); text-align:center; flex:1 1 260px; max-width:260px;">
-<div style="height:180px; overflow:hidden;">
-<img src="/images/g1.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
-<div style="padding:20px;">
-<h3 style="margin-bottom:5px;">James Bond</h3>
-<div style="color:#2e7d32; font-size:14px;">volunteer coordinator</div>
-<p style="font-size:14px; margin-top:8px; line-height:1.5;">
-Connects community dashboard with hands-on conservation projects.
-</p>
-</div>
-</div>
-
-</div>
-</div>
+<!-- SECTION 3: MEET THE TEAM - FIXED DARK MODE -->
+<section class="team-section">
+    <div class="container">
+        <div style="text-align:center; max-width:48rem; margin:0 auto;">
+            <span class="section-sub">People behind the petals</span>
+            <h2 class="section-title">Meet our naturalists</h2>
+            <p class="section-description">Dedicated staff and volunteers who care for this land every day.</p>
+        </div>
+        
+        <!-- Cards -->
+        <div class="team-grid">
+            <!-- Card 1 -->
+            <div class="team-card">
+                <div class="team-image" style="background-image: url('/images/g2.jpg'); background-size: cover; background-position: center;"></div>
+                <div class="team-info">
+                    <h3 class="team-name">Druv Vikram</h3>
+                    <div class="team-role">executive director</div>
+                    <p class="team-bio">Botanist with 20 years experience in habitat restoration and community engagement.</p>
+                </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="team-card">
+                <div class="team-image" style="background-image: url('/images/g3.jpg'); background-size: cover; background-position: center;"></div>
+                <div class="team-info">
+                    <h3 class="team-name">Alex Pandiyan</h3>
+                    <div class="team-role">head naturalist</div>
+                    <p class="team-bio">Wildlife ecologist who leads bird walks and wetland monitoring programs.</p>
+                </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="team-card">
+                <div class="team-image" style="background-image: url('/images/c4.jpg'); background-size: cover; background-position: center;"></div>
+                <div class="team-info">
+                    <h3 class="team-name">Dr. Priya Singh</h3>
+                    <div class="team-role">conservation scientist</div>
+                    <p class="team-bio">Studies native pollinators and leads prairie restoration efforts.</p>
+                </div>
+            </div>
+            
+            <!-- Card 4 -->
+            <div class="team-card">
+                <div class="team-image" style="background-image: url('/images/g1.jpg'); background-size: cover; background-position: center;"></div>
+                <div class="team-info">
+                    <h3 class="team-name">James Bond</h3>
+                    <div class="team-role">volunteer coordinator</div>
+                    <p class="team-bio">Connects community with hands-on conservation projects.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- SECTION 4: PARTNERS & SUPPORTERS WITH HD IMAGES -->
@@ -1268,11 +1323,11 @@ Connects community dashboard with hands-on conservation projects.
         </div>
         <div class="partners-grid">
             <div class="partner-card">
-                <img class="partner-image" src="images/b1.jpg" alt="partner logo">
+                <img class="partner-image" src="images/b1.jpg" alt="partner logo" onerror="this.src='https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013&auto=format&fit=crop'">
                 <div class="partner-overlay">nature conservancy</div>
             </div>
             <div class="partner-card">
-                <img class="partner-image" src="images/b2.jpg" alt="partner logo">
+                <img class="partner-image" src="images/b2.jpg" alt="partner logo" onerror="this.src='https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1932&auto=format&fit=crop'">
                 <div class="partner-overlay">audubon society</div>
             </div>
             <div class="partner-card">
@@ -1386,9 +1441,7 @@ Connects community dashboard with hands-on conservation projects.
                     <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
                     <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
                     <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
-                   
                     <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    
                 </ul>
             </div>
             <div>
@@ -1396,7 +1449,7 @@ Connects community dashboard with hands-on conservation projects.
                 <ul class="footer-links">
                     <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
                     <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Dashboardhip</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Membership</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Donate</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
                 </ul>

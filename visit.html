@@ -18,40 +18,148 @@
             box-sizing: border-box;
         }
         :root {
-            --jet-black: #0E0E0E;           /* primary dark, elegant typography */
-            --pure-white: #FFFFFF;            /* backgrounds, cards */
-            --deep-green: #1B4332;            /* deep botanical green – headings, accents */
-            --soft-leaf: #74C69D;              /* soft leaf green – secondary, highlights, buttons */
-            --text-main: #0E0E0E;              /* default text on light */
+            --jet-black: #0E0E0E;
+            --pure-white: #FFFFFF;
+            --deep-green: #1B4332;
+            --soft-leaf: #74C69D;
+            --text-main: #0E0E0E;
             --text-heading: #0E0E0E;
             --card-bg: #FFFFFF;
-            --border-light: #D0E6D5;           /* subtle greenish border */
-            --navbar-bg: #0E0E0E;               /* jet black */
-            --bg-primary: #FFFFFF;               /* pure white main background */
-            --bg-secondary: #F2F9F2;             /* very light tint of soft leaf for contrast */
+            --border-light: #D0E6D5;
+            --navbar-bg: #0E0E0E;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F2F9F2;
             --accent-deep: #1B4332;
             --accent-soft: #74C69D;
 
-            /* text on colored backgrounds */
-            --text-on-deep: #FFFFFF;             /* white on deep green */
-            --text-on-soft: #0E0E0E;              /* jet black on soft leaf */
-            --text-on-dark: #FFFFFF;               /* white on jet black */
-        }
-        [data-theme="dark"] {
-            --bg-primary: #121212;
-            --bg-secondary: #1E2A1E;
-            --text-main: #E8F0E8;                 /* light greenish white for main text */
-            --text-heading: #FFFFFF;
-            --card-bg: #1F2A1F;
-            --border-light: #2D6A4F;              /* deep green tint */
-            --navbar-bg: #0E0E0E;
-            --accent-deep: #2D6A4F;
-            --accent-soft: #8FDEB0;                /* brighter soft leaf for dark mode */
-            
-            /* text on colored backgrounds */
             --text-on-deep: #FFFFFF;
             --text-on-soft: #0E0E0E;
             --text-on-dark: #FFFFFF;
+            
+            /* Card text colors */
+            --card-text-primary: #0E0E0E;
+            --card-text-secondary: #2D2D2D;
+            --card-heading: #1B4332;
+            
+            /* Hours card specific */
+            --hours-card-bg: #FFFFFF;
+            --hours-heading: #1B4332;
+            --hours-day: #0E0E0E;
+            --hours-time: #2D2D2D;
+            --holiday-note-bg: #F2F9F2;
+            --holiday-note-text: #0E0E0E;
+            
+            /* Admission card specific */
+            --admission-card-bg: linear-gradient(135deg, #1B4332 0%, #2d5a4a 100%);
+            --admission-text: #FFFFFF;
+            --admission-price: #74C69D;
+            --admission-note-bg: rgba(255,255,255,0.1);
+            
+            /* Directions card */
+            --directions-card-bg: #FFFFFF;
+            --directions-heading: #1B4332;
+            --transport-icon-bg: #F2F9F2;
+            --transport-icon-color: #1B4332;
+            --transport-text: #2D2D2D;
+            
+            /* Expect card */
+            --expect-card-bg: #FFFFFF;
+            --expect-icon-bg: #F2F9F2;
+            --expect-icon-color: #1B4332;
+            --expect-heading: #1B4332;
+            --expect-text: #2D2D2D;
+            
+            /* Accessibility card */
+            --accessibility-card-bg: #FFFFFF;
+            --accessibility-icon-bg: #74C69D;
+            --accessibility-icon-color: #0E0E0E;
+            --accessibility-heading: #1B4332;
+            --accessibility-text: #2D2D2D;
+            
+            /* Amenities */
+            --amenity-icon-bg: #F2F9F2;
+            --amenity-icon-color: #1B4332;
+            --amenity-text: #0E0E0E;
+            
+            /* Tips card - DARK MODE FIXED */
+            --tips-card-bg: #FFFFFF;
+            --tips-heading: #1B4332;
+            --tips-text: #2D2D2D;
+            --tips-icon: #74C69D;
+            
+            /* Section descriptions */
+            --section-desc: #4A4A4A;
+            --map-info-text: #2D2D2D;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1A2A1A;
+            --text-main: #E8F0E8;
+            --text-heading: #FFFFFF;
+            --card-bg: #1E2A1E;
+            --border-light: #2D6A4F;
+            --navbar-bg: #0E0E0E;
+            --accent-deep: #2D6A4F;
+            --accent-soft: #8FDEB0;
+
+            --text-on-deep: #FFFFFF;
+            --text-on-soft: #0E0E0E;
+            --text-on-dark: #FFFFFF;
+            
+            /* Card text colors - DARK MODE FIXES */
+            --card-text-primary: #F0F8F0;
+            --card-text-secondary: #D0E0D0;
+            --card-heading: #8FDEB0;
+            
+            /* Hours card specific - DARK MODE FIXES */
+            --hours-card-bg: #1E2A1E;
+            --hours-heading: #8FDEB0;
+            --hours-day: #FFFFFF;
+            --hours-time: #D0E0D0;
+            --holiday-note-bg: #2A3A2A;
+            --holiday-note-text: #E0F0E0;
+            
+            /* Admission card specific - DARK MODE FIXES */
+            --admission-card-bg: linear-gradient(135deg, #0F2A0F 0%, #1E3A1E 100%);
+            --admission-text: #FFFFFF;
+            --admission-price: #8FDEB0;
+            --admission-note-bg: rgba(143, 222, 176, 0.15);
+            
+            /* Directions card - DARK MODE FIXES */
+            --directions-card-bg: #1E2A1E;
+            --directions-heading: #8FDEB0;
+            --transport-icon-bg: #2A3A2A;
+            --transport-icon-color: #8FDEB0;
+            --transport-text: #D0E0D0;
+            
+            /* Expect card - DARK MODE FIXES */
+            --expect-card-bg: #1E2A1E;
+            --expect-icon-bg: #2A3A2A;
+            --expect-icon-color: #8FDEB0;
+            --expect-heading: #8FDEB0;
+            --expect-text: #D0E0D0;
+            
+            /* Accessibility card - DARK MODE FIXES */
+            --accessibility-card-bg: #1E2A1E;
+            --accessibility-icon-bg: #8FDEB0;
+            --accessibility-icon-color: #0E0E0E;
+            --accessibility-heading: #8FDEB0;
+            --accessibility-text: #D0E0D0;
+            
+            /* Amenities - DARK MODE FIXES */
+            --amenity-icon-bg: #2A3A2A;
+            --amenity-icon-color: #8FDEB0;
+            --amenity-text: #FFFFFF;
+            
+            /* Tips card - DARK MODE FIXES */
+            --tips-card-bg: #1E2A1E;
+            --tips-heading: #8FDEB0;
+            --tips-text: #D0E0D0;
+            --tips-icon: #8FDEB0;
+            
+            /* Section descriptions - DARK MODE FIXES */
+            --section-desc: #B0C0B0;
+            --map-info-text: #D0E0D0;
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -308,6 +416,15 @@
             background-color: #1f1f1f;
             padding-left: 0.5rem;
         }
+        .mobile-menu-item.active-mobile {
+            background: var(--deep-green);
+            border-radius: 12px;
+            padding-left: 0.5rem;
+            color: white;
+        }
+        .mobile-menu-item.active-mobile i {
+            color: white;
+        }
         .mobile-dropdown {
             border-bottom: 1px solid #2a4c3b;
         }
@@ -433,6 +550,9 @@
         .breadcrumb a:hover {
             color: var(--soft-leaf);
         }
+        .breadcrumb span {
+            color: rgba(255,255,255,0.9);
+        }
 
         /* ===== SECTION STYLES ===== */
         .section-title {
@@ -450,8 +570,15 @@
         [data-theme="dark"] .section-sub {
             color: var(--soft-leaf);
         }
+        
+        .section-description {
+            color: var(--section-desc);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-        /* Section 1: Hours & Admission */
+        /* Section 1: Hours & Admission - FIXED DARK MODE */
         .hours-section {
             padding: 5rem 0;
             background-color: var(--bg-primary);
@@ -468,7 +595,7 @@
             }
         }
         .hours-card {
-            background-color: var(--card-bg);
+            background-color: var(--hours-card-bg);
             border-radius: 2rem;
             padding: 2rem;
             border: 1px solid var(--border-light);
@@ -477,7 +604,7 @@
         .hours-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            color: var(--deep-green);
+            color: var(--hours-heading);
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -499,31 +626,35 @@
         }
         .hours-day {
             font-weight: 600;
-            color: var(--text-heading);
+            color: var(--hours-day);
         }
         .hours-time {
-            color: var(--text-main);
+            color: var(--hours-time);
         }
         .holiday-note {
             margin-top: 1rem;
             padding: 1rem;
-            background-color: var(--bg-secondary);
+            background-color: var(--holiday-note-bg);
             border-radius: 1rem;
             font-size: 0.875rem;
-            color: var(--text-main);
+            color: var(--holiday-note-text);
         }
         .holiday-note i {
             color: var(--soft-leaf);
+            margin-right: 0.5rem;
         }
         .admission-card {
-            background: linear-gradient(135deg, var(--deep-green) 0%, #2d5a4a 100%);
+            background: var(--admission-card-bg);
             border-radius: 2rem;
             padding: 2rem;
-            color: white;
+            color: var(--admission-text);
         }
         .admission-card h3 {
-            color: white;
+            color: var(--admission-text);
             margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         .admission-card h3 i {
             color: var(--soft-leaf);
@@ -545,22 +676,27 @@
         }
         .price-value {
             font-weight: 700;
-            color: var(--soft-leaf);
+            color: var(--admission-price);
         }
-        .Dashboardhip-note {
+        .membership-note {
             margin-top: 1.5rem;
             padding: 1rem;
-            background-color: rgba(255,255,255,0.1);
+            background-color: var(--admission-note-bg);
             border-radius: 1rem;
             font-size: 0.875rem;
             color: rgba(255,255,255,0.9);
         }
-        .Dashboardhip-note a {
+        .membership-note a {
             color: var(--soft-leaf);
             font-weight: 600;
+            text-decoration: underline;
+        }
+        .membership-note i {
+            margin-right: 0.5rem;
+            color: var(--soft-leaf);
         }
 
-        /* Section 2: Directions & Map */
+        /* Section 2: Directions & Map - FIXED DARK MODE */
         .directions-section {
             padding: 5rem 0;
             background-color: var(--bg-secondary);
@@ -577,7 +713,7 @@
             }
         }
         .map-container {
-            background-color: var(--card-bg);
+            background-color: var(--directions-card-bg);
             border-radius: 2rem;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -593,11 +729,11 @@
         }
         .map-info h3 {
             margin-bottom: 1rem;
-            color: var(--deep-green);
+            color: var(--directions-heading);
         }
         .map-info p {
             margin-bottom: 0.5rem;
-            color: var(--text-main);
+            color: var(--map-info-text);
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -606,11 +742,23 @@
             color: var(--soft-leaf);
             width: 1.5rem;
         }
+        .map-info a {
+            color: var(--directions-heading);
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .map-info a:hover {
+            color: var(--soft-leaf);
+        }
         .directions-card {
-            background-color: var(--card-bg);
+            background-color: var(--directions-card-bg);
             border-radius: 2rem;
             padding: 2rem;
             border: 1px solid var(--border-light);
+        }
+        .directions-card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--directions-heading);
         }
         .transport-option {
             display: flex;
@@ -624,12 +772,12 @@
         .transport-icon {
             width: 3rem;
             height: 3rem;
-            background-color: var(--bg-secondary);
+            background-color: var(--transport-icon-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--deep-green);
+            color: var(--transport-icon-color);
             font-size: 1.25rem;
             flex-shrink: 0;
         }
@@ -639,11 +787,11 @@
             color: var(--text-heading);
         }
         .transport-details p {
-            color: var(--text-main);
+            color: var(--transport-text);
             font-size: 0.875rem;
         }
 
-        /* Section 3: What to Expect */
+        /* Section 3: What to Expect - FIXED DARK MODE */
         .expect-section {
             padding: 5rem 0;
             background-color: var(--bg-primary);
@@ -660,7 +808,7 @@
             }
         }
         .expect-card {
-            background-color: var(--card-bg);
+            background-color: var(--expect-card-bg);
             border-radius: 2rem;
             padding: 2rem;
             text-align: center;
@@ -673,25 +821,25 @@
         .expect-icon {
             width: 5rem;
             height: 5rem;
-            background-color: var(--bg-secondary);
+            background-color: var(--expect-icon-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            color: var(--deep-green);
+            color: var(--expect-icon-color);
             font-size: 2rem;
         }
         .expect-card h3 {
             margin-bottom: 1rem;
-            color: var(--deep-green);
+            color: var(--expect-heading);
         }
         .expect-card p {
-            color: var(--text-main);
+            color: var(--expect-text);
             line-height: 1.6;
         }
 
-        /* Section 4: Accessibility */
+        /* Section 4: Accessibility - FIXED DARK MODE */
         .accessibility-section {
             padding: 5rem 0;
             background-color: var(--bg-secondary);
@@ -708,7 +856,7 @@
             }
         }
         .accessibility-card {
-            background-color: var(--card-bg);
+            background-color: var(--accessibility-card-bg);
             border-radius: 2rem;
             padding: 2rem;
             display: flex;
@@ -719,24 +867,25 @@
         .accessibility-icon {
             width: 4rem;
             height: 4rem;
-            background-color: var(--soft-leaf);
+            background-color: var(--accessibility-icon-bg);
             border-radius: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--jet-black);
+            color: var(--accessibility-icon-color);
             font-size: 1.5rem;
             flex-shrink: 0;
         }
         .accessibility-content h3 {
             margin-bottom: 0.5rem;
-            color: var(--deep-green);
+            color: var(--accessibility-heading);
         }
         .accessibility-content p {
-            color: var(--text-main);
+            color: var(--accessibility-text);
+            line-height: 1.6;
         }
 
-        /* Section 5: Amenities */
+        /* Section 5: Amenities - FIXED DARK MODE */
         .amenities-section {
             padding: 5rem 0;
             background-color: var(--bg-primary);
@@ -763,13 +912,13 @@
         .amenity-icon {
             width: 5rem;
             height: 5rem;
-            background-color: var(--bg-secondary);
+            background-color: var(--amenity-icon-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1rem;
-            color: var(--deep-green);
+            color: var(--amenity-icon-color);
             font-size: 2rem;
             transition: all 0.3s;
         }
@@ -780,10 +929,10 @@
         }
         .amenity-item p {
             font-weight: 600;
-            color: var(--text-heading);
+            color: var(--amenity-text);
         }
 
-        /* Section 6: Plan Your Visit Tips - DARK MODE FIXED */
+        /* Section 6: Plan Your Visit Tips - FIXED DARK MODE */
         .tips-section {
             padding: 5rem 0;
             background: linear-gradient(135deg, #0a1f0a 0%, #1a3a1a 100%);
@@ -808,7 +957,7 @@
             }
         }
         .tip-card {
-            background-color: var(--card-bg);
+            background-color: var(--tips-card-bg);
             border-radius: 2rem;
             padding: 2rem;
             border: 1px solid var(--soft-leaf);
@@ -820,19 +969,16 @@
         }
         .tip-card i {
             font-size: 2rem;
-            color: var(--soft-leaf);
+            color: var(--tips-icon);
             margin-bottom: 1rem;
         }
         .tip-card h3 {
-            color: var(--deep-green);
+            color: var(--tips-heading);
             font-size: 1.25rem;
             margin-bottom: 0.5rem;
         }
-        [data-theme="dark"] .tip-card h3 {
-            color: var(--soft-leaf);
-        }
         .tip-card p {
-            color: var(--text-main);
+            color: var(--tips-text);
             font-size: 0.875rem;
             line-height: 1.6;
         }
@@ -1060,7 +1206,10 @@
             z-index: 100;
             display: none;
         }
-        #scroll-top:hover { background-color: var(--soft-leaf); color: var(--jet-black); }
+        #scroll-top:hover { 
+            background-color: var(--soft-leaf); 
+            color: var(--jet-black); 
+        }
         @media (min-width: 1280px) {
             .desktop-nav { display: flex; }
             .navbar-right-desktop { display: flex; }
@@ -1073,21 +1222,11 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* MOBILE NAV ACTIVE */
-        .mobile-menu-item.active-mobile{
-            background-color: var(--deep-green);
-            color: #ffffff;
-            padding-left: 0.5rem;
-            border-radius: 8px;
-        }
-        .mobile-menu-item.active-mobile i{
-            color: #ffffff;
-        }
     </style>
 </head>
 <body>
 
-<!-- NAVBAR (same as index) -->
+<!-- NAVBAR -->
 <nav class="navbar-container">
     <div class="container navbar-flex">
         <a href="index.html" class="logo">
@@ -1128,7 +1267,7 @@
     </div>
 </nav>
 
-<!-- mobile menu (same as index) -->
+<!-- mobile menu -->
 <div id="mobile-menu" class="mobile-menu">
     <div class="mobile-menu-header">
         <a href="index.html" class="logo">
@@ -1192,7 +1331,7 @@
         <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
             <span class="section-sub">plan ahead</span>
             <h2 class="section-title">Hours & Admission</h2>
-            <p style="color: var(--text-main); max-width:600px; margin:0 auto;">We're open every day of the year except Christmas Day and New Year's Day.</p>
+            <p class="section-description">We're open every day of the year except Christmas Day and New Year's Day.</p>
         </div>
 
         <div class="hours-grid">
@@ -1247,12 +1386,12 @@
                         <span class="price-value">Free</span>
                     </li>
                     <li class="price-item">
-                        <span class="price-label">Dashboard</span>
+                        <span class="price-label">Members</span>
                         <span class="price-value">Free</span>
                     </li>
                 </ul>
-                <div class="Dashboardhip-note">
-                    <i class="fas fa-leaf"></i> Become a client and visit free all year! <a href="#">Learn more</a>
+                <div class="membership-note">
+                    <i class="fas fa-leaf"></i> Become a member and visit free all year! <a href="#">Learn more</a>
                 </div>
             </div>
         </div>
@@ -1265,14 +1404,14 @@
         <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
             <span class="section-sub">getting here</span>
             <h2 class="section-title">Directions & Map</h2>
-            <p style="color: var(--text-main);">Located in the heart of the city, easily accessible by car, public transit, or bike.</p>
+            <p class="section-description">Located in the heart of the city, easily accessible by car, public transit, or bike.</p>
         </div>
 
         <div class="directions-grid">
             <!-- Map Container -->
             <div class="map-container">
                 <div class="map-image" style="background-image: url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=1931&auto=format&fit=crop');">
-                    <!-- Map placeholder - in production would be embedded Google Map -->
+                    <!-- Map placeholder -->
                 </div>
                 <div class="map-info">
                     <h3><i class="fas fa-map-pin"></i> Groww Garden</h3>
@@ -1280,15 +1419,15 @@
                     <p><i class="fas fa-phone"></i> (555) 123-4567</p>
                     <p><i class="fas fa-envelope"></i> visit@growwgarden.org</p>
                     <div style="margin-top: 1rem; display: flex; gap: 1rem;">
-                        <a href="#" style="color: var(--deep-green); font-weight: 600;"><i class="fas fa-directions"></i> Get Directions</a>
-                        <a href="#" style="color: var(--deep-green); font-weight: 600;"><i class="fas fa-download"></i> Map PDF</a>
+                        <a href="#"><i class="fas fa-directions"></i> Get Directions</a>
+                        <a href="#"><i class="fas fa-download"></i> Map PDF</a>
                     </div>
                 </div>
             </div>
 
             <!-- Transportation Options -->
             <div class="directions-card">
-                <h3 style="margin-bottom: 1.5rem; color: var(--deep-green);">Transportation Options</h3>
+                <h3>Transportation Options</h3>
                 
                 <div class="transport-option">
                     <div class="transport-icon"><i class="fas fa-car"></i></div>
@@ -1332,7 +1471,7 @@
         <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
             <span class="section-sub">your experience</span>
             <h2 class="section-title">What to Expect</h2>
-            <p style="color: var(--text-main);">Everything you need to know before you arrive.</p>
+            <p class="section-description">Everything you need to know before you arrive.</p>
         </div>
 
         <div class="expect-grid">
@@ -1376,7 +1515,7 @@
         <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
             <span class="section-sub">everyone welcome</span>
             <h2 class="section-title">Accessibility</h2>
-            <p style="color: var(--text-main);">We're committed to making the garden accessible to all visitors.</p>
+            <p class="section-description">We're committed to making the garden accessible to all visitors.</p>
         </div>
 
         <div class="accessibility-grid">
@@ -1418,7 +1557,7 @@
         <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
             <span class="section-sub">facilities</span>
             <h2 class="section-title">Amenities</h2>
-            <p style="color: var(--text-main);">Everything you need for a comfortable visit.</p>
+            <p class="section-description">Everything you need for a comfortable visit.</p>
         </div>
 
         <div class="amenities-grid">
@@ -1474,7 +1613,7 @@
     </div>
 </section>
 
-<!-- SECTION 6: PLAN YOUR VISIT TIPS - DARK MODE FIXED -->
+<!-- SECTION 6: PLAN YOUR VISIT TIPS -->
 <section class="tips-section">
     <div class="container">
         <div style="text-align:center; max-width:48rem; margin:0 auto;">
@@ -1502,7 +1641,7 @@
                 <p>Check our events calendar for guided walks, workshops, and seasonal celebrations.</p>
             </div>
             <div class="tip-card">
-                <i class="fas fa-mobile-alt"></i>
+                <i class="fas fa-map-marked-alt"></i>
                 <h3>Garden App</h3>
                 <p>Download our free app for self-guided tours, trail maps, and plant identification.</p>
             </div>
@@ -1510,7 +1649,7 @@
     </div>
 </section>
 
-<!-- FOOTER (same as index) -->
+<!-- FOOTER -->
 <footer class="footer">
     <div class="container">
         <div class="footer-main">
@@ -1531,15 +1670,13 @@
                 </div>
             </div>
             <div>
-                 <h3 class="footer-heading">Quick Links</h3>
+                <h3 class="footer-heading">Quick Links</h3>
                 <ul class="footer-links">
                     <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
                     <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
                     <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
                     <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
-                    
                     <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    
                 </ul>
             </div>
             <div>
@@ -1547,7 +1684,7 @@
                 <ul class="footer-links">
                     <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
                     <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Dashboardhip</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Membership</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Donate</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
                 </ul>
