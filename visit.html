@@ -510,7 +510,10 @@
             background-color: var(--bg-secondary);
             border-radius: 1rem;
             font-size: 0.875rem;
-            color: var(--deep-green);
+            color: var(--text-main);
+        }
+        .holiday-note i {
+            color: var(--soft-leaf);
         }
         .admission-card {
             background: linear-gradient(135deg, var(--deep-green) 0%, #2d5a4a 100%);
@@ -550,6 +553,7 @@
             background-color: rgba(255,255,255,0.1);
             border-radius: 1rem;
             font-size: 0.875rem;
+            color: rgba(255,255,255,0.9);
         }
         .Dashboardhip-note a {
             color: var(--soft-leaf);
@@ -627,6 +631,7 @@
             justify-content: center;
             color: var(--deep-green);
             font-size: 1.25rem;
+            flex-shrink: 0;
         }
         .transport-details h4 {
             font-weight: 600;
@@ -778,11 +783,13 @@
             color: var(--text-heading);
         }
 
-        /* Section 6: Plan Your Visit Tips */
+        /* Section 6: Plan Your Visit Tips - DARK MODE FIXED */
         .tips-section {
             padding: 5rem 0;
-            background: linear-gradient(135deg, var(--deep-green) 0%, #2d5a4a 100%);
-            color: white;
+            background: linear-gradient(135deg, #0a1f0a 0%, #1a3a1a 100%);
+        }
+        [data-theme="dark"] .tips-section {
+            background: linear-gradient(135deg, #051005 0%, #122812 100%);
         }
         .tips-grid {
             display: grid;
@@ -790,17 +797,26 @@
             grid-template-columns: 1fr;
             margin-top: 3rem;
         }
-        @media (min-width: 768px) {
+        @media (min-width: 640px) {
+            .tips-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
             .tips-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
         .tip-card {
-            background-color: rgba(255,255,255,0.1);
-            backdrop-filter: blur(4px);
+            background-color: var(--card-bg);
             border-radius: 2rem;
             padding: 2rem;
             border: 1px solid var(--soft-leaf);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .tip-card:hover {
+            transform: translateY(-5px);
         }
         .tip-card i {
             font-size: 2rem;
@@ -808,13 +824,17 @@
             margin-bottom: 1rem;
         }
         .tip-card h3 {
-            color: white;
+            color: var(--deep-green);
             font-size: 1.25rem;
             margin-bottom: 0.5rem;
         }
+        [data-theme="dark"] .tip-card h3 {
+            color: var(--soft-leaf);
+        }
         .tip-card p {
-            color: rgba(255,255,255,0.9);
+            color: var(--text-main);
             font-size: 0.875rem;
+            line-height: 1.6;
         }
 
         /* Footer (same as index) */
@@ -968,6 +988,9 @@
         .footer-input:focus {
             outline: 2px solid var(--soft-leaf);
         }
+        .footer-input::placeholder {
+            color: #888;
+        }
         .footer-btn {
             width: 100%;
             background-color: var(--deep-green);
@@ -1051,16 +1074,15 @@
             to { opacity: 1; transform: translateY(0); }
         }
         /* MOBILE NAV ACTIVE */
-.mobile-menu-item.active-mobile{
-    background-color: var(--deep-green);
-    color: #ffffff;
-    padding-left: 0.5rem;
-    border-radius: 8px;
-}
-
-.mobile-menu-item.active-mobile i{
-    color: #ffffff;
-}
+        .mobile-menu-item.active-mobile{
+            background-color: var(--deep-green);
+            color: #ffffff;
+            padding-left: 0.5rem;
+            border-radius: 8px;
+        }
+        .mobile-menu-item.active-mobile i{
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -1170,7 +1192,7 @@
         <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
             <span class="section-sub">plan ahead</span>
             <h2 class="section-title">Hours & Admission</h2>
-            <p class="section-description">We're open every day of the year except Christmas Day and New Year's Day.</p>
+            <p style="color: var(--text-main); max-width:600px; margin:0 auto;">We're open every day of the year except Christmas Day and New Year's Day.</p>
         </div>
 
         <div class="hours-grid">
@@ -1243,7 +1265,7 @@
         <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
             <span class="section-sub">getting here</span>
             <h2 class="section-title">Directions & Map</h2>
-            <p class="section-description">Located in the heart of the city, easily accessible by car, public transit, or bike.</p>
+            <p style="color: var(--text-main);">Located in the heart of the city, easily accessible by car, public transit, or bike.</p>
         </div>
 
         <div class="directions-grid">
@@ -1310,7 +1332,7 @@
         <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
             <span class="section-sub">your experience</span>
             <h2 class="section-title">What to Expect</h2>
-            <p class="section-description">Everything you need to know before you arrive.</p>
+            <p style="color: var(--text-main);">Everything you need to know before you arrive.</p>
         </div>
 
         <div class="expect-grid">
@@ -1354,7 +1376,7 @@
         <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
             <span class="section-sub">everyone welcome</span>
             <h2 class="section-title">Accessibility</h2>
-            <p class="section-description">We're committed to making the garden accessible to all visitors.</p>
+            <p style="color: var(--text-main);">We're committed to making the garden accessible to all visitors.</p>
         </div>
 
         <div class="accessibility-grid">
@@ -1396,7 +1418,7 @@
         <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
             <span class="section-sub">facilities</span>
             <h2 class="section-title">Amenities</h2>
-            <p class="section-description">Everything you need for a comfortable visit.</p>
+            <p style="color: var(--text-main);">Everything you need for a comfortable visit.</p>
         </div>
 
         <div class="amenities-grid">
@@ -1452,12 +1474,15 @@
     </div>
 </section>
 
-<!-- SECTION 6: PLAN YOUR VISIT TIPS -->
+<!-- SECTION 6: PLAN YOUR VISIT TIPS - DARK MODE FIXED -->
 <section class="tips-section">
     <div class="container">
-        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
-            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 1rem;">Plan Your Visit Tips</h2>
-            <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Make the most of your time at Groww Garden</p>
+        <div style="text-align:center; max-width:48rem; margin:0 auto;">
+            <span class="section-sub" style="color: var(--soft-leaf);">smart planning</span>
+            <h2 style="color:white; font-size:2.5rem; margin-bottom:1rem;">Plan Your Visit Tips</h2>
+            <p style="color:rgba(255,255,255,0.9); margin-bottom:2rem;">
+                Make the most of your time at Groww Garden
+            </p>
         </div>
 
         <div class="tips-grid">

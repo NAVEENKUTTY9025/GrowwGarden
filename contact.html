@@ -666,7 +666,7 @@
             display: block;
         }
 
-        /* VISITOR INFO SECTION */
+        /* VISITOR INFO SECTION – FIXED GRID FOR IPAD MINI (768x1024) */
         .visitor-section {
             padding: 5rem 0;
             background-color: var(--bg-primary);
@@ -676,7 +676,14 @@
             gap: 2rem;
             grid-template-columns: 1fr;
         }
-        @media (min-width: 768px) {
+        /* tablet (including iPad mini portrait) – exactly 2 cards per row */
+        @media (min-width: 640px) and (max-width: 1023px) {
+            .visitor-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        /* desktop */
+        @media (min-width: 1024px) {
             .visitor-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -689,6 +696,13 @@
             display: flex;
             gap: 1.5rem;
             align-items: flex-start;
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+        }
+        .visitor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+            border-color: var(--soft-leaf);
         }
         .visitor-icon {
             width: 3.5rem;
@@ -713,6 +727,7 @@
         .visitor-content p {
             color: var(--text-main);
             line-height: 1.6;
+            margin: 0;
         }
 
         /* FAQ PREVIEW SECTION */
@@ -1201,7 +1216,7 @@
     </div>
 </section>
 
-<!-- VISITOR INFORMATION SECTION -->
+<!-- VISITOR INFORMATION SECTION – GRID ADAPTED FOR IPAD MINI (2 COLUMNS) -->
 <section class="visitor-section">
     <div class="container">
         <div style="text-align: center; max-width: 48rem; margin: 0 auto 3rem;">
