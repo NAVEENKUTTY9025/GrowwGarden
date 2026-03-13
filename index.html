@@ -36,7 +36,12 @@
             --text-on-deep: #FFFFFF;             /* white on deep green */
             --text-on-soft: #0E0E0E;              /* jet black on soft leaf */
             --text-on-dark: #FFFFFF;               /* white on jet black */
+            
+            /* Additional text colors for better visibility */
+            --text-muted: #4A4A4A;
+            --text-light: #6B7280;
         }
+        
         [data-theme="dark"] {
             --bg-primary: #121212;
             --bg-secondary: #1E2A1E;
@@ -53,11 +58,11 @@
             --text-on-soft: #0E0E0E;
             --text-on-dark: #FFFFFF;
             
-            /* additional visibility fixes */
-            --hero-text-dark: #C0E0C0;             /* light green for hero paragraph */
-            --stat-label-dark: #B0D0B0;
-            --gallery-text-dark: #E0F0E0;
+            /* Additional text colors for dark mode */
+            --text-muted: #B0C4B0;
+            --text-light: #9CAF9C;
         }
+        
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-primary);
@@ -65,20 +70,24 @@
             transition: background-color 0.3s, color 0.3s;
             line-height: 1.5;
         }
+        
         h1, h2, h3, h4, h5, h6 {
             color: var(--text-heading);
             font-weight: 700;
             line-height: 1.2;
         }
+        
         a {
             text-decoration: none;
         }
+        
         .container {
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 1rem;
         }
+        
         /* navbar – jet black */
         .navbar-container {
             background-color: var(--navbar-bg);
@@ -90,20 +99,24 @@
             width: 100%;
             z-index: 1000;
         }
+        
         .navbar-flex {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
+        
         .logo {
             display: flex;
             align-items: center;
             gap: 0.75rem;
             transition: transform 0.2s;
         }
+        
         .logo:hover {
             transform: scale(1.05);
         }
+        
         .logo-icon {
             width: 3rem;
             height: 3rem;
@@ -115,19 +128,23 @@
             border: 2px solid var(--soft-leaf);
             overflow: hidden;
         }
+        
         .logo-icon i {
             color: var(--soft-leaf);
             font-size: 2rem;
         }
+        
         .logo-text {
             font-size: 1.5rem;
             font-weight: 900;
             color: white;
             letter-spacing: -0.02em;
         }
+        
         .logo-text span {
             color: var(--soft-leaf);
         }
+        
         .logo-tagline {
             font-size: 0.625rem;
             color: #ccc;
@@ -136,12 +153,14 @@
             font-weight: 500;
             letter-spacing: 0.05em;
         }
+        
         /* desktop nav */
         .desktop-nav {
             display: none;
             align-items: center;
             gap: 0.25rem;
         }
+        
         .nav-link {
             color: #e0e0e0;
             padding: 0.5rem 0.875rem;
@@ -151,20 +170,24 @@
             white-space: nowrap;
             cursor: pointer;
         }
+        
         .nav-link:hover {
             color: #FAFAFA;
             background-color: #2a2a2a;
             border-radius: 30px;
         }
+        
         .nav-link.active {
             color: #FAFAFA;
             font-weight: 600;
             background: var(--deep-green);
             border-radius: 30px;
         }
+        
         .dropdown {
             position: relative;
         }
+        
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -180,12 +203,14 @@
             z-index: 1000;
             box-shadow: 0 15px 30px rgba(0,0,0,0.6);
         }
+        
         .dropdown:hover .dropdown-menu,
         .dropdown.active .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
+        
         .dropdown-item {
             display: block;
             padding: 12px 20px;
@@ -193,24 +218,29 @@
             transition: 0.2s;
             border-bottom: 1px solid #2a2a2a;
         }
+        
         .dropdown-item:hover {
             background-color: var(--deep-green);
             color: #fff;
             padding-left: 28px;
             border-radius: 12px;
         }
+        
         .dropdown-arrow {
             font-size: 0.7rem;
             transition: 0.2s;
         }
+        
         .dropdown:hover .dropdown-arrow {
             transform: rotate(180deg);
         }
+        
         .navbar-right-desktop {
             display: none;
             align-items: center;
             gap: 0.75rem;
         }
+        
         .icon-btn {
             width: 2.5rem;
             height: 2.5rem;
@@ -225,10 +255,12 @@
             transition: 0.2s;
             font-size: 1rem;
         }
+        
         .icon-btn:hover {
             background-color: var(--soft-leaf);
             color: var(--jet-black);
         }
+        
         .login-btn {
             background-color: var(--deep-green);
             color: white;
@@ -242,10 +274,12 @@
             transition: 0.2s;
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
         }
+        
         .login-btn:hover {
             background-color: var(--soft-leaf);
             color: var(--jet-black);
         }
+        
         .mobile-menu-btn {
             display: flex;
             color: white;
@@ -254,6 +288,7 @@
             border: none;
             cursor: pointer;
         }
+        
         /* mobile menu */
         .mobile-menu {
             position: fixed;
@@ -269,9 +304,11 @@
             display: flex;
             flex-direction: column;
         }
+        
         .mobile-menu.active {
             transform: translateX(0);
         }
+        
         .mobile-menu-header {
             display: flex;
             justify-content: space-between;
@@ -279,6 +316,7 @@
             padding: 1.5rem;
             border-bottom: 1px solid #2a4c3b;
         }
+        
         .mobile-menu-close {
             color: white;
             font-size: 2rem;
@@ -287,12 +325,14 @@
             cursor: pointer;
             line-height: 1;
         }
+        
         .mobile-menu-items {
             padding: 1.5rem;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
+        
         .mobile-menu-item {
             display: flex;
             align-items: center;
@@ -303,19 +343,23 @@
             border-bottom: 1px solid #2a4c3b;
             transition: 0.2s;
         }
+        
         .mobile-menu-item i {
             color: var(--soft-leaf);
             margin-right: 1rem;
             width: 1.75rem;
             font-size: 1.25rem;
         }
+        
         .mobile-menu-item:hover {
             background-color: #1f1f1f;
             padding-left: 0.5rem;
         }
+        
         .mobile-dropdown {
             border-bottom: 1px solid #2a4c3b;
         }
+        
         .mobile-dropdown-btn {
             display: flex;
             justify-content: space-between;
@@ -329,17 +373,20 @@
             padding: 1rem 0;
             cursor: pointer;
         }
+        
         .mobile-dropdown-btn i:first-child {
             color: var(--soft-leaf);
             margin-right: 1rem;
             width: 1.75rem;
             font-size: 1.25rem;
         }
+        
         .mobile-dropdown-btn .fa-chevron-down {
             color: var(--soft-leaf);
             font-size: 1rem;
             transition: transform 0.2s;
         }
+        
         .mobile-dropdown-content {
             max-height: 0;
             overflow: hidden;
@@ -348,10 +395,12 @@
             border-radius: 16px;
             margin-bottom: 0.5rem;
         }
+        
         .mobile-dropdown-content.active {
             max-height: 200px;
             padding: 0.75rem 0;
         }
+        
         .mobile-dropdown-content a {
             display: flex;
             align-items: center;
@@ -360,10 +409,12 @@
             transition: 0.2s;
             font-size: 1.1rem;
         }
+        
         .mobile-dropdown-content a:hover {
             background-color: var(--deep-green);
             color: white;
         }
+        
         .mobile-action-item {
             display: flex;
             align-items: center;
@@ -378,12 +429,14 @@
             width: 100%;
             cursor: pointer;
         }
+        
         .mobile-action-item i {
             color: var(--soft-leaf);
             margin-right: 1rem;
             width: 1.75rem;
             font-size: 1.25rem;
         }
+        
         .mobile-separator {
             margin: 1rem 0 0.5rem 0;
             border-top: 2px solid #2f4f3a;
@@ -403,6 +456,7 @@
             background-color: var(--bg-primary);
             overflow: hidden;
         }
+        
         /* HD background image with overlay */
         .hero-bg {
             position: absolute;
@@ -416,6 +470,7 @@
             background-position: center 30%;
             background-repeat: no-repeat;
         }
+        
         .hero-bg::after {
             content: '';
             position: absolute;
@@ -426,10 +481,12 @@
             background: rgba(0, 0, 0, 0.2); /* subtle dark overlay for text contrast */
             backdrop-filter: brightness(0.9);
         }
+        
         [data-theme="dark"] .hero-bg::after {
             background: rgba(0, 0, 0, 0.45);
             backdrop-filter: brightness(0.7);
         }
+        
         .hero-content {
             position: relative;
             z-index: 10;
@@ -440,6 +497,7 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             animation: fadeInUp 1s ease;
         }
+        
         .hero-sub {
             font-size: 1.125rem;
             font-weight: 600;
@@ -453,6 +511,7 @@
             border-radius: 40px;
             backdrop-filter: blur(4px);
         }
+        
         .hero-title {
             font-size: clamp(2.8rem, 12vw, 6rem);
             font-weight: 900;
@@ -461,9 +520,11 @@
             color: white;
             text-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
+        
         .hero-title span {
             color: var(--soft-leaf);
         }
+        
         .hero-description {
             font-size: 1.25rem;
             margin-bottom: 2.5rem;
@@ -474,24 +535,36 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.3);
             font-weight: 400;
         }
+        
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
             justify-content: center;
         }
+        
         .hero-actions .btn-primary {
             background-color: var(--deep-green);
             color: white;
             border: none;
             padding: 1rem 2rem;
             font-size: 1.125rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
             box-shadow: 0 20px 30px -10px rgba(0,0,0,0.4);
         }
+        
         .hero-actions .btn-primary:hover {
             background-color: var(--soft-leaf);
             color: var(--jet-black);
+            transform: translateY(-2px);
         }
+        
         .hero-actions .btn-outline {
             background: rgba(255,255,255,0.2);
             backdrop-filter: blur(8px);
@@ -499,21 +572,33 @@
             color: white;
             padding: 1rem 2rem;
             font-size: 1.125rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
         }
+        
         .hero-actions .btn-outline:hover {
             background: white;
             color: var(--deep-green);
             border-color: white;
+            transform: translateY(-2px);
         }
+        
         .hero-stats {
             display: flex;
             justify-content: center;
             gap: 3rem;
             margin-top: 3rem;
         }
+        
         .hero-stat-item {
             text-align: center;
         }
+        
         .hero-stat-number {
             font-size: 2.5rem;
             font-weight: 900;
@@ -521,12 +606,14 @@
             line-height: 1;
             text-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
+        
         .hero-stat-label {
             font-size: 1rem;
             color: white;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
+        
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -538,6 +625,7 @@
             margin-bottom: 1rem;
             color: var(--text-heading);
         }
+        
         .section-sub {
             color: var(--deep-green);
             font-weight: 600;
@@ -545,15 +633,15 @@
             text-transform: uppercase;
             font-size: 0.875rem;
         }
+        
         [data-theme="dark"] .section-sub {
             color: var(--soft-leaf);
         }
+        
         .section-description {
-            color: var(--deep-green);
+            color: var(--text-main);
         }
-        [data-theme="dark"] .section-description {
-            color: #C0E0C0;
-        }
+        
         .card-deep-green-bg {
             background-color: var(--deep-green);
             border-radius: 2rem;
@@ -563,44 +651,43 @@
             transition: transform 0.2s;
             color: var(--pure-white);
         }
+        
         .card-deep-green-bg:hover {
             transform: translateY(-4px);
         }
+        
         .card-deep-green-bg h3, .card-deep-green-bg p {
             color: var(--pure-white);
         }
+        
         .card-soft-white {
-            background-color: var(--pure-white);
+            background-color: var(--card-bg);
             border-radius: 2rem;
             padding: 2rem;
             border: 1px solid var(--soft-leaf);
         }
-        .card-soft-white h3, .card-soft-white p {
-            color: var(--jet-black);
+        
+        .card-soft-white h3 {
+            color: var(--text-heading);
         }
+        
+        .card-soft-white p {
+            color: var(--text-main);
+        }
+        
         [data-theme="dark"] .card-soft-white {
             background-color: #1F2A1F;
             border-color: var(--deep-green);
         }
+        
         [data-theme="dark"] .card-soft-white h3 {
             color: var(--pure-white);
         }
+        
         [data-theme="dark"] .card-soft-white p {
-            color: #D0E8D0;
+            color: #E0F0E0;
         }
-        [data-theme="dark"] .card-soft-white .icon-circle-deep {
-            background-color: rgba(116, 198, 157, 0.2);
-            color: var(--soft-leaf);
-        }
-        .badge-deep {
-            background-color: var(--deep-green);
-            color: white;
-            padding: 0.375rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 700;
-            display: inline-block;
-        }
+        
         .icon-circle-deep {
             width: 4rem;
             height: 4rem;
@@ -612,11 +699,18 @@
             color: var(--deep-green);
             font-size: 1.8rem;
         }
+        
+        [data-theme="dark"] .icon-circle-deep {
+            background-color: rgba(116, 198, 157, 0.2);
+            color: var(--soft-leaf);
+        }
+        
         .grid-3 {
             display: grid;
             gap: 2rem;
             grid-template-columns: 1fr;
         }
+        
         @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(2,1fr); } }
         @media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3,1fr); } }
 
@@ -624,6 +718,7 @@
             display: grid;
             gap: 2rem;
         }
+        
         @media (min-width: 768px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
 
         .gallery-item {
@@ -633,18 +728,24 @@
             border-left: 8px solid var(--deep-green);
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
+        
         .gallery-item h3 {
             color: var(--text-heading);
         }
+        
         .gallery-item p {
-            color: var(--deep-green);
+            color: var(--text-main);
         }
+        
         [data-theme="dark"] .gallery-item {
             background-color: #1F2A1F;
+            border-left-color: var(--soft-leaf);
         }
+        
         [data-theme="dark"] .gallery-item h3 {
             color: var(--pure-white);
         }
+        
         [data-theme="dark"] .gallery-item p {
             color: var(--soft-leaf);
         }
@@ -655,17 +756,21 @@
             padding: 5rem 0;
             color: var(--pure-white);
         }
+        
         .support-title {
             font-size: 3rem;
             color: var(--pure-white);
             margin-bottom: 1.5rem;
         }
+        
         .support-grid {
             display: grid;
             gap: 2rem;
             grid-template-columns: 1fr;
         }
+        
         @media (min-width: 768px) { .support-grid { grid-template-columns: repeat(3, 1fr); } }
+        
         .support-card {
             background-color: rgba(255,255,255,0.1);
             backdrop-filter: blur(4px);
@@ -675,14 +780,17 @@
             transition: background 0.2s;
             color: var(--pure-white);
         }
+        
         .support-card:hover {
             background-color: rgba(255,255,255,0.2);
         }
+        
         .support-card i {
             font-size: 2.5rem;
             color: var(--soft-leaf);
             margin-bottom: 1rem;
         }
+        
         .support-card h3, .support-card p {
             color: var(--pure-white);
         }
@@ -692,17 +800,20 @@
             padding: 5rem 0;
             background-color: var(--bg-secondary);
         }
+        
         .stories-grid {
             display: grid;
             gap: 2rem;
             grid-template-columns: 1fr;
             margin-top: 3rem;
         }
+        
         @media (min-width: 768px) {
             .stories-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
+        
         .story-card {
             background-color: var(--card-bg);
             border-radius: 2rem;
@@ -710,34 +821,41 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s;
         }
+        
         .story-card:hover {
             transform: translateY(-8px);
         }
+        
         .story-image {
             height: 200px;
             background-size: cover;
             background-position: center;
         }
+        
         .story-content {
             padding: 1.5rem;
         }
+        
         .story-date {
             color: var(--soft-leaf);
             font-size: 0.875rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
+        
         .story-title {
             font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
             color: var(--text-heading);
         }
+        
         .story-excerpt {
             color: var(--text-main);
             margin-bottom: 1rem;
             line-height: 1.6;
         }
+        
         .story-link {
             color: var(--deep-green);
             font-weight: 600;
@@ -746,12 +864,18 @@
             gap: 0.5rem;
             transition: gap 0.2s;
         }
+        
         .story-link:hover {
             gap: 0.75rem;
             color: var(--soft-leaf);
         }
+        
         [data-theme="dark"] .story-link {
             color: var(--soft-leaf);
+        }
+        
+        [data-theme="dark"] .story-link:hover {
+            color: var(--pure-white);
         }
 
         /* REDESIGNED FOOTER */
@@ -762,6 +886,7 @@
             position: relative;
             overflow: hidden;
         }
+        
         .footer::before {
             content: '';
             position: absolute;
@@ -771,27 +896,32 @@
             height: 4px;
             background: linear-gradient(90deg, var(--soft-leaf), var(--deep-green), var(--soft-leaf));
         }
+        
         .footer-main {
             display: grid;
             gap: 3rem;
             grid-template-columns: 1fr;
             margin-bottom: 3rem;
         }
+        
         @media (min-width: 768px) {
             .footer-main {
                 grid-template-columns: 2fr 1fr 1fr 2fr;
             }
         }
+        
         .footer-brand {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
+        
         .footer-logo {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
+        
         .footer-logo-icon {
             width: 4rem;
             height: 4rem;
@@ -802,29 +932,35 @@
             justify-content: center;
             border: 2px solid var(--soft-leaf);
         }
+        
         .footer-logo-icon i {
             color: var(--soft-leaf);
             font-size: 2.5rem;
         }
+        
         .footer-logo-text {
             font-size: 1.75rem;
             font-weight: 900;
             color: white;
             letter-spacing: -0.02em;
         }
+        
         .footer-logo-text span {
             color: var(--soft-leaf);
         }
+        
         .footer-tagline {
             color: #B0B0B0;
             font-size: 0.875rem;
             max-width: 300px;
         }
+        
         .footer-social {
             display: flex;
             gap: 1rem;
             margin-top: 1rem;
         }
+        
         .footer-social-link {
             width: 2.5rem;
             height: 2.5rem;
@@ -836,11 +972,13 @@
             color: var(--soft-leaf);
             transition: all 0.2s;
         }
+        
         .footer-social-link:hover {
             background-color: var(--soft-leaf);
             color: var(--jet-black);
             transform: translateY(-3px);
         }
+        
         .footer-heading {
             font-size: 1.125rem;
             font-weight: 700;
@@ -849,6 +987,7 @@
             position: relative;
             padding-bottom: 0.5rem;
         }
+        
         .footer-heading::after {
             content: '';
             position: absolute;
@@ -858,12 +997,15 @@
             height: 2px;
             background-color: var(--soft-leaf);
         }
+        
         .footer-links {
             list-style: none;
         }
+        
         .footer-links li {
             margin-bottom: 0.75rem;
         }
+        
         .footer-links a {
             color: #B0B0B0;
             transition: all 0.2s;
@@ -871,28 +1013,34 @@
             align-items: center;
             gap: 0.5rem;
         }
+        
         .footer-links a:hover {
             color: var(--soft-leaf);
             transform: translateX(5px);
         }
+        
         .footer-links a i {
             font-size: 0.75rem;
             color: var(--soft-leaf);
             opacity: 0;
             transition: opacity 0.2s;
         }
+        
         .footer-links a:hover i {
             opacity: 1;
         }
+        
         .footer-newsletter p {
             color: #B0B0B0;
             margin-bottom: 1rem;
         }
+        
         .newsletter-form {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
         }
+        
         .footer-input {
             width: 100%;
             padding: 0.875rem 1.25rem;
@@ -902,9 +1050,15 @@
             color: var(--pure-white);
             font-size: 0.875rem;
         }
+        
         .footer-input:focus {
             outline: 2px solid var(--soft-leaf);
         }
+        
+        .footer-input::placeholder {
+            color: #6B7280;
+        }
+        
         .footer-btn {
             width: 100%;
             background-color: var(--deep-green);
@@ -920,11 +1074,13 @@
             justify-content: center;
             gap: 0.5rem;
         }
+        
         .footer-btn:hover {
             background-color: var(--soft-leaf);
             color: var(--jet-black);
             transform: scale(1.02);
         }
+        
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 2rem;
@@ -935,25 +1091,30 @@
             gap: 1rem;
             text-align: center;
         }
+        
         @media (min-width: 768px) {
             .footer-bottom {
                 flex-direction: row;
                 justify-content: space-between;
             }
         }
+        
         .copyright {
             color: #B0B0B0;
             font-size: 0.875rem;
         }
+        
         .footer-bottom-links {
             display: flex;
             gap: 2rem;
         }
+        
         .footer-bottom-links a {
             color: #B0B0B0;
             font-size: 0.875rem;
             transition: color 0.2s;
         }
+        
         .footer-bottom-links a:hover {
             color: var(--soft-leaf);
         }
@@ -974,14 +1135,55 @@
             z-index: 100;
             display: none;
         }
-        #scroll-top:hover { background-color: var(--soft-leaf); color: var(--jet-black); }
+        
+        #scroll-top:hover { 
+            background-color: var(--soft-leaf); 
+            color: var(--jet-black); 
+        }
+        
         @media (min-width: 1280px) {
             .desktop-nav { display: flex; }
             .navbar-right-desktop { display: flex; }
             .mobile-menu-btn { display: none; }
         }
+        
         .fade-in-up {
             animation: fadeInUp 0.7s ease;
+        }
+
+        /* Additional dark mode fixes for specific elements */
+        [data-theme="dark"] .story-date {
+            color: var(--soft-leaf);
+        }
+        
+        [data-theme="dark"] .section-description {
+            color: #E0F0E0;
+        }
+        
+        [data-theme="dark"] p:not([class*="color"]) {
+            color: var(--text-main);
+        }
+        
+        [data-theme="dark"] .text-muted {
+            color: var(--text-muted);
+        }
+        
+        /* Habitats section text fixes */
+        .card-deep-green-bg p {
+            color: #f0f7f0 !important;
+        }
+        
+        [data-theme="dark"] .card-deep-green-bg p {
+            color: #e0f0e0 !important;
+        }
+        
+        /* Programs section text fixes */
+        .card-soft-white .story-date {
+            color: var(--text-light) !important;
+        }
+        
+        [data-theme="dark"] .card-soft-white .story-date {
+            color: #B0D0B0 !important;
         }
     </style>
 </head>
@@ -1094,37 +1296,114 @@
 </section>
 
 <!-- HABITATS SECTION – deep green cards with white text (HD imagery backgrounds) -->
-<section style="padding: 5rem 0; background-color: var(--bg-primary);">
-    <div class="container">
-        <div style="text-align: center; max-width: 48rem; margin: 0 auto 3rem;">
-            <span class="section-sub">a living museum</span>
-            <h2 class="section-title">Explore our habitats</h2>
-            <p class="section-description">From ancient oaks to vernal pools — each area teems with life.</p>
-        </div>
-        <div class="grid-3">
-            <div class="card-deep-green-bg" style="background-image: linear-gradient(145deg, #1B4332 0%, #1B4332 100%), url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=1974&auto=format&fit=crop'); background-blend-mode: overlay; background-size: cover;">
-                <div style="background-color: rgba(27,67,50,0.7); border-radius: 2rem; padding: 1.5rem;">
-                    <div class="icon-circle-deep" style="background: rgba(255,255,255,0.2); color: var(--soft-leaf); margin-bottom: 1rem;"><i class="fas fa-tree"></i></div>
-                    <h3 style="font-weight: 700; font-size: 1.5rem; color:white;">Candler Woods</h3>
-                    <p style="margin-top: 0.5rem; color: #f0f7f0;">Old‑growth forest with towering oaks, trillium, and pileated woodpeckers.</p>
-                </div>
-            </div>
-            <div class="card-deep-green-bg" style="background-image: linear-gradient(145deg, #1B4332 0%, #1B4332 100%), url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=2070&auto=format&fit=crop'); background-blend-mode: overlay; background-size: cover;">
-                <div style="background-color: rgba(27,67,50,0.7); border-radius: 2rem; padding: 1.5rem;">
-                    <div class="icon-circle-deep" style="background: rgba(255,255,255,0.2); color: var(--soft-leaf); margin-bottom: 1rem;"><i class="fas fa-water"></i></div>
-                    <h3 style="font-weight: 700; font-size: 1.5rem; color:white;">Heron Wetland</h3>
-                    <p style="margin-top: 0.5rem; color: #f0f7f0;">Boardwalk gallery through cattails – watch for turtles, herons.</p>
-                </div>
-            </div>
-            <div class="card-deep-green-bg" style="background-image: linear-gradient(145deg, #1B4332 0%, #1B4332 100%), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1932&auto=format&fit=crop'); background-blend-mode: overlay; background-size: cover;">
-                <div style="background-color: rgba(27,67,50,0.7); border-radius: 2rem; padding: 1.5rem;">
-                    <div class="icon-circle-deep" style="background: rgba(255,255,255,0.2); color: var(--soft-leaf); margin-bottom: 1rem;"><i class="fas fa-seedling"></i></div>
-                    <h3 style="font-weight: 700; font-size: 1.5rem; color:white;">Prairie Remnant</h3>
-                    <p style="margin-top: 0.5rem; color: #f0f7f0;">Native bluestem, coneflowers, and monarchs in late summer.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<style>
+@media (max-width:1024px){
+.habitat-grid{
+grid-template-columns:repeat(2,1fr) !important;
+}
+}
+
+@media (max-width:600px){
+.habitat-grid{
+grid-template-columns:1fr !important;
+}
+}
+</style>
+
+<section style="padding:5rem 0; background-color:var(--bg-primary);">
+    
+<div class="container">
+
+<!-- TITLE AREA -->
+<div style="text-align:center; max-width:48rem; margin:0 auto 3rem;">
+
+<span style="color:var(--soft-leaf); font-size:14px; letter-spacing:2px; text-transform:uppercase; font-weight:600;">
+A LIVING MUSEUM
+</span>
+
+<h2 style="font-size:2.8rem; font-weight:800; margin-top:0.5rem; color:var(--text-primary);">
+Explore our habitats
+</h2>
+
+<p style="margin-top:0.7rem; font-size:1.05rem; color:var(--text-secondary);">
+From ancient oaks to vernal pools — each area teems with life.
+</p>
+
+</div>
+
+
+<!-- GRID -->
+<div class="habitat-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; padding:0 2rem 2rem 2rem;">
+
+<!-- CARD 1 -->
+<div style="background-image:linear-gradient(145deg,#1B4332,#1B4332),url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=1974&auto=format&fit=crop'); background-blend-mode:overlay; background-size:cover; border-radius:2rem;">
+<div style="background-color:rgba(27,67,50,0.7); border-radius:2rem; padding:1.5rem;">
+
+<div style="background:rgba(255,255,255,0.2); width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
+<i class="fas fa-tree" style="color:white;"></i>
+</div>
+
+<h3 style="font-weight:700; font-size:1.5rem; color:white;">Candler Woods</h3>
+<p style="margin-top:0.5rem; color:#f0f7f0;">
+Old-growth forest with towering oaks, trillium, and pileated woodpeckers.
+</p>
+
+</div>
+</div>
+
+
+<!-- CARD 2 -->
+<div style="background-image:linear-gradient(145deg,#1B4332,#1B4332),url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=2070&auto=format&fit=crop'); background-blend-mode:overlay; background-size:cover; border-radius:2rem;">
+<div style="background-color:rgba(27,67,50,0.7); border-radius:2rem; padding:1.5rem;">
+
+<div style="background:rgba(255,255,255,0.2); width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
+<i class="fas fa-water" style="color:white;"></i>
+</div>
+
+<h3 style="font-weight:700; font-size:1.5rem; color:white;">Heron Wetland</h3>
+<p style="margin-top:0.5rem; color:#f0f7f0;">
+Boardwalk gallery through cattails – watch for turtles and herons.
+</p>
+
+</div>
+</div>
+
+
+<!-- CARD 3 -->
+<div style="background-image:linear-gradient(145deg,#1B4332,#1B4332),url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1932&auto=format&fit=crop'); background-blend-mode:overlay; background-size:cover; border-radius:2rem;">
+<div style="background-color:rgba(27,67,50,0.7); border-radius:2rem; padding:1.5rem;">
+
+<div style="background:rgba(255,255,255,0.2); width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
+<i class="fas fa-seedling" style="color:white;"></i>
+</div>
+
+<h3 style="font-weight:700; font-size:1.5rem; color:white;">Prairie Remnant</h3>
+<p style="margin-top:0.5rem; color:#f0f7f0;">
+Native bluestem, coneflowers, and monarchs in late summer and pileated woodpeckers..
+</p>
+
+</div>
+</div>
+
+
+<!-- CARD 4 -->
+<div style="background-image:linear-gradient(145deg,#1B4332,#1B4332),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1974&auto=format&fit=crop'); background-blend-mode:overlay; background-size:cover; border-radius:2rem;">
+<div style="background-color:rgba(27,67,50,0.7); border-radius:2rem; padding:1.5rem;">
+
+<div style="background:rgba(255,255,255,0.2); width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
+<i class="fas fa-leaf" style="color:white;"></i>
+</div>
+
+<h3 style="font-weight:700; font-size:1.5rem; color:white;">Botanical Meadow</h3>
+<p style="margin-top:0.5rem; color:#f0f7f0;">
+Wild grasses, seasonal flowers, and butterflies thriving in open sun.
+</p>
+
+</div>
+</div>
+
+</div>
+</div>
 </section>
 
 <!-- Gallery PREVIEW – soft white / fresh green -->
@@ -1134,7 +1413,7 @@
             <div>
                 <span class="section-sub">self‑guided Gallery</span>
                 <h2 class="section-title" style="font-size: 3rem;">Wander & wonder</h2>
-                <p style="margin-bottom: 2rem; color: var(--deep-green);">Pick up a map at the galleryhead or download our app. Benches and shaded rest spots along every path.</p>
+                <p style="margin-bottom: 2rem; color: var(--text-main);">Pick up a map at the galleryhead or download our app. Benches and shaded rest spots along every path.</p>
                 <div class="gallery-item" style="margin-bottom: 1rem;">
                     <h3 style="font-weight: 700;">🌲 Fern Canyon gallery – 1.2 miles</h3>
                     <p>Easy • boardwalk & packed soil</p>
@@ -1157,37 +1436,69 @@
 </section>
 
 <!-- EVENTS SECTION – pure white cards with green details -->
-<section style="padding: 5rem 0; background-color: var(--bg-primary);">
-    <div class="container">
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <span class="section-sub">seasonal programs</span>
-            <h2 class="section-title">Learn with naturalists</h2>
-        </div>
-        <div class="grid-3">
-            <div class="card-soft-white">
-                <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
-                    <div class="icon-circle-deep"><i class="fas fa-calendar-alt"></i></div>
-                    <div><h3 style="font-weight: 700;">Bird walk</h3><br><p class="story-date"> Sat 9am</p></div>
-                </div>
-                <p>Identify migratory warblers with binoculars provided.</p>
-            </div>
-            <div class="card-soft-white">
-                <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
-                    <div class="icon-circle-deep"><i class="fas fa-hand-holding-heart"></i></div>
-                    <div><h3 style="font-weight: 700;">Native plant sale</h3><br><p class="story-date"> May 10–12</p></div>
-                </div>
-                <p>Help restore habitats – take home wildflower seedlings.</p>
-            </div>
-            <div class="card-soft-white">
-                <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
-                    <div class="icon-circle-deep"><i class="fas fa-camera"></i></div>
-                    <div><h3 style="font-weight: 700;">Forest photography</h3><br><p class="story-date"> Jun 2</p></div>
-                </div>
-                <p>Workshop with a professional nature photographer.</p>
+<div class="programs-grid" style="
+    display: grid; 
+    gap: 1.5rem; 
+    padding: 3rem;
+    grid-template-columns: repeat(1, 1fr);
+">
+    
+    <style>
+        /* Tablet/iPad View (2 columns, 2 rows) */
+        @media (min-width: 640px) {
+            .programs-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        /* Desktop View (1 row, 4 columns) */
+        @media (min-width: 1024px) {
+            .programs-grid { grid-template-columns: repeat(4, 1fr) !important; }
+        }
+    </style>
+
+    <div class="card-soft-white" style="padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <div class="icon-circle-deep"><i class="fas fa-calendar-alt"></i></div>
+            <div style="display: flex; flex-direction: column;">
+                <h3 style="font-weight: 700; margin: 0; line-height: 1.2;">Bird walk</h3>
+                <p class="story-date" style="margin: 0; font-size: 0.9rem;">Sat 9am</p>
             </div>
         </div>
+        <p>Identify migratory warblers with binoculars provided.</p>
     </div>
-</section>
+
+    <div class="card-soft-white" style="padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <div class="icon-circle-deep"><i class="fas fa-hand-holding-heart"></i></div>
+            <div style="display: flex; flex-direction: column;">
+                <h3 style="font-weight: 700; margin: 0; line-height: 1.2;">Native plant sale</h3>
+                <p class="story-date" style="margin: 0; font-size: 0.9rem;">May 10–12</p>
+            </div>
+        </div>
+        <p>Help restore habitats – take home wildflower seedlings.</p>
+    </div>
+
+    <div class="card-soft-white" style="padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <div class="icon-circle-deep"><i class="fas fa-camera"></i></div>
+            <div style="display: flex; flex-direction: column;">
+                <h3 style="font-weight: 700; margin: 0; line-height: 1.2;">Forest photography</h3>
+                <p class="story-date" style="margin: 0; font-size: 0.9rem;">Jun 2</p>
+            </div>
+        </div>
+        <p>Workshop with a professional nature photographer.</p>
+    </div>
+
+    <div class="card-soft-white" style="padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <div class="icon-circle-deep"><i class="fas fa-moon"></i></div>
+            <div style="display: flex; flex-direction: column;">
+                <h3 style="font-weight: 700; margin: 0; line-height: 1.2;">Twilight hike</h3>
+                <p class="story-date" style="margin: 0; font-size: 0.9rem;">Fri 8pm</p>
+            </div>
+        </div>
+        <p>Experience the woods after dark and listen for Great Horned Owls.</p>
+    </div>
+
+</div>
 
 <!-- GARDEN STORIES SECTION -->
 <section class="stories-section">
@@ -1203,7 +1514,7 @@
                 <div class="story-content">
                     <div class="story-date">May 15, 2026</div>
                     <h3 class="story-title">The Return of the Warblers</h3>
-                    <p class="story-excerpt">Spring migration brings a symphony of color and song to Candler Woods. Our naturalist spots 23 species in one morning.</p>
+                    <p class="story-excerpt">Spring migration brings a symphony of color and song to Candler Woods. Our naturalist.</p>
                     <a href="#" class="story-link">Read more <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -1212,7 +1523,7 @@
                 <div class="story-content">
                     <div class="story-date">April 28, 2026</div>
                     <h3 class="story-title">Prairie Restoration </h3>
-                    <p class="story-excerpt">Thanks to volunteers, over 2,000 native seedlings now call the prairie remnant home. See the transformation.</p>
+                    <p class="story-excerpt">Thanks to volunteers, over 2,000 native seedlings now call the prairie remnant home. </p>
                     <a href="#" class="story-link">Read more <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -1221,7 +1532,7 @@
                 <div class="story-content">
                     <div class="story-date">April 10, 2026</div>
                     <h3 class="story-title">Night Skies  Wetland</h3>
-                    <p class="story-excerpt">Our first astronomy night of the season drew 80 visitors. The herons seemed to enjoy it too.Thanks to volunteers.</p>
+                    <p class="story-excerpt">Our first astronomy night of the season drew 80 visitors and enjoy it too.</p>
                     <a href="#" class="story-link">Read more <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
