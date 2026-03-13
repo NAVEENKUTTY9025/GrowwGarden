@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>Admin · Groww Garden</title>
-    <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <title>Admin · Botanical Garden</title>
+    <link rel="icon" type="image/jpeg" href="/images/Botanicalpark_logo.jpg" />
     <!-- favicon -->
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -241,6 +241,11 @@
             transition: var(--transition);
             font-weight: 500;
             font-size: 0.95rem;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
         }
         .nav-link:hover {
             background-color: var(--sidebar-hover);
@@ -460,11 +465,17 @@
             color: black;
         }
 
-        /* Dashboard content */
+        /* ----- DASHBOARD CONTENT SECTIONS (only active shown) ----- */
         .dashboard-content {
             padding: 30px 24px;
             flex: 1;
             background-color: var(--bg-primary);
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active-section {
+            display: block;
         }
         .content-header {
             margin-bottom: 30px;
@@ -603,6 +614,7 @@
             font-weight: 600;
             transition: var(--transition);
             white-space: nowrap;
+            cursor: pointer;
         }
         [data-theme="dark"] .card-header a {
             color: var(--soft-leaf);
@@ -1202,23 +1214,25 @@
         <div class="sidebar-header">
             <a href="index.html" class="logo">
                 <div class="logo-icon"><i class="fas fa-tree"></i></div>
-                <div>
-                    <div class="logo-text">Groww<span> Garden</span></div>
-                    <span class="logo-tagline">botanical preserve</span>
-                </div>
+                <div class="logo-text-wrapper">
+    <div class="logo-text" style="white-space:nowrap; font-size:1.4em;">
+        Botanical<span> Garden</span>
+    </div>
+    <span class="logo-tagline">botanical preserve</span>
+</div>
             </a>
         </div>
         <nav class="sidebar-nav">
             <div class="nav-title">SANCTUARY</div>
             <ul class="nav-menu">
-                <li><a href="#overview" class="nav-link active" data-section="overview"><i class="fas fa-leaf"></i> Dashboard</a></li>
-                <li><a href="#visitors" class="nav-link" data-section="visitors"><i class="fas fa-users"></i> Visitors</a></li>
-                <li><a href="#bookings" class="nav-link" data-section="bookings"><i class="fas fa-calendar-check"></i> Tour Bookings</a></li>
-                <li><a href="#habitats" class="nav-link" data-section="habitats"><i class="fas fa-seedling"></i> Habitats</a></li>
-                <li><a href="#events" class="nav-link" data-section="events"><i class="fas fa-calendar-alt"></i> Events</a></li>
-                <li><a href="#messages" class="nav-link" data-section="messages"><i class="fas fa-envelope"></i> Messages</a></li>
-                <li><a href="#reports" class="nav-link" data-section="reports"><i class="fas fa-chart-line"></i> Reports</a></li>
-                <li><a href="#settings" class="nav-link" data-section="settings"><i class="fas fa-sliders-h"></i> Settings</a></li>
+                <li><button class="nav-link active" data-section="overview"><i class="fas fa-leaf"></i> Dashboard</button></li>
+                <li><button class="nav-link" data-section="visitors"><i class="fas fa-users"></i> Visitors</button></li>
+                <li><button class="nav-link" data-section="bookings"><i class="fas fa-calendar-check"></i> Tour Bookings</button></li>
+                <li><button class="nav-link" data-section="habitats"><i class="fas fa-seedling"></i> Habitats</button></li>
+                <li><button class="nav-link" data-section="events"><i class="fas fa-calendar-alt"></i> Events</button></li>
+                <li><button class="nav-link" data-section="messages"><i class="fas fa-envelope"></i> Messages</button></li>
+                <li><button class="nav-link" data-section="reports"><i class="fas fa-chart-line"></i> Reports</button></li>
+                <li><button class="nav-link" data-section="settings"><i class="fas fa-sliders-h"></i> Settings</button></li>
             </ul>
         </nav>
         <div class="sidebar-footer">
@@ -1253,25 +1267,49 @@
         </header>
 
         <section class="dashboard-content" id="dashboardContent">
-            <div class="content-header">
-                <h1><i class="fas fa-seedling"></i> Groww Garden · Stewardship</h1>
-                <p>Monitor trails, memberships, and habitat health</p>
-            </div>
-
-            <!-- OVERVIEW stats -->
-            <section id="overview">
+            <!-- ========== SECTION: OVERVIEW (DASHBOARD) ========== -->
+            <div id="overview-section" class="content-section active-section">
+                <div class="content-header">
+                    <h1><i class="fas fa-seedling"></i> Botanical Garden · Stewardship</h1>
+                    <p>Monitor trails, memberships, and habitat health</p>
+                </div>
                 <div class="stats-grid">
                     <div class="stat-card"><div class="stat-header"><div class="stat-icon"><i class="fas fa-tree"></i></div><span class="stat-change"><i class="fas fa-arrow-up"></i> 8%</span></div><div class="stat-value">3,240</div><div class="stat-label">Members</div></div>
                     <div class="stat-card"><div class="stat-header"><div class="stat-icon"><i class="fas fa-person-hiking"></i></div><span class="stat-change"><i class="fas fa-arrow-up"></i> 12%</span></div><div class="stat-value">1,892</div><div class="stat-label">Visitors (this week)</div></div>
                     <div class="stat-card"><div class="stat-header"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><span class="stat-change"><i class="fas fa-arrow-up"></i> 5%</span></div><div class="stat-value">47</div><div class="stat-label">Guided tours</div></div>
                     <div class="stat-card"><div class="stat-header"><div class="stat-icon"><i class="fas fa-hand-holding-heart"></i></div><span class="stat-change"><i class="fas fa-arrow-up"></i> 21%</span></div><div class="stat-value">$8,430</div><div class="stat-label">Donations (MTD)</div></div>
                 </div>
-            </section>
+                <!-- quick links to other sections (previews) -->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header"><h3>Recent visitor check‑ins</h3><a class="section-trigger" data-section="visitors">View all <i class="fas fa-arrow-right"></i></a></div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="admin-table">
+                                    <thead><tr><th>Visitor</th><th>Membership</th><th>Checked in</th></tr></thead>
+                                    <tbody>
+                                        <tr><td><div class="user-cell"><div class="user-avatar-sm">EC</div>Elena Cruz</div></td><td>Family Plus</td><td>09:45 AM</td></tr>
+                                        <tr><td><div class="user-cell"><div class="user-avatar-sm">MR</div>Mark Rivera</div></td><td>Individual</td><td>10:12 AM</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-header"><h3>Upcoming tour bookings</h3><a class="section-trigger" data-section="bookings">Manage <i class="fas fa-arrow-right"></i></a></div>
+                        <div class="card-body">
+                            <div class="booking-item"><div class="booking-info"><h4>🌲 Fern Canyon walk</h4><div class="booking-meta">Today 2pm · 8 guests</div></div><span class="booking-status status-active">Confirmed</span></div>
+                            <div class="booking-item"><div class="booking-info"><h4>🌾 Prairie sunrise</h4><div class="booking-meta">Tomorrow 7am · 4 guests</div></div><span class="booking-status status-active">Confirmed</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <!-- VISITORS table -->
-            <section id="visitors">
+            <!-- ========== SECTION: VISITORS (elaborate) ========== -->
+            <div id="visitors-section" class="content-section">
+                <div class="content-header"><h1><i class="fas fa-users"></i> Visitor Management</h1><p>All check-ins, memberships, and visitor stats</p></div>
                 <div class="dashboard-card full-width-card">
-                    <div class="card-header"><h3>Recent visitor check‑ins</h3><a href="#">View all <i class="fas fa-arrow-right"></i></a></div>
+                    <div class="card-header"><h3>Today's visitors (42)</h3><a href="#">export</a></div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="admin-table">
@@ -1281,40 +1319,42 @@
                                     <tr><td><div class="user-cell"><div class="user-avatar-sm">MR</div>Mark Rivera</div></td><td>mark.r@example.com</td><td>Individual</td><td>10:12 AM</td><td><button class="action-btn"><i class="fas fa-eye"></i></button></td></tr>
                                     <tr><td><div class="user-cell"><div class="user-avatar-sm">SW</div>Sophia Wu</div></td><td>sophia.w@example.com</td><td>Student</td><td>10:30 AM</td><td><button class="action-btn"><i class="fas fa-eye"></i></button></td></tr>
                                     <tr><td><div class="user-cell"><div class="user-avatar-sm">JL</div>James Liu</div></td><td>james.liu@example.com</td><td>Supporter</td><td>11:05 AM</td><td><button class="action-btn"><i class="fas fa-eye"></i></button></td></tr>
+                                    <tr><td><div class="user-cell"><div class="user-avatar-sm">AK</div>Amira Khan</div></td><td>amira@example.com</td><td>Individual</td><td>11:42 AM</td><td><button class="action-btn"><i class="fas fa-eye"></i></button></td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- bookings + messages grid -->
-            <div class="dashboard-grid">
-                <div class="dashboard-card" id="bookings">
-                    <div class="card-header"><h3>Upcoming tour bookings</h3><a href="#">Manage <i class="fas fa-arrow-right"></i></a></div>
-                    <div class="card-body">
-                        <div class="booking-item"><div class="booking-info"><h4>🌲 Fern Canyon walk</h4><div class="booking-meta">Today 2pm · 8 guests</div></div><span class="booking-status status-active">Confirmed</span></div>
-                        <div class="booking-item"><div class="booking-info"><h4>🌾 Prairie sunrise</h4><div class="booking-meta">Tomorrow 7am · 4 guests</div></div><span class="booking-status status-active">Confirmed</span></div>
-                        <div class="booking-item"><div class="booking-info"><h4>🦋 Monarch workshop</h4><div class="booking-meta">Sat 10am · 12 guests</div></div><span class="booking-status status-pending">Pending</span></div>
-                        <div class="booking-item"><div class="booking-info"><h4>🌿 Heron wetland kayak</h4><div class="booking-meta">Sun 9am · 6 guests</div></div><span class="booking-status status-active">Confirmed</span></div>
-                    </div>
+                <div class="stats-grid" style="margin-top:20px;">
+                    <div class="stat-card"><div class="stat-value">214</div><div class="stat-label">Weekly visitors</div></div>
+                    <div class="stat-card"><div class="stat-value">58%</div><div class="stat-label">Member ratio</div></div>
                 </div>
-                <div class="dashboard-card" id="messages">
-                    <div class="card-header"><h3>Recent inquiries</h3><a href="#">All messages <i class="fas fa-arrow-right"></i></a></div>
-                    <div class="card-body">
-                        <div class="message-item"><div class="message-avatar">MC</div><div class="message-content"><div class="message-header"><span class="message-sender">Mia Chen</span><span class="message-time">25 min</span></div><div class="message-text">Are dogs allowed on the trails?</div></div></div>
-                        <div class="message-item"><div class="message-avatar">TR</div><div class="message-content"><div class="message-header"><span class="message-sender">Tomas Reyes</span><span class="message-time">2h</span></div><div class="message-text">I'd like to volunteer for prairie restoration</div></div></div>
-                        <div class="message-item"><div class="message-avatar">LK</div><div class="message-content"><div class="message-header"><span class="message-sender">Leila K.</span><span class="message-time">yesterday</span></div><div class="message-text">When is the next native plant sale?</div></div></div>
+            </div>
+
+            <!-- ========== SECTION: TOUR BOOKINGS ========== -->
+            <div id="bookings-section" class="content-section">
+                <div class="content-header"><h1><i class="fas fa-calendar-check"></i> Tour Bookings</h1><p>Manage guided walks and programs</p></div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card full-width-card">
+                        <div class="card-header"><h3>All upcoming tours</h3><a href="#">+ new booking</a></div>
+                        <div class="card-body">
+                            <div class="booking-item"><div class="booking-info"><h4>🌲 Fern Canyon walk</h4><div class="booking-meta">Today 2pm · 8 guests · guide: Mateo</div></div><span class="booking-status status-active">Confirmed</span></div>
+                            <div class="booking-item"><div class="booking-info"><h4>🌾 Prairie sunrise</h4><div class="booking-meta">Tomorrow 7am · 4 guests · guide: Jen</div></div><span class="booking-status status-active">Confirmed</span></div>
+                            <div class="booking-item"><div class="booking-info"><h4>🦋 Monarch workshop</h4><div class="booking-meta">Sat 10am · 12 guests · guide: Elena</div></div><span class="booking-status status-pending">Pending</span></div>
+                            <div class="booking-item"><div class="booking-info"><h4>🌿 Heron wetland kayak</h4><div class="booking-meta">Sun 9am · 6 guests · guide: Carlos</div></div><span class="booking-status status-active">Confirmed</span></div>
+                            <div class="booking-item"><div class="booking-info"><h4>📸 Night photography</h4><div class="booking-meta">Mon 7pm · 5 guests · guide: River</div></div><span class="booking-status status-pending">Pending</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- HABITATS section -->
-            <section id="habitats">
+            <!-- ========== SECTION: HABITATS ========== -->
+            <div id="habitats-section" class="content-section">
+                <div class="content-header"><h1><i class="fas fa-seedling"></i> Habitat Health</h1><p>Real-time monitoring of natural areas</p></div>
                 <div class="dashboard-card full-width-card">
-                    <div class="card-header"><h3>🌱 Habitat & collection health</h3><a href="#">details</a></div>
+                    <div class="card-header"><h3>🌱 Habitat & collection health</h3><a href="#">detailed report</a></div>
                     <div class="card-body">
-                        <div class="reports-grid" style="grid-template-columns: repeat(4,1fr);">
+                        <div class="reports-grid" style="grid-template-columns: repeat(2,1fr);">
                             <div class="report-card"><h4>Candler Woods</h4><div class="report-value">92%</div><span>canopy health</span></div>
                             <div class="report-card"><h4>Heron Wetland</h4><div class="report-value">87%</div><span>water quality</span></div>
                             <div class="report-card"><h4>Prairie remnant</h4><div class="report-value">78%</div><span>native cover</span></div>
@@ -1322,53 +1362,79 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- EVENTS + REPORTS (FIXED MONTHLY SNAPSHOT GRID) -->
-            <div class="dashboard-grid">
-                <div class="dashboard-card" id="events">
-                    <div class="card-header"><h3>Upcoming events</h3><a href="#">edit</a></div>
-                    <div class="card-body">
-                        <div class="booking-item"><div class="booking-info"><h4>🌕 Full moon walk</h4><div class="booking-meta">May 25 · 7:30pm</div></div><span class="booking-status status-active">56 spots</span></div>
-                        <div class="booking-item"><div class="booking-info"><h4>🐦 Bird banding demo</h4><div class="booking-meta">June 2 · 8am</div></div><span class="booking-status status-active">24 spots</span></div>
-                        <div class="booking-item"><div class="booking-info"><h4>📸 Macro photo workshop</h4><div class="booking-meta">June 10 · 9am</div></div><span class="booking-status status-pending">12 pending</span></div>
-                    </div>
-                </div>
-                <div class="dashboard-card" id="reports">
-                    <div class="card-header"><h3>Monthly report snapshot</h3><a href="#">download</a></div>
-                    <div class="card-body">
-                        <!-- FIXED: neat 2x2 grid for 1024x1366 (and above) -->
-                        <div class="reports-grid" style="grid-template-columns: repeat(2,1fr);">
-                            <div class="report-card"><h4>total visits</h4><div class="report-value">7.2k</div></div>
-                            <div class="report-card"><h4>new members</h4><div class="report-value">203</div></div>
-                            <div class="report-card"><h4>donations</h4><div class="report-value">$8.4k</div></div>
-                            <div class="report-card"><h4>event attendance</h4><div class="report-value">412</div></div>
+            <!-- ========== SECTION: EVENTS ========== -->
+            <div id="events-section" class="content-section">
+                <div class="content-header"><h1><i class="fas fa-calendar-alt"></i> Events & Programs</h1><p>Public and member events</p></div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card full-width-card">
+                        <div class="card-header"><h3>Upcoming events</h3><a href="#">create event</a></div>
+                        <div class="card-body">
+                            <div class="booking-item"><div class="booking-info"><h4>🌕 Full moon walk</h4><div class="booking-meta">May 25 · 7:30pm · 56 spots left</div></div><span class="booking-status status-active">56 spots</span></div>
+                            <div class="booking-item"><div class="booking-info"><h4>🐦 Bird banding demo</h4><div class="booking-meta">June 2 · 8am · 24 spots</div></div><span class="booking-status status-active">24 spots</span></div>
+                            <div class="booking-item"><div class="booking-info"><h4>📸 Macro photo workshop</h4><div class="booking-meta">June 10 · 9am · 12 pending</div></div><span class="booking-status status-pending">12 pending</span></div>
+                            <div class="booking-item"><div class="booking-info"><h4>🌿 Native plant sale</h4><div class="booking-meta">June 15 · 10am · free</div></div><span class="booking-status status-active">no reg</span></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SETTINGS -->
-            <section id="settings">
-                <div class="dashboard-card">
-                    <div class="card-header"><h3>Preserve settings</h3><a href="#">save</a></div>
+            <!-- ========== SECTION: MESSAGES ========== -->
+            <div id="messages-section" class="content-section">
+                <div class="content-header"><h1><i class="fas fa-envelope"></i> Inquiries</h1><p>Visitor questions & naturalist notes</p></div>
+                <div class="dashboard-card full-width-card">
+                    <div class="card-header"><h3>Recent messages</h3><a href="#">mark all read</a></div>
                     <div class="card-body">
-                        <div class="settings-grid">
-                            <div class="setting-item"><div class="setting-info"><h4>Online booking</h4><p>accept tour reservations</p></div><div class="toggle-switch active"></div></div>
-                            <div class="setting-item"><div class="setting-info"><h4>Member discounts</h4><p>auto-apply 10%</p></div><div class="toggle-switch active"></div></div>
-                            <div class="setting-item"><div class="setting-info"><h4>Donation goal</h4><p>display progress bar</p></div><div class="toggle-switch"></div></div>
-                            <div class="setting-item"><div class="setting-info"><h4>Trail alerts</h4><p>notify visitors of closures</p></div><div class="toggle-switch active"></div></div>
+                        <div class="message-item"><div class="message-avatar">MC</div><div class="message-content"><div class="message-header"><span class="message-sender">Mia Chen</span><span class="message-time">25 min</span></div><div class="message-text">Are dogs allowed on the trails?</div></div></div>
+                        <div class="message-item"><div class="message-avatar">TR</div><div class="message-content"><div class="message-header"><span class="message-sender">Tomas Reyes</span><span class="message-time">2h</span></div><div class="message-text">I'd like to volunteer for prairie restoration</div></div></div>
+                        <div class="message-item"><div class="message-avatar">LK</div><div class="message-content"><div class="message-header"><span class="message-sender">Leila K.</span><span class="message-time">yesterday</span></div><div class="message-text">When is the next native plant sale?</div></div></div>
+                        <div class="message-item"><div class="message-avatar">RN</div><div class="message-content"><div class="message-header"><span class="message-sender">Ranger Nate</span><span class="message-time">2d</span></div><div class="message-text">Candler Woods trail has a fallen tree – closed until Friday.</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== SECTION: REPORTS ========== -->
+            <div id="reports-section" class="content-section">
+                <div class="content-header"><h1><i class="fas fa-chart-line"></i> Monthly Reports</h1><p>Key metrics and trends</p></div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card full-width-card">
+                        <div class="card-header"><h3>May snapshot</h3><a href="#">download PDF</a></div>
+                        <div class="card-body">
+                            <div class="reports-grid" style="grid-template-columns: repeat(2,1fr);">
+                                <div class="report-card"><h4>total visits</h4><div class="report-value">7.2k</div><span>+12% vs Apr</span></div>
+                                <div class="report-card"><h4>new members</h4><div class="report-value">203</div><span>+8%</span></div>
+                                <div class="report-card"><h4>donations</h4><div class="report-value">$8.4k</div><span>+21%</span></div>
+                                <div class="report-card"><h4>event attendance</h4><div class="report-value">412</div><span>+5%</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+
+            <!-- ========== SECTION: SETTINGS ========== -->
+            <div id="settings-section" class="content-section">
+                <div class="content-header"><h1><i class="fas fa-sliders-h"></i> Preserve Settings</h1><p>Configure garden systems</p></div>
+                <div class="dashboard-card full-width-card">
+                    <div class="card-header"><h3>Preferences</h3><a href="#" class="btn-save" style="background:transparent; border:none; color:var(--deep-green);">save all</a></div>
+                    <div class="card-body">
+                        <div class="settings-grid">
+                            <div class="setting-item"><div class="setting-info"><h4>Online booking</h4><p>accept tour reservations</p></div><div class="toggle-switch active"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Member discounts</h4><p>auto-apply 10% at shop</p></div><div class="toggle-switch active"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Donation goal</h4><p>display progress bar</p></div><div class="toggle-switch"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Trail alerts</h4><p>notify visitors of closures</p></div><div class="toggle-switch active"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Volunteer signups</h4><p>enable workday registration</p></div><div class="toggle-switch active"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- footer inside main -->
             <footer class="dashboard-footer">
                 <div class="footer-links">
                     <a href="#">Trail map</a><a href="#">Membership</a><a href="#">Contact ranger</a><a href="#">Privacy</a>
                 </div>
-                <div>© 2026 Groww Garden · a living sanctuary</div>
+                <div>© 2026 Botanical Garden · a living sanctuary</div>
             </footer>
         </section>
 
@@ -1403,35 +1469,105 @@
             const logoutModal = document.getElementById('logoutModal');
             const cancelLogout = document.getElementById('cancelLogout');
             const confirmLogout = document.getElementById('confirmLogout');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('section[id]');
+            const pageTitle = document.querySelector('.page-title'); // for updating if needed
 
-            // THEME TOGGLE with icon update and dark mode visibility fixes
+            // ----- SECTION SWITCHING -----
+            const navLinks = document.querySelectorAll('.nav-link[data-section]');
+            const sections = {
+                overview: document.getElementById('overview-section'),
+                visitors: document.getElementById('visitors-section'),
+                bookings: document.getElementById('bookings-section'),
+                habitats: document.getElementById('habitats-section'),
+                events: document.getElementById('events-section'),
+                messages: document.getElementById('messages-section'),
+                reports: document.getElementById('reports-section'),
+                settings: document.getElementById('settings-section')
+            };
+
+            // map section id to header title (optional)
+            const sectionTitles = {
+                overview: '🌿 GARDEN ADMIN',
+                visitors: '👥 VISITOR MANAGEMENT',
+                bookings: '📅 TOUR BOOKINGS',
+                habitats: '🌱 HABITAT HEALTH',
+                events: '🎉 EVENTS',
+                messages: '💬 INQUIRIES',
+                reports: '📊 REPORTS',
+                settings: '⚙️ SETTINGS'
+            };
+
+            function activateSection(sectionId) {
+                // hide all sections
+                Object.values(sections).forEach(sec => {
+                    if (sec) sec.classList.remove('active-section');
+                });
+                // show selected
+                if (sections[sectionId]) {
+                    sections[sectionId].classList.add('active-section');
+                }
+                // update active class on nav buttons
+                navLinks.forEach(link => {
+                    if (link.dataset.section === sectionId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+                // update page title
+                if (pageTitle && sectionTitles[sectionId]) {
+                    pageTitle.textContent = sectionTitles[sectionId];
+                }
+                // close mobile sidebar if open
+                if (window.innerWidth < 1024) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    body.style.overflow = 'auto';
+                    if (mobileToggle) mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            }
+
+            // add click handlers to nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.dataset.section;
+                    activateSection(sectionId);
+                });
+            });
+
+            // handle "View all" / "Manage" links inside cards
+            document.querySelectorAll('.section-trigger').forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.dataset.section;
+                    if (sectionId && sections[sectionId]) {
+                        activateSection(sectionId);
+                    }
+                });
+            });
+
+            // ----- THEME TOGGLE -----
             themeToggle?.addEventListener('click', ()=>{
                 const currentTheme = html.getAttribute('data-theme') || 'light';
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 html.setAttribute('data-theme', newTheme);
-                // update icon
                 themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
                 localStorage.setItem('garden-theme', newTheme);
             });
 
-            // RTL TOGGLE - now sidebar works correctly (fixed CSS)
+            // ----- RTL TOGGLE -----
             rtlBtn?.addEventListener('click', ()=>{
                 body.classList.toggle('rtl');
                 const isRTL = body.classList.contains('rtl');
                 localStorage.setItem('garden-rtl', isRTL);
-                
-                // If sidebar is open in mobile, ensure it stays on correct side
                 if (sidebar.classList.contains('active') && window.innerWidth < 1024) {
-                    // reposition is automatic via left/right rules
-                    // just trigger reflow
+                    // reposition is automatic
                     sidebar.style.transition = 'none';
                     setTimeout(() => { sidebar.style.transition = ''; }, 50);
                 }
             });
 
-            // mobile menu toggle
+            // ----- MOBILE MENU TOGGLE -----
             mobileToggle?.addEventListener('click', ()=>{
                 sidebar.classList.toggle('active');
                 overlay.classList.toggle('active');
@@ -1443,52 +1579,22 @@
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
                 body.style.overflow = 'auto';
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                if (mobileToggle) mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
             });
 
-            // nav active + smooth scroll
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e)=>{
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href');
-                    if(targetId && targetId!=='#') {
-                        const target = document.querySelector(targetId);
-                        if(target) target.scrollIntoView({behavior:'smooth'});
-                    }
-                    navLinks.forEach(l=> l.classList.remove('active'));
-                    link.classList.add('active');
-                    if(window.innerWidth < 1024) {
-                        sidebar.classList.remove('active');
-                        overlay.classList.remove('active');
-                        body.style.overflow = 'auto';
-                        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                });
-            });
-
-            // scroll active section & back to top
+            // ----- BACK TO TOP -----
             window.addEventListener('scroll', ()=>{
-                let current = '';
-                sections.forEach(s=>{
-                    const top = s.offsetTop - 100;
-                    if(window.scrollY >= top) current = s.getAttribute('id');
-                });
-                navLinks.forEach(link=>{
-                    link.classList.remove('active');
-                    if(link.getAttribute('href') === '#'+current) link.classList.add('active');
-                });
                 backToTop?.classList.toggle('visible', window.scrollY > 300);
             });
-
             backToTop?.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
 
-            // logout modal
+            // ----- LOGOUT MODAL -----
             logoutBtn?.addEventListener('click', (e)=>{ e.preventDefault(); logoutModal.classList.add('active'); });
             cancelLogout?.addEventListener('click', ()=> logoutModal.classList.remove('active'));
             confirmLogout?.addEventListener('click', ()=> window.location.href='login.html');
             window.addEventListener('click', (e)=> e.target === logoutModal && logoutModal.classList.remove('active'));
 
-            // toggle switches demo
+            // ----- TOGGLE SWITCHES (settings) -----
             document.querySelectorAll('.toggle-switch').forEach(t=> {
                 t.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1496,20 +1602,19 @@
                 });
             });
 
-            // action buttons demo
+            // ----- ACTION BUTTONS DEMO -----
             document.querySelectorAll('.action-btn').forEach(btn=>{
                 btn.addEventListener('click', (e)=>{
                     e.stopPropagation();
-                    if(btn.classList.contains('delete')) alert('Delete action (demo)');
-                    else alert('View details (demo)');
+                    alert('Details (demo)');
                 });
             });
 
-            // load saved theme & rtl
+            // ----- LOAD SAVED THEME & RTL -----
             const savedTheme = localStorage.getItem('garden-theme');
             if (savedTheme) {
                 html.setAttribute('data-theme', savedTheme);
-                themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                if (themeToggle) themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
             }
             const savedRTL = localStorage.getItem('garden-rtl');
             if (savedRTL === 'true') {
@@ -1518,8 +1623,8 @@
                 body.classList.remove('rtl');
             }
 
-            // dispatch scroll to set active nav
-            setTimeout(() => window.dispatchEvent(new Event('scroll')), 100);
+            // ----- DEFAULT ACTIVE SECTION (overview) -----
+            activateSection('overview');
         })();
     </script>
 </body>
