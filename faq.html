@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Botanical Garden FAQ – answers to common questions about hours, Gallery, events, and visiting.">
+    <meta name="description" content="Botanical Garden FAQ – answers to common questions about hours, trails, events, and visiting.">
     <title>FAQ | Botanical Garden</title>
     <link rel="icon" type="image/jpeg" href="/images/Botanicalpark_logo.jpg" />
     <!-- Font Awesome 6 -->
@@ -11,7 +11,7 @@
     <!-- Google Fonts Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
     <style>
-        /* ----- RESET & FRESH PALETTE (jet black, pure white, deep green, soft leaf) – identical to index ----- */
+        /* ----- RESET & FRESH PALETTE ----- */
         * {
             margin: 0;
             padding: 0;
@@ -70,7 +70,8 @@
             margin: 0 auto;
             padding: 0 1rem;
         }
-        /* navbar – jet black (identical) */
+        
+        /* NAVBAR */
         .navbar-container {
             background-color: var(--navbar-bg);
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
@@ -378,7 +379,7 @@
             border-top: 2px solid #2f4f3a;
         }
 
-        /* FAQ HERO – consistent with gallery but smaller */
+        /* FAQ HERO */
         .faq-hero {
             height: 40vh;
             min-height: 300px;
@@ -400,7 +401,7 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background-image: url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1974&auto=format&fit=crop'); /* serene forest ferns */
+            background-image: url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1974&auto=format&fit=crop');
             background-size: cover;
             background-position: center 30%;
         }
@@ -446,7 +447,7 @@
             color: var(--soft-leaf);
         }
 
-        /* FAQ SECTION */
+        /* FAQ SECTION - CLEAN AND NEAT */
         .faq-section {
             padding: 5rem 0;
             background-color: var(--bg-primary);
@@ -476,22 +477,13 @@
             font-size: 1.1rem;
         }
 
-        /* FAQ GRID & ACCORDION */
-        .faq-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+        /* FAQ CATEGORIES */
+        .faq-wrapper {
             max-width: 900px;
             margin: 0 auto;
         }
-        @media (min-width: 768px) {
-            .faq-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
         .faq-category {
-            grid-column: 1 / -1;
-            margin: 1rem 0 0.5rem;
+            margin: 2rem 0 1.5rem;
         }
         .faq-category h3 {
             font-size: 1.8rem;
@@ -505,20 +497,25 @@
             border-left-color: var(--deep-green);
         }
 
+        /* ACCORDION - CLEAN AND SIMPLE */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
         .accordion-item {
             background-color: var(--card-bg);
-            border-radius: 1.5rem;
-            margin-bottom: 1rem;
+            border-radius: 1rem;
             border: 1px solid var(--border-light);
             overflow: hidden;
             transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         .accordion-item:hover {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .accordion-header {
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -527,14 +524,14 @@
             font-size: 1.1rem;
             color: var(--text-heading);
             background-color: var(--card-bg);
-            transition: background 0.2s;
+            transition: background-color 0.2s;
         }
         .accordion-header:hover {
             background-color: var(--bg-secondary);
         }
         .accordion-header i {
             color: var(--soft-leaf);
-            font-size: 1.2rem;
+            font-size: 1rem;
             transition: transform 0.3s;
         }
         .accordion-item.active .accordion-header i {
@@ -543,13 +540,12 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease;
+            transition: max-height 0.4s ease;
             background-color: var(--bg-secondary);
-            border-top: 0 solid var(--border-light);
         }
         .accordion-item.active .accordion-content {
-            max-height: 300px; /* enough for answers */
-            border-top-width: 1px;
+            max-height: 300px;
+            border-top: 1px solid var(--border-light);
         }
         .accordion-content-inner {
             padding: 1.5rem;
@@ -569,7 +565,7 @@
             color: var(--soft-leaf);
         }
 
-        /* still need help box */
+        /* HELP BOX */
         .help-box {
             background-color: var(--deep-green);
             color: white;
@@ -632,7 +628,7 @@
             border-color: white;
         }
 
-        /* redesigned footer (identical) */
+        /* FOOTER */
         .footer {
             background-color: var(--jet-black);
             color: var(--pure-white);
@@ -857,22 +853,20 @@
             .navbar-right-desktop { display: flex; }
             .mobile-menu-btn { display: none; }
         }
-        /* MOBILE NAV ACTIVE */
-.mobile-menu-item.active-mobile{
-    background-color: var(--deep-green);
-    color: #ffffff;
-    padding-left: 0.5rem;
-    border-radius: 8px;
-}
-
-.mobile-menu-item.active-mobile i{
-    color: #ffffff;
-}
+        .mobile-menu-item.active-mobile{
+            background-color: var(--deep-green);
+            color: #ffffff;
+            padding-left: 0.5rem;
+            border-radius: 8px;
+        }
+        .mobile-menu-item.active-mobile i{
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
 
-<!-- NAVBAR (identical to index) -->
+<!-- NAVBAR -->
 <nav class="navbar-container">
     <div class="container navbar-flex">
         <a href="index.html" class="logo">
@@ -914,7 +908,7 @@
     </div>
 </nav>
 
-<!-- mobile menu -->
+<!-- MOBILE MENU -->
 <div id="mobile-menu" class="mobile-menu">
     <div class="mobile-menu-header">
         <a href="index.html" class="logo">
@@ -954,8 +948,8 @@
             </div>
         </div>
         <div class="mobile-separator"></div>
-         <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> Login</button>
-         <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='Register.html'"><i class="fas fa-sign-out-alt"></i> Register</button>
+         <button class="mobile-action-item" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> Login</button>
+         <button class="mobile-action-item" onclick="window.location.href='Register.html'"><i class="fas fa-sign-out-alt"></i> Register</button>
         <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
         <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
     </div>
@@ -970,7 +964,7 @@
     </div>
 </section>
 
-<!-- MAIN FAQ SECTION -->
+<!-- MAIN FAQ SECTION - CLEAN AND NEAT -->
 <section class="faq-section">
     <div class="container">
         <div class="section-header">
@@ -979,184 +973,196 @@
             <p class="section-description">Quick answers to common questions about visiting, events, and our preserve.</p>
         </div>
 
-        <div class="faq-grid">
+        <div class="faq-wrapper">
             <!-- CATEGORY: Visiting -->
-            <div class="faq-category"><h3>🌿 Visiting</h3></div>
-
-            <!-- Accordion Item 1 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>What are your opening hours?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        We're open daily from 8:00 AM until dusk (approximately 7:30 PM in summer, 5:30 PM in winter). The visitor center is open 9 AM – 5 PM. Last trail entry is one hour before dusk.
+            <div class="faq-category">
+                <h3>🌿 Visiting</h3>
+            </div>
+            <div class="faq-list">
+                <!-- Item 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>What are your opening hours?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            We're open daily from 8:00 AM until dusk (approximately 7:30 PM in summer, 5:30 PM in winter). The visitor center is open 9 AM – 5 PM. Last trail entry is one hour before dusk.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Accordion Item 2 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>Is there an admission fee?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        Admission is free for Dashboard. Non-Dashboard: $10 for adults, $5 for children (3–17), under 3 free. We offer discounted family passes and annual Dashboardhips.
+                <!-- Item 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Is there an admission fee?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Admission is free for members. Non-members: $10 for adults, $5 for children (3–17), under 3 free. We offer discounted family passes and annual memberships.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Accordion Item 3 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>Are dogs allowed on Gallery?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        Yes, leashed dogs are welcome on all Gallery. Please clean up after your pet and keep them on a 6-foot leash. Service animals are always welcome.
+                <!-- Item 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Are dogs allowed on trails?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Yes, leashed dogs are welcome on all trails. Please clean up after your pet and keep them on a 6-foot leash. Service animals are always welcome.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Accordion Item 4 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>Is the garden accessible for strollers/wheelchairs?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        Many of our main Gallery (Fern Canyon, Prairie Loop) are accessible with packed gravel or boardwalk surfaces. The visitor center and wetland boardwalk are fully wheelchair accessible. You can borrow a wheelchair at the visitor center with ID.
+                <!-- Item 4 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Is the garden accessible for strollers/wheelchairs?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Many of our main trails (Fern Canyon, Prairie Loop) are accessible with packed gravel or boardwalk surfaces. The visitor center and wetland boardwalk are fully wheelchair accessible. You can borrow a wheelchair at the visitor center with ID.
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- CATEGORY: Events & Programs -->
-            <div class="faq-category"><h3>📅 Events & Programs</h3></div>
-
-            <!-- Accordion Item 5 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>How do I register for a workshop?</span>
-                    <i class="fas fa-chevron-down"></i>
+            <div class="faq-category">
+                <h3>📅 Events & Programs</h3>
+            </div>
+            <div class="faq-list">
+                <!-- Item 5 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>How do I register for a workshop?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            You can register online through our <a href="events.html">events page</a> or at the visitor center. Most programs require advance registration as space is limited. Members receive a 20% discount.
+                        </div>
+                    </div>
                 </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        You can register online through our <a href="events.html">events page</a> or at the visitor center. Most programs require advance registration as space is limited. Dashboard receive a 20% discount.
+
+                <!-- Item 6 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Do you host private events like weddings?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Absolutely! We offer several beautiful venues including the Garden Pavilion and the Woodland Meadow. Please <a href="contact.html">contact us</a> for rental information and availability.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Are there programs for children?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Yes! We offer weekly Nature Tots (ages 2–5), Junior Naturalist clubs (6–12), and seasonal camps. Check our <a href="events.html">events calendar</a> for upcoming dates.
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Accordion Item 6 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>Do you host private events like weddings?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        Absolutely! We offer several beautiful venues including the Garden Pavilion and the Woodland Meadow. Please <a href="contact.html">contact us</a> for rental information and availability.
+            <!-- CATEGORY: Membership & Support -->
+            <div class="faq-category">
+                <h3>🤝 Membership & Support</h3>
+            </div>
+            <div class="faq-list">
+                <!-- Item 8 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>What are the benefits of membership?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Members enjoy free daily admission, discounts on workshops and in the gift shop, early registration for events, a quarterly newsletter, and invitations to members-only previews. Plus you support our conservation work!
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Accordion Item 7 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>Are there programs for children?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        Yes! We offer weekly Nature Tots (ages 2–5), Junior Naturalist clubs (6–12), and seasonal camps. Check our <a href="events.html">events calendar</a> for upcoming dates.
+                <!-- Item 9 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>How do I become a volunteer?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            We'd love your help! Volunteers assist with trail maintenance, visitor education, gardening, and office tasks. Fill out our <a href="volunteer.html">volunteer interest form</a> and we'll invite you to an orientation.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- CATEGORY: Dashboardhip & Support -->
-            <div class="faq-category"><h3>🤝 Dashboardhip & Support</h3></div>
-
-            <!-- Accordion Item 8 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>What are the benefits of Dashboardhip?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        Dashboard enjoy free daily admission, discounts on workshops and in the gift shop, early registration for events, a quarterly newsletter, and invitations to Dashboard-only previews. Plus you support our conservation work!
+                <!-- Item 10 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Is my donation tax-deductible?</span>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
-                </div>
-            </div>
-
-            <!-- Accordion Item 9 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>How do I become a volunteer?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        We'd love your help! Volunteers assist with trail maintenance, visitor education, gardening, and office tasks. Fill out our <a href="volunteer.html">volunteer interest form</a> and we'll invite you to an orientation.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Accordion Item 10 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>Is my donation tax-deductible?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        Yes, Botanical Garden is a 501(c)(3) nonprofit organization. All donations are tax-deductible to the fullest extent of the law. You'll receive a receipt via email.
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Yes, Botanical Garden is a 501(c)(3) nonprofit organization. All donations are tax-deductible to the fullest extent of the law. You'll receive a receipt via email.
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- CATEGORY: Photography & Policies -->
-            <div class="faq-category"><h3>📸 Photography & Policies</h3></div>
-
-            <!-- Accordion Item 11 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>Can I take photos for personal use?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        Personal photography (including smartphones and small cameras) is welcome. For professional/portrait sessions, tripods, or drones, you need a permit. Please <a href="contact.html">contact us</a> for details.
+            <div class="faq-category">
+                <h3>📸 Photography & Policies</h3>
+            </div>
+            <div class="faq-list">
+                <!-- Item 11 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Can I take photos for personal use?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Personal photography (including smartphones and small cameras) is welcome. For professional/portrait sessions, tripods, or drones, you need a permit. Please <a href="contact.html">contact us</a> for details.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Accordion Item 12 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>Are there picnic areas?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        Yes! We have two picnic groves with tables and benches – one near the visitor center and one at the Prairie Loop trailhead. Alcohol and grills are not permitted.
+                <!-- Item 12 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Are there picnic areas?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Yes! We have two picnic groves with tables and benches – one near the visitor center and one at the Prairie Loop trailhead. Alcohol and grills are not permitted.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Accordion Item 13 -->
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>What happens if it rains?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">
-                        We're open rain or shine! Gallery may be muddy – wear appropriate footwear. In case of severe weather (lightning, high winds), we may close Gallery for safety. Check our <a href="#">weather policy</a> or call ahead.
+                <!-- Item 13 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>What happens if it rains?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            We're open rain or shine! Trails may be muddy – wear appropriate footwear. In case of severe weather (lightning, high winds), we may close trails for safety. Check our <a href="#">weather policy</a> or call ahead.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1174,7 +1180,7 @@
     </div>
 </section>
 
-<!-- REDESIGNED FOOTER (identical to index) -->
+<!-- FOOTER -->
 <footer class="footer">
     <div class="container">
         <div class="footer-main">
@@ -1182,9 +1188,9 @@
                 <a href="index.html" class="logo">
                     <div class="logo-icon"><i class="fas fa-tree"></i></div>
                     <div>
-    <div class="logo-text" style="white-space:nowrap;">Botanical<span> Garden</span></div>
-    <span class="logo-tagline">botanical preserve</span>
-</div>
+                        <div class="logo-text" style="white-space:nowrap;">Botanical<span> Garden</span></div>
+                        <span class="logo-tagline">botanical preserve</span>
+                    </div>
                 </a>
                 <p class="footer-tagline">A living sanctuary for native flora, fauna, and the human spirit. Open daily 8am–dusk.</p>
                 <div class="footer-social">
@@ -1195,15 +1201,13 @@
                 </div>
             </div>
             <div>
-               <h3 class="footer-heading">Quick Links</h3>
+                <h3 class="footer-heading">Quick Links</h3>
                 <ul class="footer-links">
                     <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
                     <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
                     <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
                     <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
-                    
                     <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    
                 </ul>
             </div>
             <div>
@@ -1211,7 +1215,7 @@
                 <ul class="footer-links">
                     <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
                     <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Dashboardhip</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Membership</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Donate</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
                 </ul>
@@ -1240,7 +1244,7 @@
 
 <script>
     (function() {
-        // ---------- THEME / RTL / MOBILE (identical to index) ----------
+        // ---------- THEME / RTL / MOBILE ----------
         const htmlEl = document.documentElement;
         const desktopTheme = document.getElementById('desktop-theme-toggle');
         const mobileTheme = document.getElementById('mobile-theme-toggle');
@@ -1328,13 +1332,25 @@
             if (window.innerWidth >= 1280) mobileMenu.classList.remove('active');
         });
 
-        // ---------- FAQ ACCORDION ----------
+        // ---------- FAQ ACCORDION - SINGLE OPEN AT A TIME ----------
         const accordionItems = document.querySelectorAll('.accordion-item');
+        
         accordionItems.forEach(item => {
             const header = item.querySelector('.accordion-header');
+            
             header.addEventListener('click', () => {
-                // close others if you want single open – but we allow multiple
-                item.classList.toggle('active');
+                // Check if this item is already active
+                const isActive = item.classList.contains('active');
+                
+                // Close all accordion items
+                accordionItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                
+                // If it wasn't active, open it (otherwise keep closed)
+                if (!isActive) {
+                    item.classList.add('active');
+                }
             });
         });
     })();
