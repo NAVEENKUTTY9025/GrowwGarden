@@ -284,6 +284,78 @@
             .form-row { grid-template-columns: 1fr; }
             body.rtl .form-row { grid-template-columns: 1fr; }
         }
+        /* PROFILE DROPDOWN */
+.profile-dropdown {
+    position: relative;
+}
+
+.profile-btn {
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-btn:hover {
+    background: var(--soft-leaf);
+    color: var(--jet-black);
+}
+
+.profile-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background: var(--card-bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    width: 220px;
+    box-shadow: var(--shadow-lg);
+    padding: 10px 0;
+    display: none;
+    z-index: 2000;
+}
+
+.profile-menu.active {
+    display: block;
+}
+
+.profile-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+}
+
+.profile-header span {
+    color: var(--text-lighter);
+    font-size: 0.75rem;
+}
+
+.profile-item {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.profile-item:hover {
+    background: var(--bg-secondary-dark);
+    color: var(--soft-leaf);
+}
     </style>
 </head>
 <body class="dashboard-body">
@@ -313,6 +385,44 @@
                 <li><button class="nav-link" data-section="saved"><i class="fas fa-heart"></i> Saved flora</button></li>
                 <li><button class="nav-link" data-section="reviews"><i class="fas fa-star"></i> Reviews</button></li>
             </ul>
+           <div class="welcome-actions" style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
+
+    <div class="welcome-badge" style="
+    display:flex;
+    align-items:center;
+    gap:0.4rem;
+    padding:0.4rem 0.8rem;
+    background:rgba(255,255,255,0.15);
+    border-radius:999px;
+    font-size:0.85rem;
+    ">
+        
+    
+
+    <button id="logoutBtn" style="
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+    padding:0.5rem 1rem;
+    background:#ffffff;
+    color:#222;
+    border:none;
+    border-radius:999px;
+    font-size:0.9rem;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    transition:all 0.3s ease;
+    " 
+    onmouseover="this.style.background='#f5f5f5'" 
+    onmouseout="this.style.background='#ffffff'">
+
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+
+    </button>
+
+</div>
         </nav>
         <div class="sidebar-footer"></div>
     </aside>
@@ -323,10 +433,39 @@
                 <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
                 <div class="page-title" id="currentSectionTitle">My Garden</div>
             </div>
-            <div class="header-right">
-                <button class="rtl-toggle" id="rtlToggle"><i class="fas fa-arrow-right-arrow-left"></i></button>
-                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+          <div class="header-right">
+    
+    <!-- PROFILE DROPDOWN -->
+    <div class="profile-dropdown" id="profileDropdown">
+        <button class="profile-btn" id="profileBtn">
+            <i class="fas fa-user-circle"></i>
+        </button>
+
+        <div class="profile-menu" id="profileMenu">
+            <div class="profile-header">
+                <strong>Robin Greenwood</strong>
+                <span>robin.g@botanical.org</span>
             </div>
+
+            <button class="profile-item" data-section="garden">
+                <i class="fas fa-user"></i> My Profile
+            </button>
+
+            <button class="profile-item">
+                <i class="fas fa-cog"></i> Settings
+            </button>
+
+            <button class="profile-item" id="profileLogout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </div>
+
+    <button class="rtl-toggle" id="rtlToggle"><i class="fas fa-arrows-rotate"></i></button>
+    <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+
+</div>
+            
         </header>
 
         <section class="dashboard-content">
@@ -337,10 +476,7 @@
                         <h2>Welcome back, Robin! 🌿</h2>
                         <p>Your next visit: Candler Woods guided walk • Sat 9am</p>
                     </div>
-                    <div class="welcome-actions">
-                        <div class="welcome-badge"><i class="fas fa-seedling"></i><span>Member since 2024</span></div>
-                        <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Logout</span></button>
-                    </div>
+                    
                 </div>
                 <div class="client-stats">
                     <div class="stat-item"><div class="stat-label">Visits this year</div><div class="stat-number">14</div><span>+3 since April</span></div>
@@ -595,6 +731,30 @@
             // default active
             activateSection('garden');
         })();
+        // profile dropdown
+const profileBtn = document.getElementById('profileBtn');
+const profileMenu = document.getElementById('profileMenu');
+const profileLogout = document.getElementById('profileLogout');
+
+if (profileBtn) {
+    profileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        profileMenu.classList.toggle('active');
+    });
+}
+
+// close on outside click
+window.addEventListener('click', () => {
+    profileMenu?.classList.remove('active');
+});
+
+// logout trigger
+if (profileLogout) {
+    profileLogout.addEventListener('click', () => {
+        profileMenu.classList.remove('active');
+        logoutModal.classList.add('active');
+    });
+}
     </script>
 </body>
 </html>

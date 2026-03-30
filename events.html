@@ -1283,7 +1283,7 @@
         </div>
         <div class="navbar-right-desktop">
             <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
-            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-arrows-rotate"></i></button>
            <a href="login.html" class="login-btn"> Login</a>
              <a href="register.html" class="login-btn"> Register</a>
         </div>
@@ -1333,20 +1333,75 @@
         <div class="mobile-separator"></div>
          <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> Login</button>
          <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='register.html'"><i class="fas fa-sign-out-alt"></i> Register</button>
-        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-arrows-rotate"></i> RTL</button>
         <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
     </div>
 </div>
 
 <!-- PAGE HEADER -->
-<section class="page-header">
-    <div class="container page-header-content">
-        <h1>Events & Programs</h1>
-        <p>Discover seasonal workshops, guided walks, and special celebrations at Botanical Garden</p>
-        <div class="breadcrumb">
-            <a href="index.html">Home</a> <i class="fas fa-chevron-right"></i> <span>Events</span>
-        </div>
-    </div>
+<section class="page-header" style="
+position:relative;
+background:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+min-height:320px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#fff;
+overflow:hidden;
+">
+
+<!-- DARK OVERLAY -->
+<div style="
+position:absolute;
+inset:0;
+background:linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.4));
+"></div>
+
+<!-- CONTENT -->
+<div class="container page-header-content" style="
+position:relative;
+z-index:2;
+text-align:center;
+max-width:800px;
+padding:2rem;
+">
+
+<h1 style="
+font-size:2.8rem;
+font-weight:800;
+margin-bottom:0.8rem;
+color:#ffffff;
+text-shadow:0 3px 10px rgba(0,0,0,0.6);
+">
+Events & Programs
+</h1>
+
+<p style="
+font-size:1.1rem;
+margin-bottom:1.2rem;
+color:#e5e5e5;
+text-shadow:0 2px 6px rgba(0,0,0,0.6);
+">
+Discover seasonal workshops, guided walks, and special celebrations at Botanical Garden
+</p>
+
+<div class="breadcrumb" style="
+display:flex;
+justify-content:center;
+align-items:center;
+gap:0.5rem;
+font-size:0.9rem;
+color:#f1f1f1;
+">
+
+<a href="index.html" style="color:#ffffff; text-decoration:none; font-weight:500;">Home</a>
+<i class="fas fa-chevron-right" style="font-size:0.7rem;"></i>
+<span style="opacity:0.9;">Events</span>
+
+</div>
+
+</div>
+
 </section>
 
 <!-- EVENT FILTERS -->
@@ -1441,7 +1496,7 @@
                 </div>
                 <div class="event-content">
                     <div class="event-date"><i class="far fa-calendar"></i> June 2, 2026</div>
-                    <h3 class="event-title">Forest Photography Workshop</h3>
+                    <h3 class="event-title">Forest Photography </h3>
                     <p class="event-description">Professional nature photographer leads a hands-on workshop. Learn composition, lighting, and capturing wildlife.</p>
                     <div class="event-meta">
                         <span><i class="far fa-clock"></i> 4 hours</span>

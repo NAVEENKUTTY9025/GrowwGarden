@@ -18,26 +18,22 @@
             box-sizing: border-box;
         }
         :root {
-            --jet-black: #0E0E0E;           /* primary dark, elegant typography */
-            --pure-white: #FFFFFF;            /* backgrounds, cards */
-            --deep-green: #1B4332;            /* deep botanical green – headings, accents */
-            --soft-leaf: #74C69D;              /* soft leaf green – secondary, highlights, buttons */
-            --text-main: #0E0E0E;              /* default text on light */
+            --jet-black: #0E0E0E;
+            --pure-white: #FFFFFF;
+            --deep-green: #1B4332;
+            --soft-leaf: #74C69D;
+            --text-main: #0E0E0E;
             --text-heading: #0E0E0E;
             --card-bg: #FFFFFF;
-            --border-light: #D0E6D5;           /* subtle greenish border */
-            --navbar-bg: #0E0E0E;               /* jet black */
-            --bg-primary: #FFFFFF;               /* pure white main background */
-            --bg-secondary: #F2F9F2;             /* very light tint of soft leaf for contrast */
+            --border-light: #D0E6D5;
+            --navbar-bg: #0E0E0E;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F2F9F2;
             --accent-deep: #1B4332;
             --accent-soft: #74C69D;
-
-            /* text on colored backgrounds */
-            --text-on-deep: #FFFFFF;             /* white on deep green */
-            --text-on-soft: #0E0E0E;              /* jet black on soft leaf */
-            --text-on-dark: #FFFFFF;               /* white on jet black */
-            
-            /* Additional text colors for better visibility */
+            --text-on-deep: #FFFFFF;
+            --text-on-soft: #0E0E0E;
+            --text-on-dark: #FFFFFF;
             --text-muted: #4A4A4A;
             --text-light: #6B7280;
         }
@@ -45,20 +41,16 @@
         [data-theme="dark"] {
             --bg-primary: #121212;
             --bg-secondary: #1E2A1E;
-            --text-main: #E8F0E8;                 /* light greenish white for main text */
+            --text-main: #E8F0E8;
             --text-heading: #FFFFFF;
             --card-bg: #1F2A1F;
-            --border-light: #2D6A4F;              /* deep green tint */
+            --border-light: #2D6A4F;
             --navbar-bg: #0E0E0E;
             --accent-deep: #2D6A4F;
-            --accent-soft: #8FDEB0;                /* brighter soft leaf for dark mode */
-            
-            /* ensure all text is visible on dark backgrounds */
+            --accent-soft: #8FDEB0;
             --text-on-deep: #FFFFFF;
             --text-on-soft: #0E0E0E;
             --text-on-dark: #FFFFFF;
-            
-            /* Additional text colors for dark mode */
             --text-muted: #B0C4B0;
             --text-light: #9CAF9C;
         }
@@ -442,7 +434,7 @@
             border-top: 2px solid #2f4f3a;
         }
 
-        /* ===== NEW HERO – FULLSCREEN, NO LEFT/RIGHT SPLIT ===== */
+        /* HERO */
         .hero {
             height: 100vh;
             width: 100%;
@@ -457,7 +449,6 @@
             overflow: hidden;
         }
         
-        /* HD background image with overlay */
         .hero-bg {
             position: absolute;
             top: 0;
@@ -465,7 +456,7 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1932&auto=format&fit=crop'); /* serene garden pathway HD */
+            background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1932&auto=format&fit=crop');
             background-size: cover;
             background-position: center 30%;
             background-repeat: no-repeat;
@@ -478,7 +469,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.2); /* subtle dark overlay for text contrast */
+            background: rgba(0, 0, 0, 0.2);
             backdrop-filter: brightness(0.9);
         }
         
@@ -499,7 +490,7 @@
         }
         
         .hero-sub {
-            font-size: 1.125rem;
+            font-size: 0.7rem;
             font-weight: 600;
             letter-spacing: 0.3em;
             text-transform: uppercase;
@@ -619,7 +610,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* remainder of styles (sections after hero) from original – kept intact */
         .section-title {
             font-size: 2.5rem;
             margin-bottom: 1rem;
@@ -642,67 +632,66 @@
             color: var(--text-main);
         }
         
-        .card-deep-green-bg {
-            background-color: var(--deep-green);
-            border-radius: 2rem;
-            padding: 2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: 1px solid var(--soft-leaf);
-            transition: transform 0.2s;
-            color: var(--pure-white);
+        /* events card improvements - better text visibility */
+        .events-card-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%);
+            position: absolute;
+            inset: 0;
+            border-radius: 1rem;
         }
         
-        .card-deep-green-bg:hover {
-            transform: translateY(-4px);
+        .events-card-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 1.5rem;
+            color: #fff;
         }
         
-        .card-deep-green-bg h3, .card-deep-green-bg p {
-            color: var(--pure-white);
-        }
-        
-        .card-soft-white {
-            background-color: var(--card-bg);
-            border-radius: 2rem;
-            padding: 2rem;
-            border: 1px solid var(--soft-leaf);
-        }
-        
-        .card-soft-white h3 {
-            color: var(--text-heading);
-        }
-        
-        .card-soft-white p {
-            color: var(--text-main);
-        }
-        
-        [data-theme="dark"] .card-soft-white {
-            background-color: #1F2A1F;
-            border-color: var(--deep-green);
-        }
-        
-        [data-theme="dark"] .card-soft-white h3 {
-            color: var(--pure-white);
-        }
-        
-        [data-theme="dark"] .card-soft-white p {
-            color: #E0F0E0;
-        }
-        
-        .icon-circle-deep {
-            width: 4rem;
-            height: 4rem;
-            background-color: rgba(27, 67, 50, 0.15);
+        .events-card-icon {
+            background: rgba(255,255,255,0.2);
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--deep-green);
-            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+            backdrop-filter: blur(4px);
         }
         
-        [data-theme="dark"] .icon-circle-deep {
-            background-color: rgba(116, 198, 157, 0.2);
+        .events-card-icon i {
+            font-size: 1.4rem;
             color: var(--soft-leaf);
+        }
+        
+        .events-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 0 0.25rem 0;
+            color: white;
+        }
+        
+        .events-card-date {
+            font-size: 0.8rem;
+            color: var(--soft-leaf);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .events-card-desc {
+            font-size: 0.85rem;
+            color: #f0f0f0;
+            line-height: 1.4;
+            margin: 0;
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-6px);
         }
         
         .grid-3 {
@@ -737,20 +726,6 @@
             color: var(--text-main);
         }
         
-        [data-theme="dark"] .gallery-item {
-            background-color: #1F2A1F;
-            border-left-color: var(--soft-leaf);
-        }
-        
-        [data-theme="dark"] .gallery-item h3 {
-            color: var(--pure-white);
-        }
-        
-        [data-theme="dark"] .gallery-item p {
-            color: var(--soft-leaf);
-        }
-
-        /* SUPPORT SECTION (deep green background) */
         .support-section {
             background-color: var(--deep-green);
             padding: 5rem 0;
@@ -795,7 +770,6 @@
             color: var(--pure-white);
         }
 
-        /* NEW GARDEN STORIES SECTION */
         .stories-section {
             padding: 5rem 0;
             background-color: var(--bg-secondary);
@@ -865,20 +839,6 @@
             transition: gap 0.2s;
         }
         
-        .story-link:hover {
-            gap: 0.75rem;
-            color: var(--soft-leaf);
-        }
-        
-        [data-theme="dark"] .story-link {
-            color: var(--soft-leaf);
-        }
-        
-        [data-theme="dark"] .story-link:hover {
-            color: var(--pure-white);
-        }
-
-        /* REDESIGNED FOOTER */
         .footer {
             background-color: var(--jet-black);
             color: var(--pure-white);
@@ -1019,17 +979,6 @@
             transform: translateX(5px);
         }
         
-        .footer-links a i {
-            font-size: 0.75rem;
-            color: var(--soft-leaf);
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-        
-        .footer-links a:hover i {
-            opacity: 1;
-        }
-        
         .footer-newsletter p {
             color: #B0B0B0;
             margin-bottom: 1rem;
@@ -1053,10 +1002,6 @@
         
         .footer-input:focus {
             outline: 2px solid var(--soft-leaf);
-        }
-        
-        .footer-input::placeholder {
-            color: #6B7280;
         }
         
         .footer-btn {
@@ -1147,49 +1092,67 @@
             .mobile-menu-btn { display: none; }
         }
         
-        .fade-in-up {
-            animation: fadeInUp 0.7s ease;
+        .habitat-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 0 2rem 2rem 2rem;
         }
-
-        /* Additional dark mode fixes for specific elements */
-        [data-theme="dark"] .story-date {
+        
+        @media (min-width: 768px) {
+            .habitat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .habitat-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 0 2rem 2rem 2rem;
+        }
+        
+        @media (min-width: 640px) {
+            .events-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .events-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .event-card {
+            position: relative;
+            border-radius: 1rem;
+            min-height: 260px;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-6px);
+        }
+        
+        [data-theme="dark"] .story-link {
             color: var(--soft-leaf);
-        }
-        
-        [data-theme="dark"] .section-description {
-            color: #E0F0E0;
-        }
-        
-        [data-theme="dark"] p:not([class*="color"]) {
-            color: var(--text-main);
-        }
-        
-        [data-theme="dark"] .text-muted {
-            color: var(--text-muted);
-        }
-        
-        /* Habitats section text fixes */
-        .card-deep-green-bg p {
-            color: #f0f7f0 !important;
-        }
-        
-        [data-theme="dark"] .card-deep-green-bg p {
-            color: #e0f0e0 !important;
-        }
-        
-        /* Programs section text fixes */
-        .card-soft-white .story-date {
-            color: var(--text-light) !important;
-        }
-        
-        [data-theme="dark"] .card-soft-white .story-date {
-            color: #B0D0B0 !important;
         }
     </style>
 </head>
 <body>
 
-<!-- NAVBAR (unchanged, jet black) -->
+<!-- NAVBAR -->
 <nav class="navbar-container">
     <div class="container navbar-flex">
         <a href="index.html" class="logo">
@@ -1203,7 +1166,7 @@
             <div class="dropdown" id="home-dropdown">
                 <div class="nav-link active" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></div>
                 <div class="dropdown-menu">
-                    <a href="index.html" class="dropdown-item " >Home 1</a>
+                    <a href="index.html" class="dropdown-item">Home 1</a>
                     <a href="home2.html" class="dropdown-item">Home 2</a>
                 </div>
             </div>
@@ -1223,15 +1186,14 @@
         </div>
         <div class="navbar-right-desktop">
             <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
-            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-arrows-rotate"></i></button>
             <a href="login.html" class="login-btn"> Login</a>
-             <a href="register.html" class="login-btn"> Register</a>
+            <a href="register.html" class="login-btn"> Register</a>
         </div>
         <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
     </div>
 </nav>
 
-<!-- mobile menu (unchanged) -->
 <div id="mobile-menu" class="mobile-menu">
     <div class="mobile-menu-header">
         <a href="index.html" class="logo">
@@ -1271,14 +1233,14 @@
             </div>
         </div>
         <div class="mobile-separator"></div>
-         <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> Login</button>
-         <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='register.html'"><i class="fas fa-sign-out-alt"></i> Register</button>
+        <button class="mobile-action-item" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> Login</button>
+        <button class="mobile-action-item" onclick="window.location.href='register.html'"><i class="fas fa-user-plus"></i> Register</button>
         <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
         <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
     </div>
 </div>
 
-<!-- NEW HERO – fullscreen centered with HD botanical image -->
+<!-- HERO -->
 <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
@@ -1291,124 +1253,58 @@
         </div>
         <div class="hero-stats">
             <div class="hero-stat-item"><span class="hero-stat-number">16</span> <span class="hero-stat-label">habitats</span></div>
-            <div class="hero-stat-item"><span class="hero-stat-number">7km</span> <span class="hero-stat-label">Gallery</span></div>
+            <div class="hero-stat-item"><span class="hero-stat-number">7</span> <span class="hero-stat-label">Gallery</span></div>
             <div class="hero-stat-item"><span class="hero-stat-number">200+</span> <span class="hero-stat-label">species</span></div>
         </div>
     </div>
 </section>
 
-<!-- HABITATS SECTION – deep green cards with white text (HD imagery backgrounds) -->
-<style>
-@media (max-width:1024px){
-.habitat-grid{
-grid-template-columns:repeat(2,1fr) !important;
-}
-}
-
-@media (max-width:600px){
-.habitat-grid{
-grid-template-columns:1fr !important;
-}
-}
-</style>
-
+<!-- HABITATS SECTION -->
 <section style="padding:5rem 0; background-color:var(--bg-primary);">
-    
-<div class="container">
-
-<!-- TITLE AREA -->
-<div style="text-align:center; max-width:48rem; margin:0 auto 3rem;">
-
-<span style="color:var(--soft-leaf); font-size:14px; letter-spacing:2px; text-transform:uppercase; font-weight:600;">
-A LIVING MUSEUM
-</span>
-
-<h2 style="font-size:2.8rem; font-weight:800; margin-top:0.5rem; color:var(--text-primary);">
-Explore our habitats
-</h2>
-
-<p style="margin-top:0.7rem; font-size:1.05rem; color:var(--text-secondary);">
-From ancient oaks to vernal pools — each area teems with life.
-</p>
-
-</div>
-
-
-<!-- GRID -->
-<div class="habitat-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; padding:0 2rem 2rem 2rem;">
-
-<!-- CARD 1 -->
-<div style="background-image:linear-gradient(145deg,#1B4332,#1B4332),url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=1974&auto=format&fit=crop'); background-blend-mode:overlay; background-size:cover; border-radius:2rem;">
-<div style="background-color:rgba(27,67,50,0.7); border-radius:2rem; padding:1.5rem;">
-
-<div style="background:rgba(255,255,255,0.2); width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
-<i class="fas fa-tree" style="color:white;"></i>
-</div>
-
-<h3 style="font-weight:700; font-size:1.5rem; color:white;">Candler Woods</h3>
-<p style="margin-top:0.5rem; color:#f0f7f0;">
-Old-growth forest with towering oaks, trillium, and pileated woodpeckers.
-</p>
-
-</div>
-</div>
-
-
-<!-- CARD 2 -->
-<div style="background-image:linear-gradient(145deg,#1B4332,#1B4332),url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=2070&auto=format&fit=crop'); background-blend-mode:overlay; background-size:cover; border-radius:2rem;">
-<div style="background-color:rgba(27,67,50,0.7); border-radius:2rem; padding:1.5rem;">
-
-<div style="background:rgba(255,255,255,0.2); width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
-<i class="fas fa-water" style="color:white;"></i>
-</div>
-
-<h3 style="font-weight:700; font-size:1.5rem; color:white;">Heron Wetland</h3>
-<p style="margin-top:0.5rem; color:#f0f7f0;">
-Boardwalk gallery through cattails – watch for turtles and herons.
-</p>
-
-</div>
-</div>
-
-
-<!-- CARD 3 -->
-<div style="background-image:linear-gradient(145deg,#1B4332,#1B4332),url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1932&auto=format&fit=crop'); background-blend-mode:overlay; background-size:cover; border-radius:2rem;">
-<div style="background-color:rgba(27,67,50,0.7); border-radius:2rem; padding:1.5rem;">
-
-<div style="background:rgba(255,255,255,0.2); width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
-<i class="fas fa-seedling" style="color:white;"></i>
-</div>
-
-<h3 style="font-weight:700; font-size:1.5rem; color:white;">Prairie Remnant</h3>
-<p style="margin-top:0.5rem; color:#f0f7f0;">
-Native bluestem, coneflowers, and monarchs in late summer and pileated woodpeckers..
-</p>
-
-</div>
-</div>
-
-
-<!-- CARD 4 -->
-<div style="background-image:linear-gradient(145deg,#1B4332,#1B4332),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1974&auto=format&fit=crop'); background-blend-mode:overlay; background-size:cover; border-radius:2rem;">
-<div style="background-color:rgba(27,67,50,0.7); border-radius:2rem; padding:1.5rem;">
-
-<div style="background:rgba(255,255,255,0.2); width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
-<i class="fas fa-leaf" style="color:white;"></i>
-</div>
-
-<h3 style="font-weight:700; font-size:1.5rem; color:white;">Botanical Meadow</h3>
-<p style="margin-top:0.5rem; color:#f0f7f0;">
-Wild grasses, seasonal flowers, and butterflies thriving in open sun.
-</p>
-
-</div>
-</div>
-
-</div>
-</div>
+    <div class="container">
+        <div style="text-align:center; max-width:48rem; margin:0 auto 3rem;">
+            <span style="color:var(--soft-leaf); font-size:14px; letter-spacing:2px; text-transform:uppercase; font-weight:600;">A LIVING MUSEUM</span>
+            <h2 style="font-size:2.8rem; font-weight:800; margin-top:0.5rem; color:var(--text-heading);">Explore our habitats</h2>
+            <p style="margin-top:0.7rem; font-size:1.05rem; color:var(--text-muted);">From ancient oaks to vernal pools — each area teems with life.</p>
+        </div>
+        <div class="habitat-grid">
+            <div class="event-card" style="background-image:linear-gradient(145deg,#1B4332,#1B4332),url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=1974&auto=format&fit=crop'); background-blend-mode:overlay; background-size:cover;">
+                <div class="events-card-overlay"></div>
+                <div class="events-card-content">
+                    <div class="events-card-icon"><i class="fas fa-tree"></i></div>
+                    <h3 class="events-card-title">Candler Woods</h3>
+                    <p class="events-card-desc">Old-growth forest with towering oaks, trillium, and pileated woodpeckers.</p>
+                </div>
+            </div>
+            <div class="event-card" style="background-image:linear-gradient(145deg,#1B4332,#1B4332),url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=2070&auto=format&fit=crop'); background-blend-mode:overlay; background-size:cover;">
+                <div class="events-card-overlay"></div>
+                <div class="events-card-content">
+                    <div class="events-card-icon"><i class="fas fa-water"></i></div>
+                    <h3 class="events-card-title">Heron Wetland</h3>
+                    <p class="events-card-desc">Boardwalk gallery through cattails – watch for turtles and herons.</p>
+                </div>
+            </div>
+            <div class="event-card" style="background-image:linear-gradient(145deg,#1B4332,#1B4332),url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1932&auto=format&fit=crop'); background-blend-mode:overlay; background-size:cover;">
+                <div class="events-card-overlay"></div>
+                <div class="events-card-content">
+                    <div class="events-card-icon"><i class="fas fa-seedling"></i></div>
+                    <h3 class="events-card-title">Prairie Remnant</h3>
+                    <p class="events-card-desc">Native bluestem, coneflowers, and monarchs in late summer.</p>
+                </div>
+            </div>
+            <div class="event-card" style="background-image:linear-gradient(145deg,#1B4332,#1B4332),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1974&auto=format&fit=crop'); background-blend-mode:overlay; background-size:cover;">
+                <div class="events-card-overlay"></div>
+                <div class="events-card-content">
+                    <div class="events-card-icon"><i class="fas fa-leaf"></i></div>
+                    <h3 class="events-card-title">Botanical Meadow</h3>
+                    <p class="events-card-desc">Wild grasses, seasonal flowers, and butterflies thriving in open sun.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
-<!-- Gallery PREVIEW – soft white / fresh green -->
+<!-- Gallery PREVIEW -->
 <section style="padding: 5rem 0; background-color: var(--bg-secondary);">
     <div class="container">
         <div class="grid-2" style="align-items: center;">
@@ -1428,7 +1324,6 @@ Wild grasses, seasonal flowers, and butterflies thriving in open sun.
                     <h3 style="font-weight: 700;">🌳 Ridge Overlook – 2.8 miles</h3>
                     <p>Strenuous • reward: skyline view</p>
                 </div>
-                
             </div>
             <div style="background-color: var(--soft-leaf); border-radius: 2rem; padding: 0.75rem; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
                 <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1976&auto=format&fit=crop" alt="forest gallery" style="width: 100%; border-radius: 1.5rem; border: 4px solid var(--deep-green); aspect-ratio: 4/3; object-fit: cover;">
@@ -1437,149 +1332,55 @@ Wild grasses, seasonal flowers, and butterflies thriving in open sun.
     </div>
 </section>
 
-<!-- EVENTS SECTION – pure white cards with green details -->
+<!-- EVENTS SECTION - FIXED TEXT VISIBILITY -->
 <section style="padding:5rem 0; background-color:var(--bg-primary);">
-
-<div class="container">
-
-<!-- TITLE -->
-<div style="text-align:center; max-width:48rem; margin:0 auto 3rem;">
-    
-<span style="color:var(--soft-leaf); font-size:14px; letter-spacing:2px; text-transform:uppercase; font-weight:600;">
-Upcoming Programs
-</span>
-
-<h2 style="font-size:2.6rem; font-weight:800; margin-top:0.5rem; color:var(--text-primary);">
-Nature events & workshops
-</h2>
-
-<p style="margin-top:0.7rem; font-size:1.05rem; color:var(--text-secondary);">
-Join our seasonal programs to explore wildlife, photography, and conservation.
-</p>
-
-</div>
-
-
-<!-- GRID -->
-<div class="programs-grid" style="
-display:grid;
-gap:1.5rem;
-padding:0 2rem 2rem 2rem;
-grid-template-columns:repeat(1,1fr);
-">
-
-<style>
-/* Tablet / iPad */
-@media (min-width:640px){
-.programs-grid{
-grid-template-columns:repeat(2,1fr) !important;
-}
-}
-
-/* Desktop */
-@media (min-width:1024px){
-.programs-grid{
-grid-template-columns:repeat(4,1fr) !important;
-}
-}
-</style>
-
-
-<!-- CARD 1 -->
-<div class="card-soft-white" style="padding:1.5rem; border-radius:1rem; box-shadow:0 4px 6px rgba(0,0,0,0.05);">
-
-<div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem;">
-
-<div class="icon-circle-deep">
-<i class="fas fa-calendar-alt"></i>
-</div>
-
-<div style="display:flex; flex-direction:column;">
-<h3 style="font-weight:700; margin:0;">Bird walk</h3>
-<p style="margin:0; font-size:0.9rem; color:var(--text-secondary);">Sat 9am</p>
-</div>
-
-</div>
-
-<p style="color:var(--text-secondary);">
-Identify migratory warblers with binoculars provided.
-</p>
-
-</div>
-
-
-<!-- CARD 2 -->
-<div class="card-soft-white" style="padding:1.5rem; border-radius:1rem; box-shadow:0 4px 6px rgba(0,0,0,0.05);">
-
-<div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem;">
-
-<div class="icon-circle-deep">
-<i class="fas fa-hand-holding-heart"></i>
-</div>
-
-<div style="display:flex; flex-direction:column;">
-<h3 style="font-weight:700; margin:0;">Native plant sale</h3>
-<p style="margin:0; font-size:0.9rem; color:var(--text-secondary);">May 10–12</p>
-</div>
-
-</div>
-
-<p style="color:var(--text-secondary);">
-Help restore habitats – take home wildflower seedlings.
-</p>
-
-</div>
-
-
-<!-- CARD 3 -->
-<div class="card-soft-white" style="padding:1.5rem; border-radius:1rem; box-shadow:0 4px 6px rgba(0,0,0,0.05);">
-
-<div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem;">
-
-<div class="icon-circle-deep">
-<i class="fas fa-camera"></i>
-</div>
-
-<div style="display:flex; flex-direction:column;">
-<h3 style="font-weight:700; margin:0;">Forest photography</h3>
-<p style="margin:0; font-size:0.9rem; color:var(--text-secondary);">Jun 2</p>
-</div>
-
-</div>
-
-<p style="color:var(--text-secondary);">
-Workshop with a professional nature photographer.
-</p>
-
-</div>
-
-
-<!-- CARD 4 -->
-<div class="card-soft-white" style="padding:1.5rem; border-radius:1rem; box-shadow:0 4px 6px rgba(0,0,0,0.05);">
-
-<div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem;">
-
-<div class="icon-circle-deep">
-<i class="fas fa-moon"></i>
-</div>
-
-<div style="display:flex; flex-direction:column;">
-<h3 style="font-weight:700; margin:0;">Twilight hike</h3>
-<p style="margin:0; font-size:0.9rem; color:var(--text-secondary);">Fri 8pm</p>
-</div>
-
-</div>
-
-<p style="color:var(--text-secondary);">
-Experience the woods after dark and listen for Great Horned Owls.
-</p>
-
-</div>
-
-
-</div>
-</div>
+    <div class="container">
+        <div style="text-align:center; max-width:48rem; margin:0 auto 3rem;">
+            <span style="color:var(--soft-leaf); font-size:14px; letter-spacing:2px; text-transform:uppercase; font-weight:600;">Upcoming Programs</span>
+            <h2 style="font-size:2.6rem; font-weight:800; margin-top:0.5rem; color:var(--text-heading);">Nature events & workshops</h2>
+            <p style="margin-top:0.7rem; font-size:1.05rem; color:var(--text-muted);">Join our seasonal programs to explore wildlife, photography, and conservation.</p>
+        </div>
+        <div class="events-grid">
+            <div class="event-card" style="background-image:url('https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=800&auto=format&fit=crop'); background-size:cover; background-position:center;">
+                <div class="events-card-overlay"></div>
+                <div class="events-card-content">
+                    <div class="events-card-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3 class="events-card-title">Bird walk</h3>
+                    <div class="events-card-date">Sat 9am</div>
+                    <p class="events-card-desc">Identify migratory warblers with binoculars provided.</p>
+                </div>
+            </div>
+            <div class="event-card" style="background-image:url('https://images.unsplash.com/photo-1492496913980-501348b61469?q=80&w=800&auto=format&fit=crop'); background-size:cover; background-position:center;">
+                <div class="events-card-overlay"></div>
+                <div class="events-card-content">
+                    <div class="events-card-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3 class="events-card-title">Native plant sale</h3>
+                    <div class="events-card-date">May 10–12</div>
+                    <p class="events-card-desc">Help restore habitats – take home wildflower seedlings.</p>
+                </div>
+            </div>
+            <div class="event-card" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop'); background-size:cover; background-position:center;">
+                <div class="events-card-overlay"></div>
+                <div class="events-card-content">
+                    <div class="events-card-icon"><i class="fas fa-camera"></i></div>
+                    <h3 class="events-card-title">Forest photography</h3>
+                    <div class="events-card-date">Jun 2</div>
+                    <p class="events-card-desc">Workshop with a professional nature photographer.</p>
+                </div>
+            </div>
+            <div class="event-card" style="background-image:url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=800&auto=format&fit=crop'); background-size:cover; background-position:center;">
+                <div class="events-card-overlay"></div>
+                <div class="events-card-content">
+                    <div class="events-card-icon"><i class="fas fa-moon"></i></div>
+                    <h3 class="events-card-title">Twilight hike</h3>
+                    <div class="events-card-date">Fri 8pm</div>
+                    <p class="events-card-desc">Experience the woods after dark and listen for Great Horned Owls.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
 <!-- GARDEN STORIES SECTION -->
 <section class="stories-section">
     <div class="container">
@@ -1590,7 +1391,7 @@ Experience the woods after dark and listen for Great Horned Owls.
         </div>
         <div class="stories-grid">
             <div class="story-card">
-                <div class="story-image" style="background-image: url('/images/b1.jpg');"></div>
+                <div class="story-image" style="background-image: url('/images/b1.jpg'); background-color: #2d5a4a;"></div>
                 <div class="story-content">
                     <div class="story-date">May 15, 2026</div>
                     <h3 class="story-title">The Return of the Warblers</h3>
@@ -1599,19 +1400,19 @@ Experience the woods after dark and listen for Great Horned Owls.
                 </div>
             </div>
             <div class="story-card">
-                <div class="story-image" style="background-image: url('/images/b2.jpg');"></div>
+                <div class="story-image" style="background-image: url('/images/b2.jpg'); background-color: #3d6b58;"></div>
                 <div class="story-content">
                     <div class="story-date">April 28, 2026</div>
-                    <h3 class="story-title">Prairie Restoration </h3>
-                    <p class="story-excerpt">Thanks to volunteers, over 2,000 native seedlings now call the prairie remnant home. </p>
+                    <h3 class="story-title">Prairie Restoration</h3>
+                    <p class="story-excerpt">Thanks to volunteers, over 2,000 native seedlings now call the prairie remnant home.</p>
                     <a href="#" class="story-link">Read more <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             <div class="story-card">
-                <div class="story-image" style="background-image: url('/images/b3.jpg');"></div>
+                <div class="story-image" style="background-image: url('/images/b3.jpg'); background-color: #1f4e3c;"></div>
                 <div class="story-content">
                     <div class="story-date">April 10, 2026</div>
-                    <h3 class="story-title">Night Skies  Wetland</h3>
+                    <h3 class="story-title">Night Skies Wetland</h3>
                     <p class="story-excerpt">Our first astronomy night of the season drew 80 visitors and enjoy it too.</p>
                     <a href="#" class="story-link">Read more <i class="fas fa-arrow-right"></i></a>
                 </div>
@@ -1643,7 +1444,6 @@ Experience the woods after dark and listen for Great Horned Owls.
                 <p>Free guided tours, event discounts, and preserve updates.</p>
             </div>
         </div>
-        
     </div>
 </section>
 
@@ -1652,13 +1452,13 @@ Experience the woods after dark and listen for Great Horned Owls.
     <div class="container">
         <div class="footer-main">
             <div class="footer-brand">
-                <a href="index.html" class="logo">
-            <div class="logo-icon"><i class="fas fa-tree"></i></div>
-           <div>
-    <div class="logo-text" style="white-space:nowrap;">Botanical<span> Garden</span></div>
-    <span class="logo-tagline">botanical preserve</span>
-</div>
-        </a>
+                <a href="index.html" class="logo" style="margin-bottom: 0.5rem;">
+                    <div class="logo-icon"><i class="fas fa-tree"></i></div>
+                    <div>
+                        <div class="logo-text" style="white-space:nowrap;">Botanical<span> Garden</span></div>
+                        <span class="logo-tagline">botanical preserve</span>
+                    </div>
+                </a>
                 <p class="footer-tagline">A living sanctuary for native flora, fauna, and the human spirit. Open daily 8am–dusk.</p>
                 <div class="footer-social">
                     <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
@@ -1675,7 +1475,6 @@ Experience the woods after dark and listen for Great Horned Owls.
                     <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
                     <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
                     <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    
                 </ul>
             </div>
             <div>
@@ -1720,7 +1519,6 @@ Experience the woods after dark and listen for Great Horned Owls.
         const desktopRtl = document.getElementById('desktop-rtl-toggle');
         const mobileRtl = document.getElementById('mobile-rtl-toggle');
 
-        // initial theme from localStorage
         let theme = localStorage.getItem('theme') || 'light';
         htmlEl.setAttribute('data-theme', theme);
         if (theme === 'dark') {
@@ -1768,7 +1566,6 @@ Experience the woods after dark and listen for Great Horned Owls.
             document.getElementById(id).classList.toggle('active');
         };
 
-        // mobile menu
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const closeBtn = document.getElementById('close-mobile-menu');
@@ -1788,7 +1585,6 @@ Experience the woods after dark and listen for Great Horned Owls.
             if (e.target === mobileMenu) mobileMenu.classList.remove('active');
         });
 
-        // scroll top
         const scrollBtn = document.getElementById('scroll-top');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) scrollBtn.style.display = 'block';
